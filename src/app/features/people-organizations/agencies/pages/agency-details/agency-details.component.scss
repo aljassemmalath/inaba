@@ -1,0 +1,63 @@
+.agency-layout {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 16px;
+  align-items: start;
+  margin-bottom: 16px;
+}
+.agency-right, .agency-left { min-width: 0; }
+.agency-left { display: flex; flex-direction: column; gap: 12px; }
+
+.info-card__title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--teal-500);
+}
+.info-grid { display: grid; gap: 16px 12px; }
+.info-grid--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: flex-start;
+  text-align: right;
+  min-width: 0;
+}
+.info-label { font-size: 12px; font-weight: 400; color: var(--text-secondary); line-height: 1.4; }
+.info-value { font-size: 14px; font-weight: 500; color: var(--text-primary); line-height: 1.5; word-break: break-word; }
+
+/* Summary cards — same design as main/home pages */
+.home-stat-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-default);
+  box-sizing: border-box;
+}
+.home-stat-card__info { min-width: 0; }
+.home-stat-card__label { font-size: 13px; font-weight: 400; color: var(--text-tertiary); line-height: 1.4; margin-bottom: 4px; }
+.home-stat-card__value { font-size: 32px; font-weight: 700; line-height: 1.1; }
+.home-stat-card__icon {
+  width: 44px; height: 44px; border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.home-stat--total { background: var(--teal-20); border-color: var(--teal-100); }
+.home-stat--total .home-stat-card__value { color: var(--teal-700); }
+.home-stat--total .home-stat-card__icon { background: var(--teal-700); }
+.home-stat--in-progress { background: var(--info-20); border-color: var(--info-100); }
+.home-stat--in-progress .home-stat-card__value { color: var(--info-700); }
+.home-stat--in-progress .home-stat-card__icon { background: var(--info-500); }
+.home-stat--completed { background: var(--teal-20); border-color: var(--teal-100); }
+.home-stat--completed .home-stat-card__value { color: var(--teal-500); }
+.home-stat--completed .home-stat-card__icon { background: var(--teal-500); }
+
+.agency-orders-card { margin-top: 0; }
+.agency-orders-card .info-card__title { margin-bottom: 0; }
+
+@media (max-width: 991.98px) {
+  .agency-layout { grid-template-columns: 1fr; }
+}

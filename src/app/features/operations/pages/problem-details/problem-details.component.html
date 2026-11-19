@@ -1,0 +1,102 @@
+@if (details(); as d) {
+  <app-page-banner [title]="d.title" [description]="'رقم المشكلة: ' + d.issueNumber + '   تم تسجيل المشكلة في ' + d.registeredAt">
+    <app-status-badge banner-title-badge [label]="d.status" [tone]="d.statusTone" />
+  </app-page-banner>
+
+  <div class="problem-layout">
+    <!-- Right column col-8 -->
+    <div class="problem-right">
+      <!-- Card 1: بيانات المشكلة -->
+      <div class="content-card-body info-card">
+        <h3 class="info-card__title">بيانات المشكلة</h3>
+        <div class="card-divider"></div>
+        <div class="info-grid info-grid--3">
+          <div class="info-item">
+            <span class="info-label">رقم المشكلة</span>
+            <span class="info-value">{{ d.issueNumber }}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">نوع المشكلة</span>
+            <span class="info-value">{{ d.type }}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">تاريخ التسجيل</span>
+            <span class="info-value">{{ d.registeredAt }}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">مصدر المشكلة</span>
+            <span class="info-value">{{ d.source }}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">المرحلة المرتبطة</span>
+            <span class="info-value">{{ d.stage }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: تفاصيل المشكلة الواردة -->
+      <div class="content-card-body info-card">
+        <h3 class="info-card__title">تفاصيل المشكلة الواردة</h3>
+        <div class="card-divider"></div>
+
+        <div class="problem-desc-block">
+          <div class="info-label mb-1">وصف المشكلة</div>
+          <p class="problem-desc-text">{{ d.description }}</p>
+        </div>
+
+        <div class="attachment-row">
+          <div class="attachment-file">
+            <div class="attachment-icon" aria-hidden="true">
+              <app-icon-placeholder size="lg" src="/assets/images/svg/Buttons/view.svg" />
+            </div>
+            <span class="attachment-name">{{ d.attachmentName }}</span>
+          </div>
+          <button type="button" class="btn btn-brand-outline attachment-preview" (click)="previewAttachment()">
+            <img src="/assets/images/svg/Buttons/view.svg" alt="" aria-hidden="true" width="16" height="16" />
+            <span>معاينة</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Left column col-4 -->
+    <div class="problem-left">
+      <div class="content-card-body info-card">
+        <div class="card-header-block">
+          <h3 class="info-card__title">الطلب المرتبط</h3>
+          <div class="card-header-action">
+            <button type="button" class="btn btn-brand-outline btn-sm" (click)="openRequest()">عرض تفاصيل الطلب</button>
+          </div>
+        </div>
+        <div class="card-divider"></div>
+
+        <div class="info-grid info-grid--2">
+          <div class="info-item">
+            <span class="info-label">رقم الطلب</span>
+            <span class="info-value">{{ d.relatedRequest.requestNumber }}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">المنفذ</span>
+            <span class="info-value">{{ d.relatedRequest.executor }}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">الخدمة</span>
+            <span class="info-value">{{ d.relatedRequest.service }}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">حالة الطلب</span>
+            <span class="info-value"><app-status-badge [label]="d.relatedRequest.status" [tone]="d.relatedRequest.statusTone" /></span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">المرحلة الحالية</span>
+            <span class="info-value">{{ d.relatedRequest.currentStage }}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">اسم المستفيد</span>
+            <span class="info-value">{{ d.relatedRequest.beneficiaryName }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+}

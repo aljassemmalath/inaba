@@ -1,0 +1,58 @@
+.chart-wrap {
+  width: 100%;
+}
+
+.chart-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.axis {
+  stroke: var(--color-border-default);
+  stroke-width: 1;
+}
+
+.bar-a {
+  fill: var(--color-primary);
+}
+
+.bar-b {
+  fill: var(--color-accent-gold);
+}
+
+.month-label {
+  font-size: 11px;
+  fill: var(--color-text-secondary);
+  font-family: var(--font-family-base);
+}
+
+.chart-legend {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+  font-size: var(--font-size-body-sm);
+  color: var(--color-text-secondary);
+}
+
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  display: inline-block;
+}
+
+.swatch-a {
+  background: var(--color-primary);
+}
+
+.swatch-b {
+  background: var(--color-accent-gold);
+}/*# sourceMappingURL=monthly-orders-chart.component.css.map */

@@ -1,0 +1,108 @@
+@if (details(); as d) {
+  <app-page-banner [title]="d.name" description="عرض بيانات المنفذ ومتابعة الطلب الحالي وسجل الأداء والمستحقات.">
+    <div banner-actions class="executor-actions-wrap">
+      <button type="button" class="btn btn-brand-outline executor-actions-btn" (click)="toggleActions($event)" [attr.aria-expanded]="actionsOpen()" aria-haspopup="menu">
+        <span>الإجراءات</span>
+        <img src="/assets/images/svg/Buttons/filter.svg" alt="" aria-hidden="true" width="16" height="16" />
+      </button>
+      @if (actionsOpen()) {
+        <div class="executor-actions-menu" role="menu">
+          @for (a of actions; track a.id) {
+            <button type="button" class="executor-actions-item" role="menuitem" (click)="selectAction(a.id); $event.stopPropagation()">
+              <span class="executor-actions-item__icon" aria-hidden="true">
+                <app-icon-placeholder size="sm" [src]="a.icon" />
+              </span>
+              <span class="executor-actions-item__label">{{ a.label }}</span>
+            </button>
+            @if (a.dividerAfter) {
+              <div class="executor-actions-divider" aria-hidden="true"></div>
+            }
+          }
+        </div>
+      }
+    </div>
+  </app-page-banner>
+
+  <div class="executor-layout">
+    <div class="executor-right">
+      <div class="content-card-body info-card">
+        <h3 class="info-card__title">بيانات المنفذ</h3>
+        <div class="card-divider"></div>
+        <div class="info-grid info-grid--3">
+          <div class="info-item">
+            <span class="info-label">المشرف</span>
+            <span class="info-value">{{ d.supervisor }}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">الجوال</span>
+            <span class="info-value" dir="ltr">{{ d.phone }}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">الاسم</span>
+            <span class="info-value">{{ d.name }}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">حالة الدوام</span>
+            <span class="info-value"><app-status-badge [label]="d.dutyStatus" [tone]="d.dutyTone" /></span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">تاريخ الإضافة</span>
+            <span class="info-value" dir="ltr">{{ d.addedAt }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="executor-left">
+      <div class="content-card-body info-card">
+        <div class="card-header-block">
+          <h3 class="info-card__title">الطلب الحالي</h3>
+          <div class="card-header-action">
+            <button type="button" class="btn btn-brand-outline btn-sm" (click)="openRequest()" [disabled]="!d.currentRequest">عرض الطلب</button>
+          </div>
+        </div>
+        <div class="card-divider"></div>
+
+        @if (d.currentRequest; as cr) {
+          <div class="current-request">
+            <span class="info-label">رقم الطلب</span>
+            <div class="request-number-row">
+              <span class="request-number-value">{{ cr.requestNumber }}</span>
+              <button type="button" class="copy-btn" (click)="copyRequestNumber()" [attr.aria-label]="copied() ? 'تم النسخ' : 'نسخ رقم الطلب'" [attr.title]="copied() ? 'تم النسخ' : 'نسخ رقم الطلب'">
+                <app-icon-placeholder size="sm" src="/assets/images/svg/Buttons/view.svg" />
+              </button>
+              @if (copied()) { <span class="copied-hint">تم النسخ</span> }
+            </div>
+
+            <div class="request-progress">
+              <div class="request-progress__text">{{ cr.completedStages }} من {{ cr.totalStages }} مراحل</div>
+              <div class="request-progress__track" aria-hidden="true">
+                <div class="request-progress__bar" [style.width.%]="progressPercent()"></div>
+              </div>
+            </div>
+          </div>
+        } @else {
+          <app-empty-state title="لا يوجد طلب حالي" message="لا يوجد طلب مسند لهذا المنفذ حالياً." />
+        }
+      </div>
+    </div>
+  </div>
+
+  <section class="executor-tabs-section content-card-body" aria-label="تفاصيل المنفذ">
+    <div class="app-tabs" role="tablist">
+      <button type="button" class="app-tab" role="tab" [class.active]="activeTab() === 'performance'" [attr.aria-selected]="activeTab() === 'performance'" (click)="setTab('performance')">مؤشرات الأداء</button>
+      <button type="button" class="app-tab" role="tab" [class.active]="activeTab() === 'orders'" [attr.aria-selected]="activeTab() === 'orders'" (click)="setTab('orders')">سجل الطلبات</button>
+      <button type="button" class="app-tab" role="tab" [class.active]="activeTab() === 'dues'" [attr.aria-selected]="activeTab() === 'dues'" (click)="setTab('dues')">المستحقات</button>
+    </div>
+
+    <div class="executor-tab-content">
+      @if (activeTab() === 'performance') {
+        <app-empty-state title="لا توجد مؤشرات أداء" message="ستظهر مؤشرات أداء المنفذ هنا عند توفر البيانات." />
+      } @else if (activeTab() === 'orders') {
+        <app-empty-state title="لا يوجد سجل طلبات" message="لا توجد طلبات سابقة لهذا المنفذ حالياً." />
+      } @else if (activeTab() === 'dues') {
+        <app-empty-state title="لا توجد مستحقات" message="لا توجد بيانات مستحقات متاحة لهذا المنفذ حالياً." />
+      }
+    </div>
+  </section>
+}

@@ -1,0 +1,490 @@
+$teal-20: #F3FBFA;
+$teal-50: #E6F6F4;
+$teal-100: #C2E9E5;
+$teal-200: #99DAD3;
+$teal-300: #66C6BC;
+$teal-400: #33B3A6;
+$teal-600: #008A7E;
+$teal-800: #005A51;
+$teal-900: #004C45;
+$teal-950: #003F39;
+$teal-500: #00A092;
+$teal-700: #007468;
+// Mint
+$mint-20: #F7FDF9;
+$mint-50: #EEF9F3;
+$mint-100: #D8F1E3;
+$mint-200: #BBE7CF;
+$mint-300: #A1D8BD;
+$mint-400: #92D3B3;
+$mint-600: #5CBC8C;
+$mint-700: #3F9968;
+$mint-800: #2C724E;
+$mint-500: #84D3A4;
+// Gold
+$gold-20: #FEFCF7;
+$gold-50: #FAF6EA;
+$gold-100: #F3EAD0;
+$gold-200: #EADCB1;
+$gold-600: #B39549;
+$gold-700: #8F7434;
+$gold-900: #47391A;
+$gold-500: #CEB26B;
+// Neutral
+$neutral-0: #FFFFFF;
+$neutral-50: #FCFCFC;
+$neutral-100: #F5F5F5;
+$neutral-200: #EDEDED;
+$neutral-400: #D1D0D0;
+$neutral-500: #B5B4B4;
+$neutral-600: #929191;
+$neutral-700: #6F6E6E;
+$neutral-800: #484747;
+$neutral-900: #292828;
+$neutral-300: #E3E2E2;
+// Info
+$info-20: #F4F9FC;
+$info-50: #E6F1F8;
+$info-200: #C9DFEC;
+$info-500: #2F80B7;
+$info-700: #1F5E88;
+// Error
+$error-20: #FFF7F7;
+$error-50: #FDECEC;
+$error-200: #F5CACA;
+$error-500: #D64545;
+$error-700: #A62F2F;
+$error-900: #5A2424;
+$error-950: #421C1C;
+// Inverse
+$inverse-border-disabled: #496A66;
+
+// 2. SEMANTIC TOKENS
+
+// Backgrounds
+$background-default: $neutral-0;
+$background-subtle: $neutral-50;
+$background-muted: $neutral-100;
+$background-brand: $teal-20;
+$background-success: $mint-20;
+$background-warning: $gold-20;
+$background-info: $info-20;
+$background-error: $error-20;
+$background-inverse: $neutral-900;
+$background-sidebar: $teal-700;
+
+// Text
+$text-primary: $neutral-900;
+$text-secondary: $neutral-800;
+$text-tertiary: $neutral-700;
+$text-placeholder: $neutral-600;
+$text-disabled: $neutral-500;
+$text-inverse: $neutral-0;
+$text-brand: $teal-700;
+$text-success: $mint-800;
+$text-warning: $gold-700;
+$text-info: $info-700;
+$text-error: $error-700;
+
+// Borders
+$border-subtle: $neutral-200;
+$border-default: $neutral-300;
+$border-strong: $neutral-400;
+$border-focus: $teal-500;
+$border-brand: $teal-200;
+$border-success: $mint-200;
+$border-warning: $gold-200;
+$border-info: $info-200;
+$border-error: $error-200;
+
+// Actions — Primary
+$action-primary-default: $teal-500;
+$action-primary-hover: $teal-600;
+$action-primary-pressed: $teal-700;
+$action-primary-disabled: $teal-200;
+$action-primary-subtle: $teal-50;
+$action-primary-text: $neutral-0;
+
+// Actions — Secondary
+$action-secondary-default: $neutral-0;
+$action-secondary-hover: $teal-20;
+$action-secondary-pressed: $teal-50;
+$action-secondary-disabled: $neutral-300;
+$action-secondary-border: $border-subtle;
+$action-secondary-text: $text-secondary;
+
+// Actions — Tertiary
+$action-tertiary-default: $neutral-0;
+$action-tertiary-hover: $teal-20;
+$action-tertiary-pressed: $teal-50;
+$action-tertiary-text: $teal-700;
+
+// Actions — Danger
+$action-danger-default: $error-20;
+$action-danger-hover: $error-50;
+$action-danger-pressed: $error-200;
+$action-danger-disabled: $neutral-300;
+$action-danger-border: $error-200;
+$action-danger-text: $error-700;
+
+// Actions — Inverse
+$action-inverse-default: $teal-50;
+$action-inverse-hover: $mint-100;
+$action-inverse-pressed: $teal-100;
+$action-inverse-disabled: $neutral-300;
+$action-inverse-border: $teal-100;
+$action-inverse-text: $teal-700;
+
+// Inputs — Default
+$input-background: $neutral-0;
+$input-border-default: $border-subtle;
+$input-border-hover: $neutral-600;
+$input-border-focus: $teal-500;
+$input-border-disabled: $border-default;
+$input-label: $neutral-900;
+$input-placeholder: $neutral-600;
+$input-bg-disabled: $neutral-100;
+$input-disabled-text: $neutral-500;
+$input-bg-read-only: $neutral-50;
+$input-error-border: $error-500;
+$input-success-border: $mint-700;
+
+// Inputs — Inverse
+$input-inverse-background: $teal-900;
+$input-inverse-border-default: $teal-700;
+$input-inverse-border-hover: $teal-300;
+$input-inverse-border-focus: $teal-200;
+$input-inverse-border-disabled: $teal-700;
+$input-inverse-label: $neutral-0;
+$input-inverse-placeholder: $teal-200;
+$input-inverse-bg-disabled: $teal-900;
+$input-inverse-disabled-label: $teal-700;
+$input-inverse-disabled-placeholder: $teal-700;
+$input-inverse-bg-read-only: #FAFAFA;
+$input-inverse-error-border: $error-500;
+$input-inverse-success-border: $mint-700;
+
+// Extra border (preserves established appearance)
+$border-soft: #EEF1F1;
+
+// Navigation / icons semantics (used by :root; preserve appearance)
+$side-menu-bg: $teal-700;
+$icons-primary: $text-primary;
+$icons-secondary: $text-secondary;
+$icons-tertiary: $text-tertiary;
+$icons-disabled: $text-disabled;
+$icons-brand: $teal-700;
+$icons-bg-disabled: $background-muted;
+$icons-border-hover: $border-strong;
+$icons-inverse: $neutral-0;
+
+// Status — shared state structure (values preserve established visual appearance)
+$success-background: #ECFDF3;
+$success-background-strong: #ECFDF3;
+$success-border: #ABEFC6;
+$success-icon: #027A48;
+$success-text: #027A48;
+$success-solid: #12B76A;
+
+$warning-background: #FFFAEB;
+$warning-background-strong: #FFFAEB;
+$warning-border: #FEDF89;
+$warning-icon: #B54708;
+$warning-text: #B54708;
+$warning-solid: $gold-500;
+
+$info-background: #EFF8FF;
+$info-background-strong: #EFF8FF;
+$info-border: #B2DDFF;
+$info-icon: #175CD3;
+$info-text: #175CD3;
+$info-solid: $info-500;
+
+$error-background: #FEF3F2;
+$error-background-strong: #FEF3F2;
+$error-border: #FDA29B;
+$error-icon: #D92D20;
+$error-text: #B42318;
+$error-solid: $error-500;
+$error-primary-2: $neutral-900;
+
+$neutral-background: $info-20;
+$neutral-background-strong: $neutral-100;
+$neutral-border: $neutral-300;
+$neutral-icon: $neutral-700;
+$neutral-text: $neutral-800;
+$neutral-solid: $info-500;
+
+$cyan-background: $info-20;
+$cyan-background-strong: $teal-50;
+$cyan-border: $teal-200;
+$cyan-icon: $teal-400;
+$cyan-text: $teal-500;
+$cyan-solid: $info-500;
+
+:root {
+  // Background
+  --background-default: #{$background-default};
+  --background-subtle: #{$background-subtle};
+  --background-muted: #{$background-muted};
+  --background-brand: #{$background-brand};
+  --background-success: #{$background-success};
+  --background-warning: #{$background-warning};
+  --background-info: #{$background-info};
+  --background-error: #{$background-error};
+  --background-inverse: #{$background-inverse};
+  --background-sidebar: #{$background-sidebar};
+
+  // Text
+  --text-primary: #{$text-primary};
+  --text-secondary: #{$text-secondary};
+  --text-tertiary: #{$text-tertiary};
+  --text-placeholder: #{$text-placeholder};
+  --text-disabled: #{$text-disabled};
+  --text-inverse: #{$text-inverse};
+  --text-inverse-secondary: rgba(255, 255, 255, 0.8);
+  --text-brand: #{$text-brand};
+  --text-success: #{$text-success};
+  --text-warning: #{$text-warning};
+  --text-info: #{$text-info};
+  --text-error: #{$text-error};
+
+  // Border
+  --border-subtle: #{$border-subtle};
+  --border-default: #{$border-default};
+  --border-strong: #{$border-strong};
+  --border-soft: #{$border-soft};
+  --border-focus: #{$border-focus};
+  --border-brand: #{$border-brand};
+  --border-success: #{$border-success};
+  --border-warning: #{$border-warning};
+  --border-info: #{$border-info};
+  --border-error: #{$border-error};
+
+  // Actions
+  --action-primary-default: #{$action-primary-default};
+  --action-primary-hover: #{$action-primary-hover};
+  --action-primary-pressed: #{$action-primary-pressed};
+  --action-primary-disabled: #{$action-primary-disabled};
+  --action-primary-subtle: #{$action-primary-subtle};
+  --action-primary-text: #{$action-primary-text};
+
+  --action-secondary-default: #{$action-secondary-default};
+  --action-secondary-hover: #{$action-secondary-hover};
+  --action-secondary-pressed: #{$action-secondary-pressed};
+  --action-secondary-disabled: #{$action-secondary-disabled};
+  --action-secondary-border: #{$action-secondary-border};
+  --action-secondary-text: #{$action-secondary-text};
+
+  --action-tertiary-default: #{$action-tertiary-default};
+  --action-tertiary-hover: #{$action-tertiary-hover};
+  --action-tertiary-pressed: #{$action-tertiary-pressed};
+  --action-tertiary-text: #{$action-tertiary-text};
+
+  --action-danger-default: #{$action-danger-default};
+  --action-danger-hover: #{$action-danger-hover};
+  --action-danger-pressed: #{$action-danger-pressed};
+  --action-danger-disabled: #{$action-danger-disabled};
+  --action-danger-border: #{$action-danger-border};
+  --action-danger-text: #{$action-danger-text};
+
+  --action-inverse-default: #{$action-inverse-default};
+  --action-inverse-hover: #{$action-inverse-hover};
+  --action-inverse-pressed: #{$action-inverse-pressed};
+  --action-inverse-disabled: #{$action-inverse-disabled};
+  --action-inverse-border: #{$action-inverse-border};
+  --action-inverse-text: #{$action-inverse-text};
+
+  // Inputs
+  --input-background: #{$input-background};
+  --input-border-default: #{$input-border-default};
+  --input-border-hover: #{$input-border-hover};
+  --input-border-focus: #{$input-border-focus};
+  --input-border-disabled: #{$input-border-disabled};
+  --input-label: #{$input-label};
+  --input-placeholder: #{$input-placeholder};
+  --input-bg-disabled: #{$input-bg-disabled};
+  --input-disabled-text: #{$input-disabled-text};
+  --input-bg-read-only: #{$input-bg-read-only};
+  --input-error-border: #{$input-error-border};
+  --input-success-border: #{$input-success-border};
+
+  --input-inverse-background: #{$input-inverse-background};
+  --input-inverse-border-default: #{$input-inverse-border-default};
+  --input-inverse-border-hover: #{$input-inverse-border-hover};
+  --input-inverse-border-focus: #{$input-inverse-border-focus};
+  --input-inverse-border-disabled: #{$input-inverse-border-disabled};
+  --input-inverse-label: #{$input-inverse-label};
+  --input-inverse-placeholder: #{$input-inverse-placeholder};
+  --input-inverse-bg-disabled: #{$input-inverse-bg-disabled};
+  --input-inverse-disabled-label: #{$input-inverse-disabled-label};
+  --input-inverse-disabled-placeholder: #{$input-inverse-disabled-placeholder};
+  --input-inverse-bg-read-only: #{$input-inverse-bg-read-only};
+  --input-inverse-error-border: #{$input-inverse-error-border};
+  --input-inverse-success-border: #{$input-inverse-success-border};
+
+  // Navigation and icons
+  --side-menu-bg: #{$side-menu-bg};
+  --side-menu-item-active-bg: rgba(255, 255, 255, 0.12);
+  --icons-primary: #{$icons-primary};
+  --icons-secondary: #{$icons-secondary};
+  --icons-tertiary: #{$icons-tertiary};
+  --icons-disabled: #{$icons-disabled};
+  --icons-brand: #{$icons-brand};
+  --icons-bg-disabled: #{$icons-bg-disabled};
+  --icons-border-hover: #{$icons-border-hover};
+  --icons-inverse: #{$icons-inverse};
+
+  // Status
+  --success-background: #{$success-background};
+  --success-background-strong: #{$success-background-strong};
+  --success-border: #{$success-border};
+  --success-icon: #{$success-icon};
+  --success-text: #{$success-text};
+  --success-solid: #{$success-solid};
+
+  --warning-background: #{$warning-background};
+  --warning-background-strong: #{$warning-background-strong};
+  --warning-border: #{$warning-border};
+  --warning-icon: #{$warning-icon};
+  --warning-text: #{$warning-text};
+  --warning-solid: #{$warning-solid};
+
+  --info-background: #{$info-background};
+  --info-background-strong: #{$info-background-strong};
+  --info-border: #{$info-border};
+  --info-icon: #{$info-icon};
+  --info-text: #{$info-text};
+  --info-solid: #{$info-solid};
+
+  --error-background: #{$error-background};
+  --error-background-strong: #{$error-background-strong};
+  --error-border: #{$error-border};
+  --error-icon: #{$error-icon};
+  --error-text: #{$error-text};
+  --error-solid: #{$error-solid};
+  --error-primary-2: #{$error-primary-2};
+
+  --neutral-background: #{$neutral-background};
+  --neutral-background-strong: #{$neutral-background-strong};
+  --neutral-border: #{$neutral-border};
+  --neutral-icon: #{$neutral-icon};
+  --neutral-text: #{$neutral-text};
+  --neutral-solid: #{$neutral-solid};
+
+  --cyan-background: #{$cyan-background};
+  --cyan-background-strong: #{$cyan-background-strong};
+  --cyan-border: #{$cyan-border};
+  --cyan-icon: #{$cyan-icon};
+  --cyan-text: #{$cyan-text};
+  --cyan-solid: #{$cyan-solid};
+
+  // Typography
+  --font-family-base: "IBM Plex Sans Arabic", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-size-page-title: 24px;
+  --line-height-page-title: 32px;
+  --font-weight-page-title: 600;
+  --font-size-section: 18px;
+  --line-height-section: 26px;
+  --font-weight-section: 600;
+  --font-size-subheading: 16px;
+  --line-height-subheading: 24px;
+  --font-weight-subheading: 600;
+  --font-size-body-lg: 16px;
+  --line-height-body-lg: 26px;
+  --font-size-body-md: 14px;
+  --line-height-body-md: 22px;
+  --font-size-body-sm: 13px;
+  --line-height-body-sm: 20px;
+  --font-size-caption: 12px;
+  --line-height-caption: 18px;
+
+  // Spacing
+  --space-0: 0px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-7: 32px;
+  --space-8: 40px;
+
+  // Radius
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-pill: 999px;
+
+  // Shadows (restrained)
+  --shadow-xs: 0 1px 2px rgba(41, 40, 40, 0.04);
+  --box-shadow: 0px 2px 8px rgba(0, 59, 54, 0.06);
+  --shadow-md: 0 4px 12px rgba(41, 40, 40, 0.06);
+  --card-shadow: 0 2px 8px rgba(16, 24, 40, 0.10);
+
+  // Layout
+  --sidebar-width: 272px;
+  --header-height: 64px;
+  --content-max-width: 1440px;
+
+  // Focus
+  --focus-ring: 0 0 0 3px rgba(0, 160, 146, 0.18);
+
+  // Primitives exposed as CSS vars (preserve appearance for direct references)
+  --teal-20: #{$teal-20};
+  --teal-50: #{$teal-50};
+  --teal-100: #{$teal-100};
+  --teal-300: #{$teal-300};
+  --teal-400: #{$teal-400};
+  --teal-500: #{$teal-500};
+  --teal-600: #{$teal-600};
+  --teal-700: #{$teal-700};
+  --teal-800: #{$teal-800};
+  --teal-900: #{$teal-900};
+  --mint-20: #{$mint-20};
+  --mint-100: #{$mint-100};
+  --mint-500: #{$mint-500};
+  --gold-20: #{$gold-20};
+  --gold-50: #{$gold-50};
+  --gold-100: #{$gold-100};
+  --gold-500: #{$gold-500};
+  --gold-600: #{$gold-600};
+  --gold-700: #{$gold-700};
+  --info-20: #{$info-20};
+  --info-50: #{$info-50};
+  --info-100: #{$info-200};
+  --info-500: #{$info-500};
+  --info-700: #{$info-700};
+  --error-20: #{$error-20};
+  --error-50: #{$error-50};
+  --error-100: #{$error-200};
+  --error-500: #{$error-500};
+  --error-700: #{$error-700};
+  --neutral-0: #{$neutral-0};
+  --neutral-50: #{$neutral-50};
+  --neutral-100: #{$neutral-100};
+
+  // Page banner decorative pattern (local asset)
+  --page-banner-pattern: url("/assets/images/svg/banner%20pattern.svg");
+  // Modal (set --modal-pattern to a background-image later)
+  --modal-pattern: none;
+  --modal-size-lg: 800px;
+  --modal-size-md: 600px;
+  --modal-size-sm: 540px;
+}
+
+// SCSS semantic aliases (aligned to new token names)
+$color-primary: var(--action-primary-default);
+$color-primary-hover: var(--action-primary-hover);
+$color-text-primary: var(--text-primary);
+$color-text-secondary: var(--text-secondary);
+$color-border-default: var(--border-default);
+$color-background-default: var(--background-subtle);
+$color-background-muted: var(--background-muted);
+$font-family-base: var(--font-family-base);
+$sidebar-bg: var(--side-menu-bg);
+$radius-md: var(--radius-md);
+$shadow-sm: var(--shadow-sm);
+$card-shadow: 0 2px 8px rgba(16, 24, 40, 0.10);

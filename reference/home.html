@@ -1,0 +1,1760 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>لوحة التحكم</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+:root {
+    --teal-50: #E6F6F4;
+    --teal-100: #C2E9E5;
+    --teal-200: #99DAD3;
+    --teal-300: #66C6BC;
+    --teal-400: #33B3A6;
+    --teal-500: #00A092;
+    --teal-600: #008A7E;
+    --teal-700: #007468;
+    --teal-800: #005A51;
+    --teal-900: #003F39;
+
+    --gold-50: #FAF6EA;
+    --gold-100: #F3EAD0;
+    --gold-200: #EADCB1;
+    --gold-500: #CEB26B;
+    --gold-600: #B39549;
+    --gold-700: #8F7434;
+
+    --mint-50: #EEF9F3;
+    --mint-100: #D8F1E3;
+    --mint-200: #BBE7CF;
+    --mint-500: #84D3A4;
+    --mint-700: #3F9968;
+    --mint-800: #2C724E;
+
+    --danger: #D64545;
+    --danger-bg: #FDECEC;
+
+    --info: #2F80B7;
+    --info-bg: #E6F1F8;
+
+    --border: #E3E2E2;
+    --background: #F6F8F8;
+    --text: #0B2B28;
+    --muted: #5C7070;
+    --white: #FFFFFF;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: var(--background);
+    color: var(--text);
+    font-family: "IBM Plex Sans Arabic", sans-serif;
+}
+
+/* =========================
+   APP
+========================= */
+
+.app {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 250px 1fr;
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar {
+    grid-column: 1;
+    grid-row: 1;
+    background: var(--teal-700);
+    color: white;
+    min-height: 100vh;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+}
+
+.user-area {
+    padding: 22px 20px;
+    background: var(--teal-800);
+    border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+.avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: var(--teal-500);
+    display: grid;
+    place-items: center;
+    font-weight: 700;
+    margin-bottom: 11px;
+}
+
+.user-name {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.user-role {
+    font-size: 11px;
+    opacity: .65;
+}
+
+nav {
+    padding: 15px 12px;
+}
+
+.nav-label {
+    font-size: 10px;
+    opacity: .5;
+    padding: 12px 12px 7px;
+}
+
+.nav-item {
+    height: 43px;
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    padding: 0 13px;
+    border-radius: 8px;
+    margin: 3px 0;
+    color: white;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.nav-item:hover {
+    background: var(--teal-800);
+}
+
+.nav-item.active {
+    background: rgba(0,160,146,.35);
+    position: relative;
+}
+
+.nav-item.active::before {
+    content: "";
+    position: absolute;
+    right: 0;
+    width: 4px;
+    height: 25px;
+    border-radius: 4px 0 0 4px;
+    background: var(--gold-500);
+}
+
+.nav-icon {
+    width: 19px;
+    text-align: center;
+    opacity: .9;
+}
+
+/* =========================
+   MAIN
+========================= */
+
+.main {
+    min-width: 0;
+}
+
+.topbar {
+    height: 76px;
+    background: white;
+    border-bottom: 1px solid var(--border);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 34px;
+
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.page-title {
+    margin: 0 0 2px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.page-subtitle {
+    margin: 0;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.top-actions {
+    display: flex;
+    gap: 9px;
+}
+
+.icon-button {
+    width: 38px;
+    height: 38px;
+
+    border: 1px solid var(--border);
+    background: white;
+    border-radius: 9px;
+
+    display: grid;
+    place-items: center;
+
+    color: var(--muted);
+    cursor: pointer;
+}
+
+.notification {
+    position: relative;
+}
+
+.notification::after {
+    content: "";
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: var(--danger);
+    border: 2px solid white;
+    border-radius: 50%;
+    top: 6px;
+    left: 7px;
+}
+
+/* =========================
+   PAGE
+========================= */
+
+.page {
+    padding: 28px 34px 50px;
+    max-width: 1600px;
+    margin: auto;
+}
+
+.card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+}
+
+/* =========================
+   KPI
+========================= */
+
+.kpis {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.kpi {
+    padding: 18px;
+}
+
+.kpi-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.kpi-icon {
+    width: 35px;
+    height: 35px;
+    border-radius: 9px;
+
+    background: var(--teal-50);
+    color: var(--teal-700);
+
+    display: grid;
+    place-items: center;
+
+    font-size: 13px;
+}
+
+.kpi-number {
+    display: block;
+    font-size: 27px;
+    font-weight: 700;
+    margin: 11px 0 2px;
+}
+
+.kpi-description {
+    color: var(--muted);
+    font-size: 10px;
+}
+
+.success-text {
+    color: var(--mint-700);
+}
+
+/* =========================
+   GRID
+========================= */
+
+.primary-grid {
+    display: grid;
+    grid-template-columns: 1.45fr 1fr;
+    gap: 18px;
+    margin-bottom: 18px;
+}
+
+.bottom-grid {
+    display: grid;
+    grid-template-columns: 1.45fr 1fr 1fr;
+    gap: 18px;
+}
+
+/* =========================
+   SECTION HEADER
+========================= */
+
+.section-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 14px;
+}
+
+.section-header h2 {
+    margin: 0;
+    font-size: 15px;
+}
+
+.section-link {
+    color: var(--teal-700);
+    text-decoration: none;
+    font-size: 11px;
+}
+
+/* =========================
+   NEED ACTION
+========================= */
+
+.action-card {
+    padding: 20px;
+}
+
+.action-list {
+    display: grid;
+    gap: 8px;
+}
+
+.action-item {
+    min-height: 63px;
+
+    border: 1px solid var(--border);
+    border-radius: 9px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+    padding: 10px 12px;
+
+    text-decoration: none;
+    color: var(--text);
+
+    transition: .15s;
+}
+
+.action-item:hover {
+    background: var(--teal-50);
+    border-color: var(--teal-100);
+}
+
+.action-icon {
+    width: 35px;
+    height: 35px;
+    border-radius: 9px;
+
+    display: grid;
+    place-items: center;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    flex-shrink: 0;
+}
+
+.action-content {
+    flex: 1;
+}
+
+.action-title {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.action-description {
+    display: block;
+    color: var(--muted);
+    font-size: 10px;
+    margin-top: 2px;
+}
+
+.gold-action {
+    background: var(--gold-50);
+    color: var(--gold-700);
+}
+
+.red-action {
+    background: var(--danger-bg);
+    color: var(--danger);
+}
+
+.blue-action {
+    background: var(--info-bg);
+    color: var(--info);
+}
+
+.teal-action {
+    background: var(--teal-50);
+    color: var(--teal-700);
+}
+
+/* =========================
+   BADGES
+========================= */
+
+.badge {
+    padding: 4px 8px;
+    border-radius: 20px;
+    font-size: 9px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.badge-gold {
+    background: var(--gold-100);
+    color: var(--gold-700);
+}
+
+.badge-red {
+    background: var(--danger-bg);
+    color: #A62F2F;
+}
+
+.badge-blue {
+    background: var(--info-bg);
+    color: #1F5E88;
+}
+
+.badge-mint {
+    background: var(--mint-100);
+    color: var(--mint-800);
+}
+
+/* =========================
+   STATUS
+========================= */
+
+.status-card {
+    padding: 20px;
+}
+
+.status-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.status-box {
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    padding: 13px;
+}
+
+.status-top {
+    display: flex;
+    justify-content: space-between;
+
+    color: var(--muted);
+    font-size: 10px;
+}
+
+.status-number {
+    display: block;
+    font-size: 22px;
+    font-weight: 700;
+    margin: 6px 0 7px;
+}
+
+.progress {
+    height: 5px;
+    background: #EEF1F1;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress span {
+    display: block;
+    height: 100%;
+    border-radius: 10px;
+    background: var(--teal-500);
+}
+
+.progress.gold span {
+    background: var(--gold-500);
+}
+
+.progress.mint span {
+    background: var(--mint-500);
+}
+
+/* =========================
+   TABLE
+========================= */
+
+.table-card {
+    padding: 20px;
+    overflow: hidden;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 11px;
+}
+
+th {
+    background: #FAFBFB;
+    color: var(--muted);
+    font-weight: 500;
+    text-align: right;
+}
+
+th,
+td {
+    padding: 11px 9px;
+    border-bottom: 1px solid #EEEEEE;
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+.order-id {
+    color: var(--teal-700);
+    font-weight: 600;
+}
+
+.muted {
+    color: var(--muted);
+}
+
+/* =========================
+   FINANCE
+========================= */
+
+.finance-card {
+    padding: 20px;
+}
+
+.money-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 13px 0;
+
+    border-bottom: 1px solid #EEEEEE;
+}
+
+.money-row:last-of-type {
+    border-bottom: none;
+}
+
+.money-label {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.money-value {
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.profit {
+    color: var(--teal-700);
+}
+
+/* =========================
+   CHART
+========================= */
+
+.chart {
+    height: 125px;
+
+    display: flex;
+    align-items: end;
+
+    gap: 9px;
+
+    padding: 12px 5px 22px;
+}
+
+.bar {
+    flex: 1;
+
+    background: var(--teal-100);
+
+    border-radius: 5px 5px 2px 2px;
+
+    position: relative;
+}
+
+.bar.current {
+    background: var(--teal-500);
+}
+
+.bar-label {
+    position: absolute;
+
+    bottom: -20px;
+
+    width: 100%;
+
+    text-align: center;
+
+    font-size: 8px;
+    color: var(--muted);
+}
+
+/* =========================
+   ACTIVITY
+========================= */
+
+.activity-card {
+    padding: 20px;
+}
+
+.timeline {
+    display: grid;
+}
+
+.event {
+    display: grid;
+    grid-template-columns: 14px 1fr;
+    gap: 10px;
+
+    position: relative;
+
+    padding-bottom: 16px;
+}
+
+.event:not(:last-child)::before {
+    content: "";
+
+    position: absolute;
+
+    right: 6px;
+    top: 13px;
+    bottom: 0;
+
+    width: 1px;
+
+    background: var(--border);
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+
+    border-radius: 50%;
+
+    background: var(--teal-500);
+
+    border: 3px solid var(--teal-50);
+
+    position: relative;
+    z-index: 1;
+}
+
+.event-title {
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.event-description {
+    margin: 2px 0;
+
+    color: var(--muted);
+
+    font-size: 10px;
+}
+
+.event-time {
+    color: #8A9999;
+    font-size: 9px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1250px) {
+
+    .kpis {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .bottom-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .activity-card {
+        grid-column: span 2;
+    }
+}
+
+@media (max-width: 950px) {
+
+    .primary-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .bottom-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .activity-card {
+        grid-column: auto;
+    }
+
+    .sidebar {
+        width: 220px;
+    }
+
+    .app {
+        grid-template-columns: 220px 1fr;
+    }
+}
+
+@media (max-width: 750px) {
+
+    .app {
+        display: block;
+    }
+
+    .sidebar {
+        display: none;
+    }
+
+    .topbar {
+        padding: 0 18px;
+    }
+
+    .page {
+        padding: 20px 16px;
+    }
+
+    .kpis {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 500px) {
+
+    .kpis {
+        grid-template-columns: 1fr;
+    }
+
+    .status-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .page {
+        padding: 14px;
+    }
+
+    .action-item {
+        align-items: flex-start;
+    }
+
+    .badge {
+        display: none;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+<div class="app">
+
+<!-- ================= SIDEBAR ================= -->
+
+<aside class="sidebar">
+
+    <div class="user-area">
+
+        <div class="avatar">م</div>
+
+        <span class="user-name">
+            محمد العتيبي
+        </span>
+
+        <span class="user-role">
+            مدير النظام
+        </span>
+
+    </div>
+
+
+    <nav>
+
+        <div class="nav-label">
+            الرئيسية
+        </div>
+
+        <a class="nav-item active" href="#">
+            <span class="nav-icon">⌂</span>
+            لوحة التحكم
+        </a>
+
+        <a class="nav-item" href="#">
+            <span class="nav-icon">▣</span>
+            الطلبات
+        </a>
+
+        <a class="nav-item" href="#">
+            <span class="nav-icon">◉</span>
+            المنفذون
+        </a>
+
+        <a class="nav-item" href="#">
+            <span class="nav-icon">⌁</span>
+            الوكالات
+        </a>
+
+        <a class="nav-item" href="#">
+            <span class="nav-icon">◫</span>
+            المنتجات والمراحل
+        </a>
+
+
+        <div class="nav-label">
+            المال والتقارير
+        </div>
+
+        <a class="nav-item" href="#">
+            <span class="nav-icon">ر.س</span>
+            المستحقات
+        </a>
+
+        <a class="nav-item" href="#">
+            <span class="nav-icon">▥</span>
+            التقارير
+        </a>
+
+
+        <div class="nav-label">
+            المتابعة
+        </div>
+
+        <a class="nav-item" href="#">
+            <span class="nav-icon">!</span>
+            المشاكل
+        </a>
+
+        <a class="nav-item" href="#">
+            <span class="nav-icon">◴</span>
+            سجل التدقيق
+        </a>
+
+        <a class="nav-item" href="#">
+            <span class="nav-icon">⚙</span>
+            الإعدادات
+        </a>
+
+    </nav>
+
+</aside>
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="main">
+
+
+<!-- HEADER -->
+
+<header class="topbar">
+
+    <div>
+
+        <h1 class="page-title">
+            لوحة التحكم
+        </h1>
+
+        <p class="page-subtitle">
+            ملخص عمليات اليوم ومتابعة الطلبات
+        </p>
+
+    </div>
+
+
+    <div class="top-actions">
+
+        <button class="icon-button">
+            ⌕
+        </button>
+
+        <button class="icon-button notification">
+            ♢
+        </button>
+
+        <button class="icon-button">
+            ◔
+        </button>
+
+    </div>
+
+</header>
+
+
+<div class="page">
+
+
+<!-- ================= KPI ================= -->
+
+<section class="kpis">
+
+
+    <div class="card kpi">
+
+        <div class="kpi-top">
+
+            <span>
+                إجمالي الطلبات
+            </span>
+
+            <div class="kpi-icon">
+                ▣
+            </div>
+
+        </div>
+
+        <strong class="kpi-number">
+            1,284
+        </strong>
+
+        <span class="kpi-description success-text">
+            ↑ 12% مقارنة بالشهر السابق
+        </span>
+
+    </div>
+
+
+    <div class="card kpi">
+
+        <div class="kpi-top">
+
+            <span>
+                قيد التنفيذ
+            </span>
+
+            <div class="kpi-icon">
+                ◌
+            </div>
+
+        </div>
+
+        <strong class="kpi-number">
+            86
+        </strong>
+
+        <span class="kpi-description">
+            منها 14 طلباً اليوم
+        </span>
+
+    </div>
+
+
+    <div class="card kpi">
+
+        <div class="kpi-top">
+
+            <span>
+                بانتظار الإسناد
+            </span>
+
+            <div class="kpi-icon">
+                ↗
+            </div>
+
+        </div>
+
+        <strong class="kpi-number">
+            17
+        </strong>
+
+        <span class="kpi-description">
+            تحتاج إلى إجراء
+        </span>
+
+    </div>
+
+
+    <div class="card kpi">
+
+        <div class="kpi-top">
+
+            <span>
+                مستحقات المنفذين
+            </span>
+
+            <div class="kpi-icon">
+                ر.س
+            </div>
+
+        </div>
+
+        <strong class="kpi-number">
+            48,750
+        </strong>
+
+        <span class="kpi-description">
+            ريال مستحق
+        </span>
+
+    </div>
+
+
+    <div class="card kpi">
+
+        <div class="kpi-top">
+
+            <span>
+                صافي الربح
+            </span>
+
+            <div class="kpi-icon">
+                ↗
+            </div>
+
+        </div>
+
+        <strong class="kpi-number">
+            31,420
+        </strong>
+
+        <span class="kpi-description success-text">
+            هذا الشهر
+        </span>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= ACTION + STATUS ================= -->
+
+<section class="primary-grid">
+
+
+<!-- NEED ACTION -->
+
+<div class="card action-card">
+
+    <div class="section-header">
+
+        <h2>
+            يحتاج إجراء
+        </h2>
+
+        <a href="#" class="section-link">
+            عرض الكل
+        </a>
+
+    </div>
+
+
+    <div class="action-list">
+
+
+        <a href="#" class="action-item">
+
+            <div class="action-icon gold-action">
+                17
+            </div>
+
+            <div class="action-content">
+
+                <span class="action-title">
+                    طلبات تنتظر الإسناد
+                </span>
+
+                <span class="action-description">
+                    لم يتم اختيار منفذ لها بعد
+                </span>
+
+            </div>
+
+            <span class="badge badge-gold">
+                يتطلب إجراء
+            </span>
+
+        </a>
+
+
+        <a href="#" class="action-item">
+
+            <div class="action-icon blue-action">
+                7
+            </div>
+
+            <div class="action-content">
+
+                <span class="action-title">
+                    منفذون لم يشاهدوا إشعار الإسناد
+                </span>
+
+                <span class="action-description">
+                    مرّ أكثر من 10 دقائق على الإشعار
+                </span>
+
+            </div>
+
+            <span class="badge badge-blue">
+                متابعة
+            </span>
+
+        </a>
+
+
+        <a href="#" class="action-item">
+
+            <div class="action-icon red-action">
+                3
+            </div>
+
+            <div class="action-content">
+
+                <span class="action-title">
+                    طلبات تجاوزت المدة المتوقعة
+                </span>
+
+                <span class="action-description">
+                    تحتاج إلى مراجعة حالة التنفيذ
+                </span>
+
+            </div>
+
+            <span class="badge badge-red">
+                متأخر
+            </span>
+
+        </a>
+
+
+        <a href="#" class="action-item">
+
+            <div class="action-icon red-action">
+                2
+            </div>
+
+            <div class="action-content">
+
+                <span class="action-title">
+                    توقف رفع الأدلة
+                </span>
+
+                <span class="action-description">
+                    يوجد فيديو لم يكتمل رفعه
+                </span>
+
+            </div>
+
+            <span class="badge badge-red">
+                مشكلة
+            </span>
+
+        </a>
+
+
+        <a href="#" class="action-item">
+
+            <div class="action-icon gold-action">
+                4
+            </div>
+
+            <div class="action-content">
+
+                <span class="action-title">
+                    ملفات عليها تنبيه
+                </span>
+
+                <span class="action-description">
+                    توقيت أو تكرار يحتاج إلى تحقق
+                </span>
+
+            </div>
+
+            <span class="badge badge-gold">
+                تنبيه
+            </span>
+
+        </a>
+
+    </div>
+
+</div>
+
+
+
+<!-- STATUS -->
+
+<div class="card status-card">
+
+    <div class="section-header">
+
+        <h2>
+            حالة الطلبات
+        </h2>
+
+        <a href="#" class="section-link">
+            التفاصيل
+        </a>
+
+    </div>
+
+
+    <div class="status-grid">
+
+
+        <div class="status-box">
+
+            <div class="status-top">
+
+                <span>
+                    بانتظار الإسناد
+                </span>
+
+                <span>
+                    1.3%
+                </span>
+
+            </div>
+
+            <strong class="status-number">
+                17
+            </strong>
+
+            <div class="progress gold">
+                <span style="width:20%"></span>
+            </div>
+
+        </div>
+
+
+        <div class="status-box">
+
+            <div class="status-top">
+
+                <span>
+                    بانتظار قبول المنفذ
+                </span>
+
+                <span>
+                    2.1%
+                </span>
+
+            </div>
+
+            <strong class="status-number">
+                27
+            </strong>
+
+            <div class="progress">
+                <span style="width:28%"></span>
+            </div>
+
+        </div>
+
+
+        <div class="status-box">
+
+            <div class="status-top">
+
+                <span>
+                    قيد التنفيذ
+                </span>
+
+                <span>
+                    6.7%
+                </span>
+
+            </div>
+
+            <strong class="status-number">
+                86
+            </strong>
+
+            <div class="progress">
+                <span style="width:62%"></span>
+            </div>
+
+        </div>
+
+
+        <div class="status-box">
+
+            <div class="status-top">
+
+                <span>
+                    مكتمل
+                </span>
+
+                <span>
+                    89.9%
+                </span>
+
+            </div>
+
+            <strong class="status-number">
+                1,154
+            </strong>
+
+            <div class="progress mint">
+                <span style="width:90%"></span>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+
+
+<!-- ================= BOTTOM ================= -->
+
+<section class="bottom-grid">
+
+
+<!-- RECENT ORDERS -->
+
+<div class="card table-card">
+
+    <div class="section-header">
+
+        <h2>
+            أحدث الطلبات
+        </h2>
+
+        <a href="#" class="section-link">
+            كل الطلبات
+        </a>
+
+    </div>
+
+
+    <table>
+
+        <thead>
+
+        <tr>
+            <th>رقم الطلب</th>
+            <th>المستفيد</th>
+            <th>الخدمة</th>
+            <th>المنفذ</th>
+            <th>الحالة</th>
+        </tr>
+
+        </thead>
+
+
+        <tbody>
+
+        <tr>
+
+            <td class="order-id">
+                #1042
+            </td>
+
+            <td>
+                محمد علي
+            </td>
+
+            <td>
+                عمرة بالإنابة
+            </td>
+
+            <td>
+                خالد محمد
+            </td>
+
+            <td>
+                <span class="badge badge-blue">
+                    قيد التنفيذ
+                </span>
+            </td>
+
+        </tr>
+
+
+        <tr>
+
+            <td class="order-id">
+                #1041
+            </td>
+
+            <td>
+                فاطمة أحمد
+            </td>
+
+            <td>
+                عمرة بالإنابة
+            </td>
+
+            <td>
+                أحمد سالم
+            </td>
+
+            <td>
+                <span class="badge badge-gold">
+                    بانتظار الإسناد
+                </span>
+            </td>
+
+        </tr>
+
+
+        <tr>
+
+            <td class="order-id">
+                #1040
+            </td>
+
+            <td>
+                عبدالله حسن
+            </td>
+
+            <td>
+                حج مفرد
+            </td>
+
+            <td>
+                سعيد عمر
+            </td>
+
+            <td>
+                <span class="badge badge-mint">
+                    مكتمل
+                </span>
+            </td>
+
+        </tr>
+
+
+        <tr>
+
+            <td class="order-id">
+                #1039
+            </td>
+
+            <td>
+                نورة محمد
+            </td>
+
+            <td>
+                عمرة بالإنابة
+            </td>
+
+            <td>
+                خالد محمد
+            </td>
+
+            <td>
+                <span class="badge badge-blue">
+                    قيد التنفيذ
+                </span>
+            </td>
+
+        </tr>
+
+
+        </tbody>
+
+    </table>
+
+</div>
+
+
+
+<!-- FINANCE -->
+
+<div class="card finance-card">
+
+    <div class="section-header">
+
+        <h2>
+            الملخص المالي
+        </h2>
+
+        <a href="#" class="section-link">
+            التقارير المالية
+        </a>
+
+    </div>
+
+
+    <div class="money-row">
+
+        <span class="money-label">
+            المبيعات
+        </span>
+
+        <strong class="money-value">
+            80,170 ر.س
+        </strong>
+
+    </div>
+
+
+    <div class="money-row">
+
+        <span class="money-label">
+            مستحقات المنفذين
+        </span>
+
+        <strong class="money-value">
+            48,750 ر.س
+        </strong>
+
+    </div>
+
+
+    <div class="money-row">
+
+        <span class="money-label">
+            صافي الربح
+        </span>
+
+        <strong class="money-value profit">
+            31,420 ر.س
+        </strong>
+
+    </div>
+
+
+    <div class="section-header" style="margin-top:20px">
+
+        <h2>
+            المبيعات الشهرية
+        </h2>
+
+        <span class="muted" style="font-size:10px">
+            آخر 6 أشهر
+        </span>
+
+    </div>
+
+
+    <div class="chart">
+
+        <div class="bar" style="height:48%">
+            <span class="bar-label">أب</span>
+        </div>
+
+        <div class="bar" style="height:63%">
+            <span class="bar-label">أغ</span>
+        </div>
+
+        <div class="bar" style="height:54%">
+            <span class="bar-label">سب</span>
+        </div>
+
+        <div class="bar" style="height:72%">
+            <span class="bar-label">أك</span>
+        </div>
+
+        <div class="bar" style="height:81%">
+            <span class="bar-label">نو</span>
+        </div>
+
+        <div class="bar current" style="height:100%">
+            <span class="bar-label">ديس</span>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- ACTIVITY -->
+
+<div class="card activity-card">
+
+    <div class="section-header">
+
+        <h2>
+            آخر النشاطات
+        </h2>
+
+        <a href="#" class="section-link">
+            سجل التدقيق
+        </a>
+
+    </div>
+
+
+    <div class="timeline">
+
+
+        <div class="event">
+
+            <div class="dot"></div>
+
+            <div>
+
+                <div class="event-title">
+                    اكتمل الطلب #1040
+                </div>
+
+                <p class="event-description">
+                    وصل آخر دليل من المنفذ سعيد عمر
+                </p>
+
+                <span class="event-time">
+                    منذ 8 دقائق
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="event">
+
+            <div class="dot"></div>
+
+            <div>
+
+                <div class="event-title">
+                    تم قبول الإسناد
+                </div>
+
+                <p class="event-description">
+                    خالد محمد قبل الطلب #1042
+                </p>
+
+                <span class="event-time">
+                    منذ 18 دقيقة
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="event">
+
+            <div class="dot"></div>
+
+            <div>
+
+                <div class="event-title">
+                    تم رفع دليل الطواف
+                </div>
+
+                <p class="event-description">
+                    الطلب #1039 — خالد محمد
+                </p>
+
+                <span class="event-time">
+                    منذ 31 دقيقة
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="event">
+
+            <div class="dot"></div>
+
+            <div>
+
+                <div class="event-title">
+                    تم استيراد الطلبات
+                </div>
+
+                <p class="event-description">
+                    تمت إضافة 24 طلباً من ملف Excel
+                </p>
+
+                <span class="event-time">
+                    منذ ساعة
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="event">
+
+            <div class="dot"></div>
+
+            <div>
+
+                <div class="event-title">
+                    تم فتح مشكلة
+                </div>
+
+                <p class="event-description">
+                    الطلب #1036 — مشكلة تقنية في الرفع
+                </p>
+
+                <span class="event-time">
+                    منذ ساعتين
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+</div>
+
+</main>
+
+</div>
+
+</body>
+</html>

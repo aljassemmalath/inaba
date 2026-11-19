@@ -1,0 +1,47 @@
+.report-table-card { overflow: visible; }
+
+.filter-drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 1040;
+}
+.filter-drawer {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0; /* open from left side of screen */
+  width: min(360px, 92vw);
+  background: var(--surface-card, #fff);
+  border-inline-end: 1px solid var(--border-default);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  z-index: 1050;
+  display: flex;
+  flex-direction: column;
+}
+.filter-drawer__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border-default);
+}
+.filter-drawer__title { margin: 0; font-size: 18px; font-weight: 600; color: var(--text-primary); }
+.filter-drawer__body {
+  padding: 16px 20px;
+  overflow: auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.filter-field { display: flex; flex-direction: column; gap: 6px; }
+.filter-hint { margin: 4px 0 0; font-size: 12px; color: var(--text-tertiary); }
+.filter-drawer__footer {
+  display: flex;
+  gap: 8px;
+  padding: 16px 20px;
+  border-top: 1px solid var(--border-default);
+}
+.filter-drawer__footer .btn { flex: 1 1 auto; }

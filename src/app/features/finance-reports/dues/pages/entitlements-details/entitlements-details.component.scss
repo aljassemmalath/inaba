@@ -1,0 +1,50 @@
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+.page-header__title { margin: 0; font-size: 22px; font-weight: 700; color: var(--text-primary); }
+.page-header__actions { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.info-card__title { margin: 0; font-size: 16px; font-weight: 600; color: var(--teal-500); }
+.ent-summary-section { margin-bottom: 16px; }
+.ent-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.home-stat-card {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 16px; border-radius: var(--radius-md); border: 1px solid var(--border-default);
+  box-sizing: border-box;
+}
+.home-stat-card__info { min-width: 0; }
+.home-stat-card__label { font-size: 13px; font-weight: 400; color: var(--text-tertiary); line-height: 1.4; margin-bottom: 4px; }
+.home-stat-card__value { font-size: 28px; font-weight: 700; line-height: 1.1; }
+.home-stat-card__icon { width: 44px; height: 44px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.home-stat--total { background: var(--teal-20); border-color: var(--teal-100); }
+.home-stat--total .home-stat-card__value { color: var(--teal-700); }
+.home-stat--total .home-stat-card__icon { background: var(--teal-700); }
+.home-stat--in-progress { background: var(--info-20); border-color: var(--info-100); }
+.home-stat--in-progress .home-stat-card__value { color: var(--info-700); }
+.home-stat--in-progress .home-stat-card__icon { background: var(--info-500); }
+.home-stat--completed { background: var(--teal-20); border-color: var(--teal-100); }
+.home-stat--completed .home-stat-card__value { color: var(--teal-500); }
+.home-stat--completed .home-stat-card__icon { background: var(--teal-500); }
+
+.amount-value.amount-positive { color: var(--text-success, var(--success-600, #16a34a)); font-weight: 600; }
+.amount-value.amount-negative { color: var(--text-error, var(--error-600, #dc2626)); font-weight: 600; }
+
+.settlements-card .info-card__title { margin-bottom: 0; }
+
+@media (max-width: 991.98px) {
+  .ent-summary-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 575.98px) {
+  .ent-summary-grid { grid-template-columns: 1fr; }
+  .page-header { align-items: stretch; }
+}

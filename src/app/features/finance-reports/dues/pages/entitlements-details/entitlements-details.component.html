@@ -1,0 +1,76 @@
+@if (due(); as d) {
+  <div class="page-header">
+    <h1 class="page-header__title">تفاصيل المستحقات</h1>
+    <div class="page-header__actions">
+      <button type="button" class="btn btn-brand-outline" (click)="exportExcel()">
+        <img src="/assets/images/svg/Buttons/excel.svg" alt="" aria-hidden="true" width="16" height="16" />
+        <span>تصدير Excel</span>
+      </button>
+    </div>
+  </div>
+
+  <section class="content-card-body ent-summary-section" aria-label="ملخص المستحقات">
+    <h3 class="info-card__title">ملخص المستحقات</h3>
+    <div class="card-divider"></div>
+    <div class="ent-summary-grid">
+      <article class="home-stat-card home-stat--total ent-stat">
+        <div class="home-stat-card__info">
+          <div class="home-stat-card__label">الإجمالي بعد التسويات</div>
+          <div class="home-stat-card__value riyal-inline">
+            <img class="riyal-icon" src="/assets/images/svg/saudi-riyal-symbol-cyan%20700.svg" alt="ر.س" />
+            <span>{{ d.finalDue.replace('₪','').trim() }}</span>
+          </div>
+        </div>
+        <div class="home-stat-card__icon" aria-hidden="true">
+          <app-icon-placeholder size="lg" src="/assets/images/svg/Dues/all.svg" />
+        </div>
+      </article>
+      <article class="home-stat-card home-stat--completed ent-stat">
+        <div class="home-stat-card__info">
+          <div class="home-stat-card__label">مستحقات الطلبات</div>
+          <div class="home-stat-card__value riyal-inline">
+            <img class="riyal-icon" src="/assets/images/svg/saudi-riyal-symbol-cyan%20700.svg" alt="ر.س" />
+            <span>{{ d.baseAmount.replace('₪','').trim() }}</span>
+          </div>
+        </div>
+        <div class="home-stat-card__icon" aria-hidden="true">
+          <app-icon-placeholder size="lg" src="/assets/images/svg/Dues/checkmark-circle.svg" />
+        </div>
+      </article>
+      <article class="home-stat-card home-stat--in-progress ent-stat">
+        <div class="home-stat-card__info">
+          <div class="home-stat-card__label">الطلبات المكتملة</div>
+          <div class="home-stat-card__value">{{ d.completedOrders ?? 0 }}</div>
+        </div>
+        <div class="home-stat-card__icon" aria-hidden="true">
+          <app-icon-placeholder size="lg" src="assets/images/svg/Home-page/completed-requests.svg" />
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <div class="content-card-body table-card settlements-card">
+    <div class="card-header-block">
+      <h3 class="info-card__title">التسويات</h3>
+      <div class="card-header-action">
+        <button type="button" class="btn btn-brand btn-sm" (click)="addSettlement()">
+          <img src="/assets/images/svg/Buttons/add.svg" alt="" aria-hidden="true" width="16" height="16" />
+          <span>إضافة تسوية</span>
+        </button>
+      </div>
+    </div>
+    <div class="card-divider"></div>
+    <app-data-table [columns]="settlementColumns" [rows]="settlements()" trackByKey="id" emptyTitle="لا توجد تسويات" emptyMessage="لا توجد تسويات مسجلة.">
+      <ng-template #amountCell let-row>
+        <span class="amount-value"
+          [class.amount-positive]="amountSign(row.amount) === 'positive'"
+          [class.amount-negative]="amountSign(row.amount) === 'negative'">
+          <span class="riyal-inline">
+            <img class="riyal-icon" src="/assets/images/svg/saudi-riyal-symbol-cyan%20700.svg" alt="ر.س" />
+            <span>{{ amountNumber(row.amount) }}</span>
+          </span>
+        </span>
+      </ng-template>
+    </app-data-table>
+  </div>
+}

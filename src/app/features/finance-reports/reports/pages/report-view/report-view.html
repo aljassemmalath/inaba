@@ -1,0 +1,139 @@
+<app-page-banner [title]="meta.title" [description]="meta.description">
+  <div banner-actions class="d-flex gap-2 flex-wrap align-items-center">
+    <button type="button" class="btn btn-brand-outline" (click)="exportData()">
+      <img src="/assets/images/svg/Buttons/excel.svg" alt="" aria-hidden="true" width="16" height="16" />
+      <span>تصدير البيانات</span>
+    </button>
+    <button type="button" class="btn btn-brand-outline" (click)="openFilter()">
+      <img src="/assets/images/svg/Buttons/filter.svg" alt="" aria-hidden="true" width="16" height="16" />
+      <span>فلترة</span>
+    </button>
+  </div>
+</app-page-banner>
+
+<div class="content-card-body table-card report-table-card">
+  @switch (key) {
+    @case ('requests') {
+      <app-data-table [columns]="ordersColumns" [rows]="ordersRows()" trackByKey="id" emptyTitle="لا توجد بيانات" emptyMessage="لا توجد نتائج مطابقة.">
+        <ng-template #statusCell let-row>
+          <app-status-badge [label]="row.status" [tone]="row.statusTone" />
+        </ng-template>
+      </app-data-table>
+    }
+    @case ('products') {
+      <app-data-table [columns]="productsColumns" [rows]="productsRows()" trackByKey="id" emptyTitle="لا توجد بيانات" emptyMessage="لا توجد نتائج مطابقة.">
+        <ng-template #actionsCell let-row>
+          <button type="button" class="btn-icon" aria-label="عرض تفاصيل المنتج" title="عرض" (click)="openProductDetails(row); $event.stopPropagation()">
+            <span class="icon-placeholder icon-placeholder--sm"><img class="icon-placeholder__image is-visible" src="/assets/images/svg/Buttons/view.svg" alt="" /></span>
+          </button>
+        </ng-template>
+      </app-data-table>
+    }
+    @case ('executors') {
+      <app-data-table [columns]="executorsColumns" [rows]="executorsRows()" trackByKey="id" emptyTitle="لا توجد بيانات" emptyMessage="لا توجد نتائج مطابقة.">
+        <ng-template #statusCell let-row>
+          <app-status-badge [label]="row.dutyStatus" [tone]="row.dutyTone" />
+        </ng-template>
+        <ng-template #actionsCell let-row>
+          <button type="button" class="btn-icon" aria-label="عرض" title="عرض">
+            <span class="icon-placeholder icon-placeholder--sm"><img class="icon-placeholder__image is-visible" src="/assets/images/svg/Buttons/view.svg" alt="" /></span>
+          </button>
+        </ng-template>
+      </app-data-table>
+    }
+    @case ('supervisors') {
+      <app-data-table [columns]="supervisorsColumns" [rows]="supervisorsRows()" trackByKey="id" emptyTitle="لا توجد بيانات" emptyMessage="لا توجد نتائج مطابقة." />
+    }
+    @case ('agencies') {
+      <app-data-table [columns]="agenciesColumns" [rows]="agenciesRows()" trackByKey="id" emptyTitle="لا توجد بيانات" emptyMessage="لا توجد نتائج مطابقة.">
+        <ng-template #statusCell let-row>
+          <app-status-badge [label]="row.status" [tone]="row.statusTone" />
+        </ng-template>
+      </app-data-table>
+    }
+    @case ('dues') {
+      <app-data-table [columns]="entitlementsColumns" [rows]="entitlementsRows()" trackByKey="id" emptyTitle="لا توجد بيانات" emptyMessage="لا توجد نتائج مطابقة." />
+    }
+    @case ('profits') {
+      <app-data-table [columns]="profitsColumns" [rows]="profitsRows()" trackByKey="id" emptyTitle="لا توجد بيانات" emptyMessage="لا توجد نتائج مطابقة." />
+    }
+    @default {
+      <app-empty-state title="التقرير غير متوفر" message="تعذر العثور على التقرير المطلوب." />
+    }
+  }
+</div>
+
+@if (filterOpen()) {
+  <div class="filter-drawer-backdrop" (click)="closeFilter()" aria-hidden="true"></div>
+  <aside class="filter-drawer" role="dialog" aria-modal="true" aria-label="فلترة التقرير">
+    <header class="filter-drawer__header">
+      <h2 class="filter-drawer__title">فلترة</h2>
+      <button type="button" class="btn-icon" aria-label="إغلاق" (click)="closeFilter()">
+        <span class="icon-placeholder icon-placeholder--sm"><img class="icon-placeholder__image is-visible" src="/assets/images/svg/Buttons/delete-02.svg" alt="" /></span>
+      </button>
+    </header>
+    <div class="filter-drawer__body">
+      <div class="filter-field">
+        <label class="form-label" for="rf-q">بحث</label>
+        <input id="rf-q" type="search" class="form-control" [ngModel]="fQuery()" (ngModelChange)="fQuery.set($event)" placeholder="ابحث..." />
+      </div>
+
+      @if (key === 'requests') {
+        <div class="filter-field">
+          <label class="form-label" for="rf-status">الحالة</label>
+          <select id="rf-status" class="form-select" [ngModel]="fStatus()" (ngModelChange)="fStatus.set($event)">
+            <option value="">الكل</option>
+            <option value="قيد التنفيذ">قيد التنفيذ</option>
+            <option value="بانتظار الإسناد">بانتظار الإسناد</option>
+            <option value="مكتمل">مكتمل</option>
+            <option value="مُسند">مُسند</option>
+          </select>
+        </div>
+        <div class="filter-field">
+          <label class="form-label" for="rf-source">مصدر الطلب</label>
+          <select id="rf-source" class="form-select" [ngModel]="fSource()" (ngModelChange)="fSource.set($event)">
+            <option value="">الكل</option>
+            <option value="تطبيق الجوال">تطبيق الجوال</option>
+            <option value="موقع الويب">موقع الويب</option>
+            <option value="خدمة العملاء">خدمة العملاء</option>
+          </select>
+        </div>
+      }
+      @if (key === 'executors') {
+        <div class="filter-field">
+          <label class="form-label" for="rf-duty">حالة الدوام</label>
+          <select id="rf-duty" class="form-select" [ngModel]="fDuty()" (ngModelChange)="fDuty.set($event)">
+            <option value="">الكل</option>
+            <option value="مشغول">مشغول</option>
+            <option value="مُتاح">مُتاح</option>
+            <option value="خارج الدوام">خارج الدوام</option>
+          </select>
+        </div>
+      }
+      @if (key === 'agencies') {
+        <div class="filter-field">
+          <label class="form-label" for="rf-ag-status">الحالة</label>
+          <select id="rf-ag-status" class="form-select" [ngModel]="fStatus()" (ngModelChange)="fStatus.set($event)">
+            <option value="">الكل</option>
+            <option value="نشطة">نشطة</option>
+            <option value="معلقة">معلقة</option>
+          </select>
+        </div>
+      }
+
+      <div class="filter-field">
+        <label class="form-label" for="rf-from">من تاريخ</label>
+        <input id="rf-from" type="date" class="form-control" [ngModel]="fFrom()" (ngModelChange)="fFrom.set($event)" />
+      </div>
+      <div class="filter-field">
+        <label class="form-label" for="rf-to">إلى تاريخ</label>
+        <input id="rf-to" type="date" class="form-control" [ngModel]="fTo()" (ngModelChange)="fTo.set($event)" />
+      </div>
+      <p class="filter-hint">يتم تطبيق الفلاتر المتاحة وفق بيانات التقرير الحالية.</p>
+    </div>
+    <footer class="filter-drawer__footer">
+      <button type="button" class="btn btn-brand" (click)="applyFilter()">تطبيق</button>
+      <button type="button" class="btn btn-brand-outline" (click)="resetFilter()">إعادة تعيين</button>
+    </footer>
+  </aside>
+}

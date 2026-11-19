@@ -1,0 +1,106 @@
+.problem-layout {
+  display: grid;
+  grid-template-columns: 2fr 1fr; /* col-8 / col-4 */
+  gap: 16px;
+  align-items: start;
+}
+.problem-right,
+.problem-left {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+
+.info-card__title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--teal-500);
+}
+
+.info-grid {
+  display: grid;
+  gap: 16px 12px;
+}
+.info-grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.info-grid--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: flex-start;
+  text-align: right;
+  min-width: 0;
+}
+.info-label {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+.info-value {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+  line-height: 1.5;
+  word-break: break-word;
+}
+
+.problem-desc-text {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+.problem-desc-block { margin-bottom: 16px; }
+
+.attachment-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 12px;
+  border: 1px solid var(--border-default);
+  border-radius: 8px;
+  background: var(--background-subtle);
+}
+.attachment-file {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+.attachment-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 8px;
+  background: var(--background-muted);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.attachment-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.attachment-preview { flex-shrink: 0; }
+
+.card-header-block .card-header-action .btn { white-space: nowrap; }
+
+@media (max-width: 991.98px) {
+  .problem-layout { grid-template-columns: 1fr; }
+  .info-grid--3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 575.98px) {
+  .info-grid--3,
+  .info-grid--2 { grid-template-columns: 1fr; }
+}

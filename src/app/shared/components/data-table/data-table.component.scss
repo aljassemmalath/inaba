@@ -1,0 +1,203 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.app-data-table {
+  width: 100%;
+  background: transparent;
+}
+
+.app-data-table__scroll {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: visible;
+  -webkit-overflow-scrolling: touch;
+  background: transparent;
+  /* room for row drop-shadows so they are not clipped by the scroll container */
+  padding: 0 2px 4px;
+  margin: 0 -2px;
+}
+
+/* Visual units: full header + each full body row. Spacing via separate borders/gaps. */
+.app-data-table__table {
+  width: 100%;
+  min-width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 8px; /* 8px vertical gap between row units */
+  table-layout: auto;
+  margin: -8px 0 0; /* compensate top spacing so header aligns with container */
+  background: transparent;
+}
+
+/* Header (single connected unit) */
+.app-data-table__th {
+  background: var(--teal-20);
+  color: var(--teal-700);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 20px;
+  text-align: start;
+  padding: 16px 12px;
+  border-top: 1px solid var(--teal-50);
+  border-bottom: 1px solid var(--teal-50);
+  border-inline: 0; /* no individual cell dividers */
+  white-space: nowrap;
+  vertical-align: middle;
+}
+.app-data-table__th.is-first {
+  border-inline-start: 1px solid var(--teal-50);
+  border-start-start-radius: 4px;
+  border-end-start-radius: 4px;
+}
+.app-data-table__th.is-last {
+  border-inline-end: 1px solid var(--teal-50);
+  border-start-end-radius: 4px;
+  border-end-end-radius: 4px;
+}
+
+/* Body rows (each row is a separate visual unit) */
+.app-data-table__td {
+  background: var(--background-default);
+  color: var(--text-primary);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 22px;
+  height: 64px;
+  padding: 0 12px; /* horizontal padding; height kept at 64px */
+  border: 0; /* no individual cell borders/dividers */
+  vertical-align: middle;
+  box-shadow: var(--shadow-xs); /* applied on full row unit (cells) */
+}
+/* Round and clip row corners as a full unit */
+.app-data-table__td.is-first {
+  border-start-start-radius: 4px;
+  border-end-start-radius: 4px;
+}
+.app-data-table__td.is-last {
+  border-start-end-radius: 4px;
+  border-end-end-radius: 4px;
+}
+
+.app-data-table__cell {
+  display: flex;
+  align-items: center;
+  min-height: 64px;
+  height: 100%;
+}
+
+.app-data-table__primary {
+  color: var(--text-primary);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 22px;
+}
+
+.app-data-table__th-currency {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.app-data-table__th-currency .riyal-icon {
+  width: 12px;
+  height: 12px;
+}
+
+.app-data-table__primary.cell-emphasis {
+  color: var(--text-brand);
+  font-weight: 600;
+}
+.app-data-table__td[data-col='problem'] .app-data-table__primary.cell-emphasis {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* Description / helper text cell variant */
+.app-data-table__cell-stack {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+  min-width: 0;
+  max-height: 64px;
+  overflow: hidden;
+}
+.app-data-table__description {
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 18px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Keep existing row highlight hooks working */
+.app-data-table__row.row-invalid .app-data-table__td {
+  box-shadow: var(--shadow-xs), inset 3px 0 0 var(--error-text);
+}
+
+.riyal-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+}
+.riyal-icon {
+  width: 1em;
+  height: 1em;
+  object-fit: contain;
+  flex-shrink: 0;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Compact size variant (opt-in) */
+.app-data-table--compact .app-data-table__table {
+  border-spacing: 0 4px;
+  margin-top: -4px;
+}
+
+.app-data-table--compact .app-data-table__th {
+  font-size: 11px;
+  line-height: 16px;
+  padding: 10px 8px;
+}
+
+.app-data-table--compact .app-data-table__td {
+  font-size: 13px;
+  line-height: 18px;
+  height: 48px;
+  padding: 0 8px;
+}
+
+.app-data-table--compact .app-data-table__cell {
+  min-height: 48px;
+}
+
+.app-data-table--compact .app-data-table__primary {
+  font-size: 13px;
+  line-height: 18px;
+}
+
+.app-data-table--compact .app-data-table__cell-stack {
+  gap: 1px;
+  max-height: 48px;
+}
+
+.app-data-table--compact .app-data-table__description {
+  font-size: 11px;
+  line-height: 16px;
+}
+
+.app-data-table--compact .app-data-table__th-currency .riyal-icon {
+  width: 11px;
+  height: 11px;
+}
+
+/* Responsive: allow horizontal scroll without breaking column alignment */
+@media (max-width: 768px) {
+  .app-data-table__scroll {
+    overflow-x: auto;
+  }
+}

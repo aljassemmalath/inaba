@@ -1,0 +1,87 @@
+@if (product(); as p) {
+  <app-page-banner [title]="'تفاصيل المنتج'" [description]="p.name" />
+
+  <div class="product-details-layout">
+    <div class="product-right">
+      <div class="content-card-body info-card">
+        <div class="card-header-block">
+          <h3 class="info-card__title">مراحل التنفيذ</h3>
+          <div class="card-header-action">
+            <button type="button" class="btn btn-brand btn-sm" (click)="addStage()">
+              <img src="/assets/images/svg/Buttons/add.svg" alt="" aria-hidden="true" width="16" height="16" />
+              <span>إضافة مرحلة</span>
+            </button>
+          </div>
+        </div>
+        <div class="card-divider"></div>
+
+        <div cdkDropList class="stages-list" (cdkDropListDropped)="drop($event)">
+          @for (stage of stages(); track stage.id; let i = $index) {
+            <div class="stage-card" cdkDrag>
+              <div class="stage-right">
+                <button type="button" class="drag-handle" cdkDragHandle aria-label="إعادة ترتيب المرحلة">
+                  <app-icon-placeholder size="sm" src="/assets/images/svg/Buttons/filter.svg" />
+                </button>
+                <div class="stage-number" aria-hidden="true">{{ i + 1 }}</div>
+                <div class="stage-info">
+                  <div class="stage-title">{{ stage.title }}</div>
+                  <div class="stage-desc">{{ stage.description }}</div>
+                </div>
+              </div>
+              <div class="stage-left">
+                <span class="video-badge">فيديو × {{ stage.videoCount }}</span>
+                <button type="button" class="btn-icon" aria-label="عرض" title="عرض" (click)="viewStage(stage)">
+                  <span class="icon-placeholder icon-placeholder--sm"><img class="icon-placeholder__image is-visible" src="/assets/images/svg/Buttons/view.svg" alt="" /></span>
+                </button>
+                <button type="button" class="btn-icon" aria-label="تعديل" title="تعديل" (click)="editStage(stage)">
+                  <span class="icon-placeholder icon-placeholder--sm"><img class="icon-placeholder__image is-visible" src="/assets/images/svg/Buttons/edit-02.svg" alt="" /></span>
+                </button>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+
+    <div class="product-left">
+      <div class="content-card-body info-card">
+        <h3 class="info-card__title">حالة المنتج</h3>
+        <div class="card-divider"></div>
+        <div class="status-row">
+          <span class="status-label">نشط</span>
+          <button type="button" class="toggle-switch" role="switch" [attr.aria-checked]="active()" [class.is-on]="active()" (click)="toggleActive()">
+            <span class="toggle-knob" aria-hidden="true"></span>
+          </button>
+        </div>
+      </div>
+
+      <div class="content-card-body info-card">
+        <div class="card-header-block">
+          <h3 class="info-card__title">التسعير والمدة</h3>
+          <div class="card-header-action">
+            <button type="button" class="btn btn-brand-outline btn-sm" (click)="editPricing()">تعديل</button>
+          </div>
+        </div>
+        <div class="card-divider"></div>
+        <div class="info-grid info-grid--2">
+          <div class="info-item">
+            <span class="info-label">سعر البيع</span>
+            <span class="info-value riyal-inline"><img class="riyal-icon" src="/assets/images/svg/saudi-riyal-symbol-cyan%20700.svg" alt="ر.س" /> {{ p.salePrice }}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">مستحق المنفذ</span>
+            <span class="info-value riyal-inline"><img class="riyal-icon" src="/assets/images/svg/saudi-riyal-symbol-cyan%20700.svg" alt="ر.س" /> {{ p.executorDue }}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">الربح لكل طلب</span>
+            <span class="info-value riyal-inline"><img class="riyal-icon" src="/assets/images/svg/saudi-riyal-symbol-cyan%20700.svg" alt="ر.س" /> {{ p.profit }}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">المدة المتوقعة</span>
+            <span class="info-value">{{ p.expectedDuration }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+}

@@ -1,0 +1,39 @@
+<app-page-banner
+  title="المشاكل"
+  description="تتيح هذه الصفحة متابعة المشكلات المرتبطة بالطلبات وتنفيذها، ومراجعتها واتخاذ الإجراءات اللازمة لمعالجتها." />
+
+<section class="mb-4" aria-label="ملخص المشاكل">
+  <app-summary-container modifierClass="problems-summary">
+    @for (item of summary; track item.label) {
+      <app-summary-item [label]="item.label" [value]="item.value" [iconSrc]="item.iconSrc" [modifierClass]="item.modifierClass" />
+    }
+  </app-summary-container>
+</section>
+
+<app-filter-toolbar
+  [(search)]="search"
+  searchPlaceholder="ابحث عن المشكلة أو رقم الطلب أو اسم المنفذ"
+  searchId="problems-search"
+  (filterClick)="toggleFilter()"
+  (exportClick)="exportData()"
+>
+  @if (filterOpen()) {
+    <div class="toolbar-panel mt-3" style="padding:12px; border:1px solid var(--border-default); border-radius:8px; font-size:var(--font-size-body-sm); color:var(--text-secondary);">خيارات التصفية (قابلة للتوسعة).</div>
+  }
+</app-filter-toolbar>
+
+<div class="content-card-body table-card problems-table-card">
+  <app-data-table [columns]="columns" [rows]="rows()" trackByKey="id" emptyTitle="لا توجد مشكلات" emptyMessage="لم يتم العثور على مشكلات مطابقة.">
+    <ng-template #statusCell let-row>
+      <app-status-badge [label]="row.status" [tone]="row.statusTone" />
+    </ng-template>
+    <ng-template #actionsCell let-row>
+      <button type="button" class="btn-icon" aria-label="عرض المشكلة" title="عرض" (click)="openDetails(row); $event.stopPropagation()">
+        <span class="icon-placeholder icon-placeholder--sm"><img class="icon-placeholder__image is-visible" src="/assets/images/svg/Buttons/view.svg" alt="" /></span>
+      </button>
+    </ng-template>
+  </app-data-table>
+  <div class="simple-pagination">
+    <span>إجمالي السجلات: {{ total() }}</span>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+.chart-wrap { width: 100%; }
+.chart-svg { width: 100%; height: auto; display: block; overflow: visible; }
+.grid-line { stroke: var(--border-subtle); stroke-width: 1; }
+.axis { stroke: var(--border-default); stroke-width: 1; }
+.y-label { font-size: 11px; fill: var(--text-secondary); font-family: var(--font-family-base); }
+/* Per spec: طلبات جديدة = Gold, طلبات مكتملة = Teal */
+.bar-a { fill: #CEB26B; filter: drop-shadow(0px 4px 8px rgba(206, 178, 107, 0.4)); }
+.bar-b { fill: #007468; filter: drop-shadow(0px 4px 8px rgba(0, 116, 104, 0.4)); }
+.month-label { font-size: 11px; fill: var(--text-secondary); font-family: var(--font-family-base); }

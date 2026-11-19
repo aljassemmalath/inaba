@@ -1,0 +1,83 @@
+@if (agency(); as a) {
+  <app-page-banner [title]="'تفاصيل المكتب'" [description]="a.agency" />
+
+  <div class="agency-layout">
+    <div class="agency-right">
+      <div class="content-card-body info-card">
+        <h3 class="info-card__title">بيانات الوكالة</h3>
+        <div class="card-divider"></div>
+        <div class="info-grid info-grid--2">
+          <div class="info-item">
+            <span class="info-label">معرّف الوكالة</span>
+            <span class="info-value">{{ a.code || a.id }}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">البريد الإلكتروني</span>
+            <span class="info-value" dir="ltr">{{ a.email }}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">اسم الوكالة</span>
+            <span class="info-value">{{ a.agency }}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">تاريخ الإنشاء</span>
+            <span class="info-value" dir="ltr">{{ a.createdAt || '—' }}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">مصدر الإنشاء</span>
+            <span class="info-value"><app-status-badge [label]="a.source || '—'" tone="neutral" /></span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">رقم الجوال</span>
+            <span class="info-value" dir="ltr">{{ a.mobile || '—' }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="agency-left" aria-label="ملخص الوكالة">
+      <article class="home-stat-card home-stat--total agency-stat">
+        <div class="home-stat-card__info">
+          <div class="home-stat-card__label">إجمالي الطلبات</div>
+          <div class="home-stat-card__value">{{ a.requestsCount }}</div>
+        </div>
+        <div class="home-stat-card__icon" aria-hidden="true">
+          <app-icon-placeholder size="lg" src="assets/images/svg/Home-page/total-requests.svg" />
+        </div>
+      </article>
+      <article class="home-stat-card home-stat--in-progress agency-stat">
+        <div class="home-stat-card__info">
+          <div class="home-stat-card__label">قيد التنفيذ</div>
+          <div class="home-stat-card__value">{{ a.inProgressCount }}</div>
+        </div>
+        <div class="home-stat-card__icon" aria-hidden="true">
+          <app-icon-placeholder size="lg" src="assets/images/svg/Home-page/requests-in-progress.svg" />
+        </div>
+      </article>
+      <article class="home-stat-card home-stat--completed agency-stat">
+        <div class="home-stat-card__info">
+          <div class="home-stat-card__label">مكتملة</div>
+          <div class="home-stat-card__value">{{ a.completedCount ?? 0 }}</div>
+        </div>
+        <div class="home-stat-card__icon" aria-hidden="true">
+          <app-icon-placeholder size="lg" src="assets/images/svg/Home-page/completed-requests.svg" />
+        </div>
+      </article>
+    </div>
+  </div>
+
+  <div class="content-card-body table-card agency-orders-card">
+    <h3 class="info-card__title">طلبات الوكالة</h3>
+    <div class="card-divider"></div>
+    <app-data-table [columns]="orderColumns" [rows]="orders()" trackByKey="id" emptyTitle="لا توجد طلبات" emptyMessage="لا توجد طلبات مرتبطة بهذه الوكالة حالياً.">
+      <ng-template #statusCell let-row>
+        <app-status-badge [label]="row.status" [tone]="row.statusTone" />
+      </ng-template>
+      <ng-template #actionsCell let-row>
+        <button type="button" class="btn-icon" aria-label="عرض تفاصيل الطلب" title="عرض" (click)="openOrder(row); $event.stopPropagation()">
+          <span class="icon-placeholder icon-placeholder--sm"><img class="icon-placeholder__image is-visible" src="/assets/images/svg/Buttons/view.svg" alt="" /></span>
+        </button>
+      </ng-template>
+    </app-data-table>
+  </div>
+}

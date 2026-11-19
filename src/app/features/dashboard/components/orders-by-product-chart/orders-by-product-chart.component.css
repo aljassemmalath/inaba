@@ -1,0 +1,55 @@
+.donut-layout {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.donut-visual {
+  flex: 0 0 auto;
+}
+
+.donut-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1 1 160px;
+}
+
+.donut-svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.donut-track {
+  stroke: var(--color-background-muted);
+}
+
+.donut-seg {
+  transition: opacity 0.15s ease;
+}
+
+.donut-total {
+  font-size: 22px;
+  font-weight: 700;
+  fill: var(--color-text-primary);
+  font-family: var(--font-family-base);
+}
+
+.donut-sub {
+  font-size: 12px;
+  fill: var(--color-text-secondary);
+  font-family: var(--font-family-base);
+}
+
+@media (max-width: 575.98px) {
+  .donut-layout {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .donut-visual {
+    align-self: center;
+  }
+}/*# sourceMappingURL=orders-by-product-chart.component.css.map */

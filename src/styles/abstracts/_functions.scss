@@ -1,0 +1,4 @@
+// Reserved for future SCSS functions (e.g., spacing/color helpers).
+@function space($n) {
+  @return calc(var(--space-1) * #{$n});
+}

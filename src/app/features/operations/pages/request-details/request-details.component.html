@@ -1,0 +1,168 @@
+@if (state.details(); as d) {
+  <nav class="breadcrumb-line" aria-label="مسار التنقل">
+    <a [routerLink]="['/operations/requests']">الطلبات</a>
+    <span class="sep">←</span>
+    <span>تفاصيل الطلب</span>
+  </nav>
+
+  <app-page-banner
+    [title]="'تفاصيل الطلب #' + d.requestNumber"
+    [description]="'حالة الطلب الحالية ' + d.status + '، ويتم تحديث مراحله وأدلته تلقائيًا وفق آخر الإجراءات.'">
+    <app-status-badge banner-title-badge [label]="d.status" [tone]="d.statusTone" />
+    <div banner-actions class="order-banner-actions" (click)="$event.stopPropagation()">
+      @if (actionsConfig(); as cfg) {
+        @if (cfg.primary) {
+          <button type="button" class="btn btn-brand order-primary-action" (click)="onAction(cfg.primary.key)">
+            <app-icon-placeholder size="sm" [src]="cfg.primary.icon" />
+            <span>{{ cfg.primary.label }}</span>
+          </button>
+        }
+        <div class="dropdown-wrap actions-dropdown">
+          <button type="button" class="btn btn-brand-outline actions-trigger" (click)="toggleActionsMenu($event)" [attr.aria-expanded]="actionsMenuOpen()" aria-haspopup="menu">
+            <span>إجراءات</span>
+            <img [src]="arrowDownIcon" alt="" aria-hidden="true" width="12" height="12" />
+          </button>
+          @if (actionsMenuOpen()) {
+            <div class="actions-menu" role="menu">
+              @for (item of cfg.menu; track item.key; let last = $last) {
+                <button type="button" class="actions-menu__item" role="menuitem" (click)="onAction(item.key)">
+                  <span class="actions-menu__icon" aria-hidden="true">
+                    @if (item.icon) {
+                      <app-icon-placeholder size="sm" [src]="item.icon" />
+                    }
+                  </span>
+                  <span class="actions-menu__label">{{ item.label }}</span>
+                </button>
+                @if (!last) {
+                  <div class="actions-menu__divider" aria-hidden="true"></div>
+                }
+              }
+            </div>
+          }
+        </div>
+      }
+    </div>
+  </app-page-banner>
+
+  <div class="details-layout">
+    <!-- Right column: information cards -->
+    <aside class="details-right" aria-label="بطاقات المعلومات">
+      <!-- 1. Service card -->
+      <div class="service-card" aria-label="بطاقة الخدمة">
+        <img class="service-card__bg" src="/assets/images/imgs/order%20details/service%20image.png" alt="" aria-hidden="true" />
+        <img class="service-card__pattern" src="/assets/images/svg/order%20details/pattern.svg" alt="" aria-hidden="true" />
+        <div class="service-card__content">
+          <div class="service-card__number">#{{ d.requestNumber }}</div>
+          <div class="service-card__title">{{ d.serviceName }}</div>
+          <div class="service-card__date-row">
+            <img class="service-card__calendar" src="/assets/images/svg/order%20details/calendar.svg" alt="" aria-hidden="true" />
+            <div class="service-card__date-text">
+              <div class="service-card__date-label">تاريخ الإنشاء</div>
+              <div class="service-card__date-value" dir="ltr">{{ d.createdAt }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Executor information card -->
+      <div class="content-card-body info-card executor-card">
+        <h3 class="info-card__title">المنفذ</h3>
+        <div class="card-divider"></div>
+        <div class="executor-card__body">
+          <div class="executor-card__avatar" aria-hidden="true">
+            <app-icon-placeholder size="md" src="/assets/images/svg/Header/user.svg" />
+          </div>
+          <div class="executor-card__info">
+            <div class="executor-card__name">{{ d.executorName }}</div>
+            <div class="executor-card__meta">
+              <span>بداية التنفيذ: <span dir="ltr">{{ d.executionStart }}</span></span>
+              <span class="executor-card__sep" aria-hidden="true"></span>
+              <span>المشرف: {{ d.supervisorName }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Order information card -->
+      <div class="content-card-body info-card order-info-card">
+        <h3 class="info-card__title">معلومات الطلب</h3>
+        <div class="card-divider"></div>
+        <div class="order-info-grid">
+          <div class="order-info-item">
+            <span class="order-info-label">رقم الطلب</span>
+            <span class="order-info-value">{{ d.requestNumber }}</span>
+          </div>
+          <div class="order-info-item">
+            <span class="order-info-label">مصدر الطلب</span>
+            <span class="order-info-value">{{ d.source }}</span>
+          </div>
+          <div class="order-info-item">
+            <span class="order-info-label">المستفيد</span>
+            <span class="order-info-value">{{ d.beneficiaryName }}</span>
+          </div>
+          <div class="order-info-item">
+            <span class="order-info-label">حالة المستفيد</span>
+            <span class="order-info-value">{{ d.beneficiaryStatus }}</span>
+          </div>
+          <div class="order-info-item">
+            <span class="order-info-label">تاريخ الإنشاء</span>
+            <span class="order-info-value" dir="ltr">{{ d.createdAt }}</span>
+          </div>
+          <div class="order-info-item">
+            <span class="order-info-label">المدة المتوقعة</span>
+            <span class="order-info-value">{{ d.expectedDuration }}</span>
+          </div>
+        </div>
+        @if (d.specialRequest) {
+          <div class="special-request-box">
+            <div class="special-request-title">الطلب الخاص</div>
+            <div class="special-request-text">{{ d.specialRequest }}</div>
+          </div>
+        }
+      </div>
+
+      <!-- 4. Financial information card -->
+      <div class="content-card-body info-card financial-card">
+        <h3 class="info-card__title">البيانات المالية</h3>
+        <div class="card-divider"></div>
+        <div class="order-info-grid">
+          <div class="order-info-item">
+            <span class="order-info-label">مستحق المنفذ</span>
+            <span class="order-info-value riyal-inline"><img class="riyal-icon" src="/assets/images/svg/saudi-riyal-symbol-cyan%20700.svg" alt="ر.س" /> {{ d.executorEntitlement.replace('₪', '').trim() }}</span>
+          </div>
+          <div class="order-info-item">
+            <span class="order-info-label">سعر البيع</span>
+            <span class="order-info-value riyal-inline"><img class="riyal-icon" src="/assets/images/svg/saudi-riyal-symbol-cyan%20700.svg" alt="ر.س" /> {{ d.sellingPrice.replace('₪', '').trim() }}</span>
+          </div>
+          <div class="order-info-item">
+            <span class="order-info-label">صافي الربح</span>
+            <span class="order-info-value riyal-inline"><img class="riyal-icon" src="/assets/images/svg/saudi-riyal-symbol-cyan%20700.svg" alt="ر.س" /> {{ d.netProfit.replace('₪', '').trim() }}</span>
+          </div>
+          <div class="order-info-item">
+            <span class="order-info-label">حالة الدفع</span>
+            <span class="order-info-value"><app-status-badge [label]="d.paymentStatus" [tone]="d.paymentStatusTone" /></span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Left column: progress, tabs, content -->
+    <div class="details-left">
+      <div class="details-stepper">
+        <app-progress-stepper [steps]="d.steps" />
+      </div>
+
+      <div class="details-tabs" role="tablist">
+        <a class="details-tab" [routerLink]="['stages']" routerLinkActive="active">مراحل وأدلة</a>
+        <a class="details-tab" [routerLink]="['timeline']" routerLinkActive="active">الجدول الزمني</a>
+        <a class="details-tab" [routerLink]="['assignments']" routerLinkActive="active">سجل الإسناد</a>
+        <a class="details-tab" [routerLink]="['notes']" routerLinkActive="active">ملاحظات داخلية</a>
+        <a class="details-tab" [routerLink]="['issues']" routerLinkActive="active">المشاكل المرتبطة</a>
+      </div>
+
+      <div class="details-tab-content">
+        <router-outlet />
+      </div>
+    </div>
+  </div>
+}

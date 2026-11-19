@@ -1,0 +1,7 @@
+.modal-content {
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+.modal-header, .modal-footer { border-color: var(--border-soft); }
+.modal-title { font-size: var(--font-size-subheading); font-weight: var(--font-weight-subheading); }

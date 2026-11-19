@@ -1,0 +1,94 @@
+<div class="form-field" [class]="'form-field ' + controlStateClass()" [class.form-field--textarea]="isTextarea()">
+  @if (label()) {
+    <label class="form-field__label" [attr.for]="fieldId()">
+      <span>{{ label() }}</span>
+      @if (required()) { <span class="form-field__required" aria-hidden="true">*</span> }
+    </label>
+  }
+
+  <div class="form-field__control" [class.form-field__control--wrapper]="wrapperMode()">
+    @if (leadingIcon()) {
+      <span class="form-field__icon form-field__icon--leading" aria-hidden="true">
+        <app-icon-placeholder size="sm" />
+      </span>
+      @if (showLeadingDivider()) { <span class="form-field__divider" aria-hidden="true"></span> }
+    }
+
+    @if (wrapperMode()) {
+      <div class="form-field__projected"><ng-content /></div>
+    } @else if (isTextarea()) {
+      <textarea
+        class="form-field__input form-field__input--textarea"
+        [id]="fieldId()"
+        [name]="name()"
+        [placeholder]="placeholder()"
+        [disabled]="isDisabled()"
+        [readOnly]="readonly()"
+        [required]="required()"
+        [attr.autocomplete]="autocomplete() || null"
+        [attr.aria-invalid]="showError() ? 'true' : null"
+        [attr.aria-describedby]="supportText() ? supportId() : null"
+        [rows]="rows()"
+        [value]="value() ?? ''"
+        (input)="onInput($event)"
+        (focus)="onFocus()"
+        (blur)="onBlur()"
+      ></textarea>
+    } @else if (isSelect()) {
+      <select
+        class="form-field__input form-field__input--select"
+        [id]="fieldId()"
+        [name]="name()"
+        [disabled]="isDisabled()"
+        [required]="required()"
+        [attr.aria-invalid]="showError() ? 'true' : null"
+        [attr.aria-describedby]="supportText() ? supportId() : null"
+        [value]="value() ?? ''"
+        (change)="onInput($event)"
+        (focus)="onFocus()"
+        (blur)="onBlur()"
+      >
+        @for (opt of options(); track opt.value) {
+          <option [value]="opt.value" [disabled]="opt.disabled">{{ opt.label }}</option>
+        }
+      </select>
+    } @else {
+      <input
+        class="form-field__input"
+        [id]="fieldId()"
+        [name]="name()"
+        [type]="normalizedType()"
+        [placeholder]="placeholder()"
+        [disabled]="isDisabled()"
+        [readOnly]="readonly()"
+        [required]="required()"
+        [attr.autocomplete]="autocomplete() || null"
+        [attr.aria-invalid]="showError() ? 'true' : null"
+        [attr.aria-describedby]="supportText() ? supportId() : null"
+        [value]="value() ?? ''"
+        (input)="onInput($event)"
+        (focus)="onFocus()"
+        (blur)="onBlur()"
+      />
+    }
+
+    @if (trailingIcon()) {
+      @if (showTrailingDivider()) { <span class="form-field__divider" aria-hidden="true"></span> }
+      <span class="form-field__icon form-field__icon--trailing" aria-hidden="true">
+        <app-icon-placeholder size="sm" />
+      </span>
+    }
+
+    @if (showError() || showSuccess()) {
+      <span class="form-field__status-icon" aria-hidden="true">
+        <app-icon-placeholder size="sm" />
+      </span>
+    }
+  </div>
+
+  @if (supportText()) {
+    <div class="form-field__support" [id]="supportId()" [class.is-error]="showError()" [class.is-success]="showSuccess()">
+      <span>{{ supportText() }}</span>
+    </div>
+  }
+</div>

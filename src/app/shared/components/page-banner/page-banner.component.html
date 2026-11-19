@@ -1,0 +1,17 @@
+<section class="page-banner" [class]="'page-banner ' + modifierClass()">
+  <div class="page-banner__pattern" aria-hidden="true"></div>
+  <div class="page-banner__content">
+    <div class="page-banner__text">
+      <div class="page-banner__title-row">
+        <h1 class="page-banner__title">{{ title() }}</h1>
+        <div class="page-banner__title-badge"><ng-content select="[banner-title-badge]" /></div>
+      </div>
+      @if (description()) {
+        <p class="page-banner__desc">{{ description() }}</p>
+      }
+    </div>
+    <div class="page-banner__actions">
+      <ng-content select="[banner-actions]" />
+    </div>
+  </div>
+</section>

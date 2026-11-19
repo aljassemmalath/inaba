@@ -1,0 +1,72 @@
+<app-page-banner
+  title="قائمة الطلبات"
+  description="استعرض الطلبات وابحث عنها، وفلتر حالاتها، وتابع تفاصيل كل طلب.">
+  <div banner-actions class="d-flex gap-2 flex-wrap">
+    <a routerLink="/operations/requests/import" class="btn btn-brand-outline">
+      <span>استيراد الطلبات Excel</span>
+      <img src="/assets/images/svg/Buttons/excel.svg" alt="" aria-hidden="true" width="16" height="16" />
+
+    </a>
+    <a routerLink="/operations/requests/new" class="btn btn-brand">
+      <span>طلب جديد</span>
+      <img src="/assets/images/svg/Buttons/add.svg" alt="" aria-hidden="true" width="16" height="16" />
+    </a>
+  </div>
+</app-page-banner>
+
+<section class="mb-4" aria-label="مؤشرات الطلبات">
+  <app-summary-container modifierClass="requests-summary">
+    @for (item of summary; track item.label) {
+      <app-summary-item [label]="item.label" [value]="item.value" [modifierClass]="item.modifierClass" />
+    }
+  </app-summary-container>
+</section>
+
+<app-filter-toolbar
+  [(search)]="search"
+  searchPlaceholder="ابحث برقم الطلب أو اسم العميل أو اسم المستفيد"
+  searchId="req-search"
+  (filterClick)="filterOpen.set(!filterOpen())"
+  (exportClick)="exportData()"
+>
+  @if (filterOpen()) {
+    <div class="content-card-body mt-3" style="padding:12px;box-shadow:none;border:1px solid var(--border-default);">خيارات التصفية المشتركة (قابلة للتوسعة).</div>
+  }
+</app-filter-toolbar>
+
+<div class="content-card-body table-card">
+  <app-data-table [columns]="columns" [rows]="rows()" trackByKey="id" emptyTitle="لا توجد طلبات" emptyMessage="لم يتم العثور على طلبات مطابقة.">
+    <ng-template #statusCell let-row>
+      <app-status-badge [label]="row.status" [tone]="row.statusTone" />
+    </ng-template>
+
+    <ng-template #indicatorsCell let-row>
+      @if (!row.indicators || row.indicators.length === 0) {
+        <span class="indicators-empty">-</span>
+      } @else {
+        <div class="indicators-cell">
+          @for (ind of row.indicators; track ind) {
+            <app-status-badge [label]="ind" [tone]="indicatorTone(ind)" />
+          }
+        </div>
+      }
+    </ng-template>
+
+    <ng-template #actionsCell let-row>
+      <button type="button" class="btn-icon" aria-label="عرض التفاصيل" title="عرض" (click)="openDetails(row); $event.stopPropagation()">
+        <span class="icon-placeholder icon-placeholder--sm"><img class="icon-placeholder__image is-visible" src="/assets/images/svg/Buttons/view.svg" alt="" /></span>
+      </button>
+    </ng-template>
+  </app-data-table>
+  <div class="table-footer">
+    <div class="d-flex align-items-center gap-2 flex-wrap">
+      <span class="text-secondary" style="font-size:var(--font-size-body-sm);">إجمالي السجلات: {{ total() }}</span>
+      <label class="text-secondary" style="font-size:var(--font-size-body-sm);">عدد الصفوف:
+        <select class="form-select form-select-sm d-inline-block" style="width:auto" [ngModel]="pageSize()" (ngModelChange)="onPageSize($event)">
+          <option [value]="10">10</option><option [value]="20">20</option><option [value]="50">50</option>
+        </select>
+      </label>
+    </div>
+    <app-pagination [page]="page()" [pageSize]="pageSize()" [total]="total()" (pageChange)="onPage($event)" />
+  </div>
+</div>

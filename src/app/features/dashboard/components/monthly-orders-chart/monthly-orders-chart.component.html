@@ -1,0 +1,20 @@
+<div class="chart-wrap">
+  <svg class="chart-svg" [attr.viewBox]="'0 0 ' + viewW + ' ' + viewH" preserveAspectRatio="xMidYMid meet" role="img" aria-label="رسم بياني للطلبات الشهرية">
+    @for (g of gridLines(); track $index) {
+      <line [attr.x1]="padL" [attr.y1]="g.y" [attr.x2]="viewW - padR" [attr.y2]="g.y" class="grid-line" />
+      @if (g.label) {
+        <text [attr.x]="6" [attr.y]="g.y + 4" text-anchor="start" class="y-label">{{ g.label }}</text>
+      }
+    }
+    <line [attr.x1]="padL" [attr.y1]="viewH - padB" [attr.x2]="viewW - padR" [attr.y2]="viewH - padB" class="axis" />
+    @for (b of bars(); track b.month) {
+      <rect [attr.x]="b.xB" [attr.y]="b.yB" [attr.width]="b.w" [attr.height]="b.hB" rx="4" class="bar-b">
+        <title>{{ b.month }} - طلبات مكتملة: {{ b.seriesB }}</title>
+      </rect>
+      <rect [attr.x]="b.xA" [attr.y]="b.yA" [attr.width]="b.w" [attr.height]="b.hA" rx="4" class="bar-a">
+        <title>{{ b.month }} - طلبات جديدة: {{ b.seriesA }}</title>
+      </rect>
+      <text [attr.x]="b.labelX" [attr.y]="b.labelY" text-anchor="middle" class="month-label">{{ b.month }}</text>
+    }
+  </svg>
+</div>

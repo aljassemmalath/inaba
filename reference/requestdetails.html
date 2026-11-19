@@ -1,0 +1,3272 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>تفاصيل الطلب #1042</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* =========================================================
+   DESIGN TOKENS
+========================================================= */
+
+:root {
+  --teal-50: #E6F6F4;
+  --teal-100: #C2E9E5;
+  --teal-200: #99DAD3;
+  --teal-300: #66C6BC;
+  --teal-400: #33B3A6;
+  --teal-500: #00A092;
+  --teal-600: #008A7E;
+  --teal-700: #007468;
+  --teal-800: #005A51;
+  --teal-900: #003F39;
+
+  --gold-50: #FAF6EA;
+  --gold-100: #F3EAD0;
+  --gold-500: #CEB26B;
+  --gold-700: #8F7434;
+
+  --mint-50: #EEF9F3;
+  --mint-100: #D8F1E3;
+  --mint-500: #84D3A4;
+  --mint-700: #3F9968;
+
+  --danger: #D64545;
+  --danger-bg: #FDECEC;
+  --danger-dark: #A62F2F;
+
+  --warning: #C9962B;
+  --warning-bg: #FAF6EA;
+
+  --info: #2F80B7;
+  --info-bg: #E6F1F8;
+
+  --page: #F6F8F8;
+  --white: #FFFFFF;
+
+  --text: #0B2B28;
+  --muted: #5C7070;
+  --subtle: #829292;
+
+  --border: #E3E2E2;
+  --border-light: #ECEEEE;
+
+  --shadow-sm: 0 1px 3px rgba(11,43,40,.035);
+  --shadow: 0 4px 18px rgba(11,43,40,.045);
+
+  --radius-sm: 8px;
+  --radius: 12px;
+  --radius-lg: 16px;
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--page);
+  color: var(--text);
+  font-family: "IBM Plex Sans Arabic", sans-serif;
+  font-size: 14px;
+}
+
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button,
+input,
+textarea {
+  outline: none;
+}
+
+
+/* =========================================================
+   APP LAYOUT
+========================================================= */
+
+.app {
+  min-height: 100vh;
+}
+
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+.sidebar {
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+
+  width: 252px;
+
+  background: var(--white);
+  border-left: 1px solid var(--border);
+
+  z-index: 50;
+
+  display: flex;
+  flex-direction: column;
+}
+
+
+/* User section */
+
+.sidebar-user {
+  background: var(--teal-800);
+  padding: 22px 20px;
+  color: white;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.user-avatar {
+  width: 42px;
+  height: 42px;
+
+  border-radius: 11px;
+
+  background: rgba(255,255,255,.11);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: 600;
+}
+
+.user-name {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.user-role {
+  margin-top: 3px;
+
+  font-size: 11px;
+  color: rgba(255,255,255,.62);
+}
+
+
+/* Navigation */
+
+.navigation {
+  padding: 18px 12px;
+  overflow-y: auto;
+}
+
+.nav-label {
+  padding: 7px 12px;
+
+  color: var(--subtle);
+
+  font-size: 10px;
+  font-weight: 600;
+
+  margin-top: 4px;
+}
+
+.nav-item {
+  position: relative;
+
+  height: 43px;
+
+  padding: 0 12px;
+
+  border-radius: 9px;
+
+  display: flex;
+  align-items: center;
+  gap: 11px;
+
+  color: var(--muted);
+
+  font-size: 12px;
+
+  margin: 2px 0;
+
+  transition: .15s;
+}
+
+.nav-item:hover {
+  background: var(--teal-50);
+  color: var(--teal-700);
+}
+
+.nav-item.active {
+  color: var(--teal-700);
+  background: var(--teal-50);
+  font-weight: 600;
+}
+
+.nav-item.active::after {
+  content: "";
+
+  position: absolute;
+  right: -12px;
+
+  width: 3px;
+  height: 23px;
+
+  background: var(--gold-500);
+
+  border-radius: 3px 0 0 3px;
+}
+
+.nav-icon {
+  width: 17px;
+  height: 17px;
+
+  border: 1.5px solid currentColor;
+
+  border-radius: 5px;
+
+  opacity: .8;
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+.main {
+  margin-right: 252px;
+  min-height: 100vh;
+}
+
+
+/* =========================================================
+   TOPBAR
+========================================================= */
+
+.topbar {
+  height: 66px;
+
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 34px;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+
+  color: var(--muted);
+
+  font-size: 12px;
+}
+
+.breadcrumb-current {
+  color: var(--text);
+  font-weight: 500;
+}
+
+.topbar-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.icon-button {
+  width: 37px;
+  height: 37px;
+
+  border: 1px solid var(--border);
+  background: var(--white);
+
+  border-radius: 9px;
+
+  color: var(--muted);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.content {
+  width: min(1420px, calc(100% - 60px));
+
+  margin: 0 auto;
+
+  padding: 30px 0 70px;
+}
+
+
+/* =========================================================
+   PAGE HEADER
+========================================================= */
+
+.page-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 25px;
+
+  margin-bottom: 20px;
+}
+
+.header-left {
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+}
+
+.back-button {
+  width: 40px;
+  height: 40px;
+
+  flex-shrink: 0;
+
+  border: 1px solid var(--border);
+  background: var(--white);
+
+  border-radius: 9px;
+
+  color: var(--muted);
+
+  font-size: 18px;
+}
+
+.page-title {
+  margin: 0;
+
+  font-size: 24px;
+  line-height: 1.3;
+
+  font-weight: 600;
+}
+
+.page-subtitle {
+  margin: 6px 0 0;
+
+  color: var(--muted);
+
+  font-size: 12px;
+}
+
+.header-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.btn {
+  height: 40px;
+
+  padding: 0 15px;
+
+  border: 1px solid var(--border);
+
+  background: var(--white);
+
+  color: var(--text);
+
+  border-radius: 9px;
+
+  font-size: 12px;
+  font-weight: 500;
+
+  white-space: nowrap;
+}
+
+.btn:hover {
+  background: var(--page);
+}
+
+.btn-primary {
+  color: white;
+  background: var(--teal-500);
+  border-color: var(--teal-500);
+}
+
+.btn-primary:hover {
+  background: var(--teal-600);
+}
+
+.btn-danger {
+  color: var(--danger);
+  border-color: #F0CACA;
+}
+
+
+/* =========================================================
+   STATUS BANNER
+========================================================= */
+
+.status-banner {
+  background: var(--white);
+
+  border: 1px solid var(--border);
+
+  border-radius: var(--radius-lg);
+
+  padding: 18px 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 18px;
+
+  box-shadow: var(--shadow-sm);
+}
+
+.status-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.status-indicator {
+  width: 9px;
+  height: 9px;
+
+  background: var(--teal-500);
+
+  border-radius: 50%;
+
+  box-shadow: 0 0 0 4px var(--teal-50);
+}
+
+.status-title {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.status-description {
+  margin-top: 3px;
+
+  color: var(--muted);
+
+  font-size: 11px;
+}
+
+.status-badge {
+  padding: 6px 11px;
+
+  background: var(--teal-50);
+  color: var(--teal-700);
+
+  border-radius: 7px;
+
+  font-size: 11px;
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   REQUEST OVERVIEW
+========================================================= */
+
+.overview {
+  display: grid;
+
+  grid-template-columns: 1.15fr .85fr;
+
+  gap: 18px;
+
+  margin-bottom: 18px;
+}
+
+.card {
+  background: var(--white);
+
+  border: 1px solid var(--border);
+
+  border-radius: var(--radius-lg);
+
+  box-shadow: var(--shadow-sm);
+}
+
+
+/* Information card */
+
+.card-header {
+  padding: 18px 20px;
+
+  border-bottom: 1px solid var(--border-light);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card-title {
+  margin: 0;
+
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.card-description {
+  margin: 4px 0 0;
+
+  color: var(--muted);
+
+  font-size: 11px;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+
+/* Request details */
+
+.request-details {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 20px 24px;
+}
+
+.detail-label {
+  color: var(--muted);
+
+  font-size: 10px;
+
+  margin-bottom: 5px;
+}
+
+.detail-value {
+  color: var(--text);
+
+  font-size: 12px;
+
+  font-weight: 500;
+}
+
+.detail-value.muted {
+  color: var(--muted);
+  font-weight: 400;
+}
+
+
+/* Beneficiary */
+
+.beneficiary-layout {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.beneficiary-main {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.beneficiary-avatar {
+  width: 47px;
+  height: 47px;
+
+  border-radius: 13px;
+
+  background: var(--teal-50);
+
+  color: var(--teal-700);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.beneficiary-name {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.beneficiary-status {
+  display: inline-flex;
+
+  margin-top: 5px;
+
+  padding: 4px 7px;
+
+  background: var(--gold-50);
+
+  color: var(--gold-700);
+
+  border-radius: 5px;
+
+  font-size: 9px;
+}
+
+.beneficiary-side {
+  text-align: left;
+}
+
+.beneficiary-side-label {
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.beneficiary-side-value {
+  margin-top: 4px;
+
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.special-request {
+  margin-top: 18px;
+
+  padding: 12px;
+
+  background: var(--page);
+
+  border: 1px solid var(--border-light);
+
+  border-radius: 9px;
+}
+
+.special-label {
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.special-text {
+  margin-top: 5px;
+
+  font-size: 12px;
+}
+
+
+/* =========================================================
+   TAB AREA
+========================================================= */
+
+.tabs-card {
+  background: var(--white);
+
+  border: 1px solid var(--border);
+
+  border-radius: var(--radius-lg);
+
+  box-shadow: var(--shadow-sm);
+
+  overflow: hidden;
+}
+
+.tabs {
+  height: 62px;
+
+  padding: 0 24px;
+
+  border-bottom: 1px solid var(--border);
+
+  display: flex;
+  align-items: stretch;
+
+  gap: 30px;
+}
+
+.tab {
+  position: relative;
+
+  padding: 0;
+
+  border: 0;
+
+  background: transparent;
+
+  color: var(--muted);
+
+  font-size: 12px;
+
+  font-weight: 500;
+}
+
+.tab:hover {
+  color: var(--teal-700);
+}
+
+.tab.active {
+  color: var(--teal-700);
+  font-weight: 600;
+}
+
+.tab.active::after {
+  content: "";
+
+  position: absolute;
+
+  right: 0;
+  left: 0;
+  bottom: 0;
+
+  height: 2px;
+
+  background: var(--teal-500);
+
+  border-radius: 2px 2px 0 0;
+}
+
+.tab-content {
+  display: none;
+
+  padding: 25px;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+
+/* =========================================================
+   SECTION HEADER
+========================================================= */
+
+.section-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 15px;
+
+  margin-bottom: 20px;
+}
+
+.section-title {
+  margin: 0;
+
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.section-description {
+  margin: 4px 0 0;
+
+  color: var(--muted);
+
+  font-size: 11px;
+}
+
+
+/* =========================================================
+   STAGES
+========================================================= */
+
+.stages {
+  display: flex;
+  flex-direction: column;
+}
+
+.stage {
+  position: relative;
+
+  display: flex;
+
+  gap: 14px;
+
+  min-height: 105px;
+}
+
+.stage:not(:last-child)::before {
+  content: "";
+
+  position: absolute;
+
+  right: 15px;
+
+  top: 33px;
+  bottom: 0;
+
+  width: 1px;
+
+  background: var(--border);
+}
+
+.stage-marker {
+  position: relative;
+  z-index: 2;
+
+  flex: 0 0 32px;
+
+  width: 32px;
+  height: 32px;
+
+  border-radius: 50%;
+
+  border: 1px solid var(--border);
+
+  background: var(--white);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: var(--muted);
+
+  font-size: 11px;
+}
+
+.stage.completed .stage-marker {
+  color: white;
+
+  background: var(--teal-500);
+
+  border-color: var(--teal-500);
+}
+
+.stage.current .stage-marker {
+  color: var(--teal-700);
+
+  background: var(--teal-50);
+
+  border: 2px solid var(--teal-500);
+}
+
+.stage-content {
+  flex: 1;
+
+  padding-bottom: 22px;
+}
+
+.stage-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 15px;
+}
+
+.stage-name {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.stage-time {
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.stage-state {
+  margin-top: 4px;
+
+  color: var(--muted);
+
+  font-size: 10px;
+}
+
+.stage.current .stage-state {
+  color: var(--teal-700);
+}
+
+
+/* Evidence */
+
+.evidence-card {
+  margin-top: 11px;
+
+  padding: 11px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 10px;
+
+  background: var(--page);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 15px;
+}
+
+.evidence-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.evidence-thumbnail {
+  width: 42px;
+  height: 42px;
+
+  border-radius: 8px;
+
+  background: var(--teal-700);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: white;
+
+  font-size: 13px;
+}
+
+.evidence-title {
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.evidence-meta {
+  margin-top: 3px;
+
+  color: var(--muted);
+
+  font-size: 9px;
+}
+
+.evidence-badge {
+  padding: 5px 8px;
+
+  border-radius: 5px;
+
+  background: var(--mint-50);
+
+  color: var(--mint-700);
+
+  font-size: 9px;
+}
+
+.evidence-pending {
+  background: var(--warning-bg);
+  color: var(--warning);
+}
+
+
+/* =========================================================
+   TIMELINE
+========================================================= */
+
+.timeline {
+  max-width: 900px;
+}
+
+.timeline-item {
+  display: grid;
+
+  grid-template-columns: 65px 25px 1fr;
+
+  gap: 14px;
+
+  min-height: 78px;
+}
+
+.timeline-time {
+  color: var(--muted);
+
+  font-size: 10px;
+
+  text-align: left;
+
+  line-height: 1.7;
+}
+
+.timeline-track {
+  position: relative;
+}
+
+.timeline-track::before {
+  content: "";
+
+  position: absolute;
+
+  right: 11px;
+
+  top: 20px;
+  bottom: -5px;
+
+  width: 1px;
+
+  background: var(--border);
+}
+
+.timeline-item:last-child .timeline-track::before {
+  display: none;
+}
+
+.timeline-dot {
+  position: relative;
+  z-index: 2;
+
+  width: 22px;
+  height: 22px;
+
+  border-radius: 50%;
+
+  border: 1px solid var(--teal-200);
+
+  background: var(--teal-50);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.timeline-dot::after {
+  content: "";
+
+  width: 5px;
+  height: 5px;
+
+  background: var(--teal-500);
+
+  border-radius: 50%;
+}
+
+.timeline-event {
+  padding-bottom: 22px;
+}
+
+.timeline-event-title {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.timeline-event-meta {
+  margin-top: 4px;
+
+  color: var(--muted);
+
+  font-size: 10px;
+}
+
+
+/* =========================================================
+   ASSIGNMENT LOG
+========================================================= */
+
+.table-wrapper {
+  border: 1px solid var(--border);
+
+  border-radius: 11px;
+
+  overflow-x: auto;
+}
+
+.assignment-table {
+  width: 100%;
+
+  border-collapse: collapse;
+
+  min-width: 800px;
+}
+
+.assignment-table th {
+  padding: 12px 14px;
+
+  background: var(--page);
+
+  color: var(--muted);
+
+  font-size: 10px;
+
+  font-weight: 500;
+
+  text-align: right;
+
+  white-space: nowrap;
+}
+
+.assignment-table td {
+  padding: 14px;
+
+  border-top: 1px solid var(--border-light);
+
+  font-size: 11px;
+
+  white-space: nowrap;
+}
+
+.executor {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.executor-avatar {
+  width: 31px;
+  height: 31px;
+
+  border-radius: 8px;
+
+  background: var(--teal-50);
+
+  color: var(--teal-700);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.status-small {
+  display: inline-flex;
+
+  padding: 5px 8px;
+
+  border-radius: 6px;
+
+  font-size: 9px;
+}
+
+.status-accepted {
+  background: var(--mint-50);
+  color: var(--mint-700);
+}
+
+.status-rejected {
+  background: var(--danger-bg);
+  color: var(--danger-dark);
+}
+
+.status-no-response {
+  background: var(--warning-bg);
+  color: var(--warning);
+}
+
+
+/* =========================================================
+   NOTES
+========================================================= */
+
+.notes-layout {
+  max-width: 900px;
+}
+
+.note {
+  padding: 16px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 11px;
+
+  margin-bottom: 12px;
+
+  background: var(--white);
+}
+
+.note-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.note-author {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.note-avatar {
+  width: 32px;
+  height: 32px;
+
+  background: var(--teal-50);
+
+  color: var(--teal-700);
+
+  border-radius: 8px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.note-author-name {
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.note-date {
+  margin-top: 2px;
+
+  color: var(--muted);
+
+  font-size: 9px;
+}
+
+.note-text {
+  margin-top: 13px;
+
+  color: var(--text);
+
+  font-size: 11px;
+
+  line-height: 1.9;
+}
+
+.note-form {
+  margin-top: 22px;
+}
+
+.note-form textarea {
+  width: 100%;
+
+  min-height: 105px;
+
+  padding: 12px;
+
+  resize: vertical;
+
+  border: 1px solid var(--border);
+
+  border-radius: 9px;
+
+  font-size: 11px;
+
+  color: var(--text);
+
+  background: white;
+}
+
+.note-form textarea:focus {
+  border-color: var(--teal-400);
+
+  box-shadow: 0 0 0 3px var(--teal-50);
+}
+
+.note-form-footer {
+  display: flex;
+  justify-content: flex-start;
+
+  margin-top: 9px;
+}
+
+
+/* =========================================================
+   EXTRA INFORMATION BELOW TABS
+========================================================= */
+
+.bottom-grid {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr 1fr;
+
+  gap: 18px;
+
+  margin-top: 18px;
+}
+
+
+/* Assignment */
+
+.person-row {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+
+  padding-bottom: 15px;
+
+  border-bottom: 1px solid var(--border-light);
+
+  margin-bottom: 15px;
+}
+
+.person-avatar {
+  width: 40px;
+  height: 40px;
+
+  border-radius: 10px;
+
+  background: var(--teal-50);
+
+  color: var(--teal-700);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: 600;
+}
+
+.person-name {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.person-role {
+  margin-top: 3px;
+
+  color: var(--muted);
+
+  font-size: 9px;
+}
+
+.assignment-details {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 14px;
+}
+
+
+/* Agency */
+
+.agency-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.agency-logo {
+  width: 42px;
+  height: 42px;
+
+  border-radius: 11px;
+
+  background: var(--teal-700);
+
+  color: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: 600;
+}
+
+.agency-name {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.agency-type {
+  margin-top: 3px;
+
+  color: var(--muted);
+
+  font-size: 9px;
+}
+
+.agency-info {
+  margin-top: 18px;
+
+  padding-top: 15px;
+
+  border-top: 1px solid var(--border-light);
+
+  display: grid;
+
+  gap: 11px;
+}
+
+.inline-info {
+  display: flex;
+  justify-content: space-between;
+
+  font-size: 10px;
+}
+
+.inline-info span:first-child {
+  color: var(--muted);
+}
+
+
+/* Finance */
+
+.finance-list {
+  display: grid;
+  gap: 13px;
+}
+
+.finance-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.finance-label {
+  color: var(--muted);
+
+  font-size: 10px;
+}
+
+.finance-value {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.finance-profit {
+  padding-top: 13px;
+
+  border-top: 1px solid var(--border-light);
+}
+
+.profit-value {
+  color: var(--teal-700);
+
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.finance-note {
+  margin-top: 4px;
+
+  color: var(--muted);
+
+  font-size: 9px;
+}
+
+
+/* Issue */
+
+.issue-card {
+  border: 1px solid #EADCB1;
+
+  background: var(--gold-50);
+
+  border-radius: 10px;
+
+  padding: 13px;
+}
+
+.issue-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.issue-type {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.issue-icon {
+  width: 25px;
+  height: 25px;
+
+  border-radius: 7px;
+
+  background: white;
+
+  color: var(--warning);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.issue-status {
+  color: var(--warning);
+
+  font-size: 9px;
+  font-weight: 600;
+}
+
+.issue-text {
+  margin-top: 11px;
+
+  font-size: 10px;
+
+  line-height: 1.8;
+}
+
+.issue-meta {
+  margin-top: 9px;
+
+  color: var(--muted);
+
+  font-size: 9px;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1150px) {
+
+  .sidebar {
+    width: 225px;
+  }
+
+  .main {
+    margin-right: 225px;
+  }
+
+  .overview {
+    grid-template-columns: 1fr;
+  }
+
+  .bottom-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+}
+
+@media (max-width: 850px) {
+
+  .sidebar {
+    display: none;
+  }
+
+  .main {
+    margin-right: 0;
+  }
+
+  .content {
+    width: calc(100% - 32px);
+    padding-top: 22px;
+  }
+
+  .topbar {
+    padding: 0 16px;
+  }
+
+  .page-header {
+    flex-direction: column;
+  }
+
+  .header-actions {
+    width: 100%;
+  }
+
+  .header-actions .btn {
+    flex: 1;
+  }
+
+  .bottom-grid {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+@media (max-width: 650px) {
+
+  .content {
+    width: calc(100% - 20px);
+  }
+
+  .page-title {
+    font-size: 21px;
+  }
+
+  .status-banner {
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .status-banner {
+    flex-direction: column;
+  }
+
+  .request-details {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .tabs {
+    padding: 0 15px;
+
+    gap: 24px;
+
+    overflow-x: auto;
+
+    scrollbar-width: none;
+  }
+
+  .tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tab {
+    flex-shrink: 0;
+  }
+
+  .tab-content {
+    padding: 18px;
+  }
+
+}
+
+@media (max-width: 450px) {
+
+  .request-details {
+    grid-template-columns: 1fr;
+  }
+
+  .beneficiary-layout {
+    flex-direction: column;
+  }
+
+  .beneficiary-side {
+    text-align: right;
+  }
+
+  .header-actions {
+    flex-direction: column;
+  }
+
+  .header-actions .btn {
+    width: 100%;
+  }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+<div class="app">
+
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
+
+<aside class="sidebar">
+
+  <div class="sidebar-user">
+
+    <div class="user-profile">
+
+      <div class="user-avatar">
+        م
+      </div>
+
+      <div>
+        <div class="user-name">
+          محمد العتيبي
+        </div>
+
+        <div class="user-role">
+          مدير النظام
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <nav class="navigation">
+
+    <div class="nav-label">
+      الرئيسية
+    </div>
+
+    <div class="nav-item">
+      <span class="nav-icon"></span>
+      لوحة التحكم
+    </div>
+
+    <div class="nav-item active">
+      <span class="nav-icon"></span>
+      الطلبات
+    </div>
+
+    <div class="nav-item">
+      <span class="nav-icon"></span>
+      المنفذون
+    </div>
+
+    <div class="nav-item">
+      <span class="nav-icon"></span>
+      الوكالات
+    </div>
+
+
+    <div class="nav-label">
+      الإدارة
+    </div>
+
+    <div class="nav-item">
+      <span class="nav-icon"></span>
+      المنتجات والمراحل
+    </div>
+
+    <div class="nav-item">
+      <span class="nav-icon"></span>
+      المستحقات
+    </div>
+
+    <div class="nav-item">
+      <span class="nav-icon"></span>
+      التقارير
+    </div>
+
+    <div class="nav-item">
+      <span class="nav-icon"></span>
+      المشاكل
+    </div>
+
+    <div class="nav-item">
+      <span class="nav-icon"></span>
+      سجل العمليات
+    </div>
+
+    <div class="nav-item">
+      <span class="nav-icon"></span>
+      الإعدادات
+    </div>
+
+  </nav>
+
+</aside>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="main">
+
+
+<!-- TOPBAR -->
+
+<header class="topbar">
+
+  <div class="breadcrumb">
+
+    <span>الطلبات</span>
+
+    <span>‹</span>
+
+    <span class="breadcrumb-current">
+      تفاصيل الطلب #1042
+    </span>
+
+  </div>
+
+
+  <div class="topbar-actions">
+
+    <button class="icon-button">
+      ⌕
+    </button>
+
+    <button class="icon-button">
+      ◌
+    </button>
+
+  </div>
+
+</header>
+
+
+<!-- CONTENT -->
+
+<div class="content">
+
+
+<!-- =====================================================
+     PAGE HEADER
+===================================================== -->
+
+<div class="page-header">
+
+  <div class="header-left">
+
+    <button class="back-button">
+      ←
+    </button>
+
+    <div>
+
+      <h1 class="page-title">
+        تفاصيل الطلب #1042
+      </h1>
+
+      <p class="page-subtitle">
+        تابع تقدم تنفيذ الطلب والمراحل والأدلة المرتبطة به
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <div class="header-actions">
+
+    <button class="btn">
+      إضافة ملاحظة
+    </button>
+
+    <button class="btn btn-danger">
+      إلغاء التنفيذ وإعادة الإسناد
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- =====================================================
+     STATUS
+===================================================== -->
+
+<div class="status-banner">
+
+  <div class="status-left">
+
+    <span class="status-indicator"></span>
+
+    <div>
+
+      <div class="status-title">
+        الطلب قيد التنفيذ
+      </div>
+
+      <div class="status-description">
+        تابع تقدم التنفيذ والمراحل والأدلة المرفوعة
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <span class="status-badge">
+    قيد التنفيذ
+  </span>
+
+</div>
+
+
+<!-- =====================================================
+     OVERVIEW
+===================================================== -->
+
+<div class="overview">
+
+
+<!-- REQUEST INFORMATION -->
+
+<div class="card">
+
+  <div class="card-header">
+
+    <div>
+
+      <h2 class="card-title">
+        معلومات الطلب
+      </h2>
+
+      <p class="card-description">
+        البيانات الأساسية المرتبطة بالطلب
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <div class="card-body">
+
+    <div class="request-details">
+
+      <div>
+        <div class="detail-label">رقم الطلب</div>
+        <div class="detail-value">#1042</div>
+      </div>
+
+      <div>
+        <div class="detail-label">الخدمة</div>
+        <div class="detail-value">عمرة بالإنابة</div>
+      </div>
+
+      <div>
+        <div class="detail-label">طريقة الإدخال</div>
+        <div class="detail-value">إدخال يدوي</div>
+      </div>
+
+      <div>
+        <div class="detail-label">تاريخ الإنشاء</div>
+        <div class="detail-value">23 سبتمبر 2026</div>
+      </div>
+
+      <div>
+        <div class="detail-label">الوكالة</div>
+        <div class="detail-value">مناسك</div>
+      </div>
+
+      <div>
+        <div class="detail-label">المشرف</div>
+        <div class="detail-value">أحمد القحطاني</div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- BENEFICIARY -->
+
+<div class="card">
+
+  <div class="card-header">
+
+    <div>
+
+      <h2 class="card-title">
+        المستفيد
+      </h2>
+
+      <p class="card-description">
+        بيانات المستفيد المرتبط بالطلب
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <div class="card-body">
+
+    <div class="beneficiary-layout">
+
+      <div class="beneficiary-main">
+
+        <div class="beneficiary-avatar">
+          ف
+        </div>
+
+        <div>
+
+          <div class="beneficiary-name">
+            فاطمة أحمد
+          </div>
+
+          <div class="beneficiary-status">
+            متوفاة
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="beneficiary-side">
+
+        <div class="beneficiary-side-label">
+          مقدم الطلب
+        </div>
+
+        <div class="beneficiary-side-value">
+          محمد عبدالله
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="special-request">
+
+      <div class="special-label">
+        الطلب الخاص
+      </div>
+
+      <div class="special-text">
+        الدعاء للمتوفاة
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     TABS
+===================================================== -->
+
+<section class="tabs-card">
+
+
+<!-- TAB NAVIGATION -->
+
+<div class="tabs">
+
+  <button
+    class="tab active"
+    data-tab="stages">
+
+    المراحل والأدلة
+
+  </button>
+
+
+  <button
+    class="tab"
+    data-tab="timeline">
+
+    الجدول الزمني
+
+  </button>
+
+
+  <button
+    class="tab"
+    data-tab="assignment">
+
+    سجل الإسناد
+
+  </button>
+
+
+  <button
+    class="tab"
+    data-tab="notes">
+
+    ملاحظات داخلية
+
+  </button>
+
+</div>
+
+
+<!-- =====================================================
+     TAB — STAGES & EVIDENCE
+===================================================== -->
+
+<div
+  id="stages"
+  class="tab-content active">
+
+
+  <div class="section-header">
+
+    <div>
+
+      <h2 class="section-title">
+        مراحل وأدلة التنفيذ
+      </h2>
+
+      <p class="section-description">
+        متابعة تقدم مراحل العمرة والأدلة المطلوبة لكل مرحلة
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <div class="stages">
+
+
+    <!-- STAGE 1 -->
+
+    <div class="stage completed">
+
+      <div class="stage-marker">
+        ✓
+      </div>
+
+      <div class="stage-content">
+
+        <div class="stage-top">
+
+          <div class="stage-name">
+            الإحرام من الميقات
+          </div>
+
+          <div class="stage-time">
+            14:07
+          </div>
+
+        </div>
+
+        <div class="stage-state">
+          اكتملت المرحلة
+        </div>
+
+
+        <div class="evidence-card">
+
+          <div class="evidence-left">
+
+            <div class="evidence-thumbnail">
+              ▶
+            </div>
+
+            <div>
+
+              <div class="evidence-title">
+                دليل الإحرام
+              </div>
+
+              <div class="evidence-meta">
+                فيديو · 12 ثانية · تم الالتقاط 14:07
+              </div>
+
+            </div>
+
+          </div>
+
+          <span class="evidence-badge">
+            تم الاستلام
+          </span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- STAGE 2 -->
+
+    <div class="stage completed">
+
+      <div class="stage-marker">
+        ✓
+      </div>
+
+      <div class="stage-content">
+
+        <div class="stage-top">
+
+          <div class="stage-name">
+            الطواف
+          </div>
+
+          <div class="stage-time">
+            15:18
+          </div>
+
+        </div>
+
+        <div class="stage-state">
+          اكتملت المرحلة
+        </div>
+
+
+        <div class="evidence-card">
+
+          <div class="evidence-left">
+
+            <div class="evidence-thumbnail">
+              ▶
+            </div>
+
+            <div>
+
+              <div class="evidence-title">
+                دليل الطواف
+              </div>
+
+              <div class="evidence-meta">
+                فيديو · 18 ثانية · تم الالتقاط 15:18
+              </div>
+
+            </div>
+
+          </div>
+
+          <span class="evidence-badge">
+            تم الاستلام
+          </span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- STAGE 3 -->
+
+    <div class="stage current">
+
+      <div class="stage-marker">
+        ●
+      </div>
+
+      <div class="stage-content">
+
+        <div class="stage-top">
+
+          <div class="stage-name">
+            السعي
+          </div>
+
+          <div class="stage-time">
+            بدأ التنفيذ
+          </div>
+
+        </div>
+
+        <div class="stage-state">
+          قيد التنفيذ · بانتظار الدليل
+        </div>
+
+
+        <div class="evidence-card">
+
+          <div class="evidence-left">
+
+            <div class="evidence-thumbnail">
+              +
+            </div>
+
+            <div>
+
+              <div class="evidence-title">
+                الدليل المطلوب
+              </div>
+
+              <div class="evidence-meta">
+                فيديو واحد · مدة 5–30 ثانية
+              </div>
+
+            </div>
+
+          </div>
+
+          <span class="evidence-badge evidence-pending">
+            بانتظار الرفع
+          </span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- STAGE 4 -->
+
+    <div class="stage">
+
+      <div class="stage-marker">
+        4
+      </div>
+
+      <div class="stage-content">
+
+        <div class="stage-top">
+
+          <div class="stage-name">
+            إتمام العمرة
+          </div>
+
+        </div>
+
+        <div class="stage-state">
+          لم تبدأ بعد
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =====================================================
+     TAB — TIMELINE
+===================================================== -->
+
+<div
+  id="timeline"
+  class="tab-content">
+
+
+  <div class="section-header">
+
+    <div>
+
+      <h2 class="section-title">
+        الجدول الزمني
+      </h2>
+
+      <p class="section-description">
+        سجل زمني لجميع الأحداث التي حدثت على الطلب
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <div class="timeline">
+
+
+    <div class="timeline-item">
+
+      <div class="timeline-time">
+        اليوم<br>15:42
+      </div>
+
+      <div class="timeline-track">
+        <div class="timeline-dot"></div>
+      </div>
+
+      <div class="timeline-event">
+
+        <div class="timeline-event-title">
+          وصول دليل السعي
+        </div>
+
+        <div class="timeline-event-meta">
+          خالد محمد · تم استلام الفيديو
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="timeline-item">
+
+      <div class="timeline-time">
+        اليوم<br>15:18
+      </div>
+
+      <div class="timeline-track">
+        <div class="timeline-dot"></div>
+      </div>
+
+      <div class="timeline-event">
+
+        <div class="timeline-event-title">
+          اكتمال مرحلة الطواف
+        </div>
+
+        <div class="timeline-event-meta">
+          خالد محمد · جميع الأدلة المطلوبة مستلمة
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="timeline-item">
+
+      <div class="timeline-time">
+        اليوم<br>14:20
+      </div>
+
+      <div class="timeline-track">
+        <div class="timeline-dot"></div>
+      </div>
+
+      <div class="timeline-event">
+
+        <div class="timeline-event-title">
+          بدء تنفيذ الطلب
+        </div>
+
+        <div class="timeline-event-meta">
+          خالد محمد
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="timeline-item">
+
+      <div class="timeline-time">
+        اليوم<br>14:07
+      </div>
+
+      <div class="timeline-track">
+        <div class="timeline-dot"></div>
+      </div>
+
+      <div class="timeline-event">
+
+        <div class="timeline-event-title">
+          قبول الإسناد
+        </div>
+
+        <div class="timeline-event-meta">
+          خالد محمد
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="timeline-item">
+
+      <div class="timeline-time">
+        اليوم<br>13:55
+      </div>
+
+      <div class="timeline-track">
+        <div class="timeline-dot"></div>
+      </div>
+
+      <div class="timeline-event">
+
+        <div class="timeline-event-title">
+          مشاهدة إشعار الإسناد
+        </div>
+
+        <div class="timeline-event-meta">
+          خالد محمد
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="timeline-item">
+
+      <div class="timeline-time">
+        اليوم<br>13:52
+      </div>
+
+      <div class="timeline-track">
+        <div class="timeline-dot"></div>
+      </div>
+
+      <div class="timeline-event">
+
+        <div class="timeline-event-title">
+          إسناد الطلب إلى المنفذ
+        </div>
+
+        <div class="timeline-event-meta">
+          الإدارة
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="timeline-item">
+
+      <div class="timeline-time">
+        اليوم<br>13:40
+      </div>
+
+      <div class="timeline-track">
+        <div class="timeline-dot"></div>
+      </div>
+
+      <div class="timeline-event">
+
+        <div class="timeline-event-title">
+          إنشاء الطلب
+        </div>
+
+        <div class="timeline-event-meta">
+          الإدارة · إدخال يدوي
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =====================================================
+     TAB — ASSIGNMENT
+===================================================== -->
+
+<div
+  id="assignment"
+  class="tab-content">
+
+
+  <div class="section-header">
+
+    <div>
+
+      <h2 class="section-title">
+        سجل الإسناد
+      </h2>
+
+      <p class="section-description">
+        جميع محاولات إسناد الطلب وحالات الاستجابة
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <div class="table-wrapper">
+
+    <table class="assignment-table">
+
+      <thead>
+
+        <tr>
+
+          <th>
+            المنفذ
+          </th>
+
+          <th>
+            وقت الإسناد
+          </th>
+
+          <th>
+            الإشعار
+          </th>
+
+          <th>
+            الاستجابة
+          </th>
+
+          <th>
+            السبب
+          </th>
+
+          <th>
+            الحالة
+          </th>
+
+        </tr>
+
+      </thead>
+
+
+      <tbody>
+
+
+        <tr>
+
+          <td>
+
+            <div class="executor">
+
+              <div class="executor-avatar">
+                خ
+              </div>
+
+              خالد محمد
+
+            </div>
+
+          </td>
+
+          <td>
+            23 سبتمبر · 13:52
+          </td>
+
+          <td>
+            تمت المشاهدة · 13:55
+          </td>
+
+          <td>
+            تم القبول · 14:07
+          </td>
+
+          <td>
+            —
+          </td>
+
+          <td>
+
+            <span class="status-small status-accepted">
+              مقبول
+            </span>
+
+          </td>
+
+        </tr>
+
+
+        <tr>
+
+          <td>
+
+            <div class="executor">
+
+              <div class="executor-avatar">
+                ع
+              </div>
+
+              عبدالله صالح
+
+            </div>
+
+          </td>
+
+          <td>
+            23 سبتمبر · 13:20
+          </td>
+
+          <td>
+            تمت المشاهدة · 13:21
+          </td>
+
+          <td>
+            مرفوض
+          </td>
+
+          <td>
+            خارج الدوام
+          </td>
+
+          <td>
+
+            <span class="status-small status-rejected">
+              مرفوض
+            </span>
+
+          </td>
+
+        </tr>
+
+
+        <tr>
+
+          <td>
+
+            <div class="executor">
+
+              <div class="executor-avatar">
+                س
+              </div>
+
+              سامي حسن
+
+            </div>
+
+          </td>
+
+          <td>
+            23 سبتمبر · 13:05
+          </td>
+
+          <td>
+            لم تتم المشاهدة
+          </td>
+
+          <td>
+            —
+          </td>
+
+          <td>
+            لم تتم الاستجابة
+          </td>
+
+          <td>
+
+            <span class="status-small status-no-response">
+              لم يستجب
+            </span>
+
+          </td>
+
+        </tr>
+
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</div>
+
+
+<!-- =====================================================
+     TAB — INTERNAL NOTES
+===================================================== -->
+
+<div
+  id="notes"
+  class="tab-content">
+
+
+  <div class="section-header">
+
+    <div>
+
+      <h2 class="section-title">
+        ملاحظات داخلية
+      </h2>
+
+      <p class="section-description">
+        ملاحظات خاصة بالإدارة ولا تظهر للمنفذ أو الوكالة
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <div class="notes-layout">
+
+
+    <!-- NOTE 1 -->
+
+    <div class="note">
+
+      <div class="note-header">
+
+        <div class="note-author">
+
+          <div class="note-avatar">
+            م
+          </div>
+
+          <div>
+
+            <div class="note-author-name">
+              محمد العتيبي
+            </div>
+
+            <div class="note-date">
+              23 سبتمبر 2026 · 14:12
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="note-text">
+
+        تم التواصل مع المنفذ والتأكد من بدء تنفيذ الطلب.
+        توجد كثافة مرتفعة في منطقة السعي، ويجب متابعة وصول الدليل قبل اعتبار المرحلة مكتملة.
+
+      </div>
+
+    </div>
+
+
+    <!-- NOTE 2 -->
+
+    <div class="note">
+
+      <div class="note-header">
+
+        <div class="note-author">
+
+          <div class="note-avatar">
+            أ
+          </div>
+
+          <div>
+
+            <div class="note-author-name">
+              أحمد القحطاني
+            </div>
+
+            <div class="note-date">
+              23 سبتمبر 2026 · 13:48
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="note-text">
+
+        الطلب مرتبط بالوكالة «مناسك». يرجى التأكد من وصول جميع الأدلة
+        المطلوبة قبل اكتمال الطلب تلقائيًا.
+
+      </div>
+
+    </div>
+
+
+    <!-- ADD NOTE -->
+
+    <div class="note-form">
+
+      <textarea
+        placeholder="اكتب ملاحظة داخلية للرجوع إليها لاحقًا..."></textarea>
+
+      <div class="note-form-footer">
+
+        <button class="btn btn-primary">
+          حفظ الملاحظة
+        </button>
+
+      </div>
+
+    </div>
+
+
+  </div>
+
+</div>
+
+
+</section>
+
+
+<!-- =====================================================
+     INFORMATION BELOW TABS
+===================================================== -->
+
+<div class="bottom-grid">
+
+
+<!-- ASSIGNMENT -->
+
+<div class="card">
+
+  <div class="card-header">
+
+    <div>
+
+      <h2 class="card-title">
+        الإسناد الحالي
+      </h2>
+
+      <p class="card-description">
+        المنفذ المسؤول عن الطلب
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <div class="card-body">
+
+    <div class="person-row">
+
+      <div class="person-avatar">
+        خ
+      </div>
+
+      <div>
+
+        <div class="person-name">
+          خالد محمد
+        </div>
+
+        <div class="person-role">
+          منفذ · متاح بعد اكتمال الطلب
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="assignment-details">
+
+      <div>
+        <div class="detail-label">
+          المشرف
+        </div>
+
+        <div class="detail-value">
+          أحمد القحطاني
+        </div>
+      </div>
+
+
+      <div>
+        <div class="detail-label">
+          وقت الإسناد
+        </div>
+
+        <div class="detail-value">
+          13:52
+        </div>
+      </div>
+
+
+      <div>
+        <div class="detail-label">
+          الإشعار
+        </div>
+
+        <div class="detail-value">
+          تمت المشاهدة
+        </div>
+      </div>
+
+
+      <div>
+        <div class="detail-label">
+          حالة المنفذ
+        </div>
+
+        <div class="detail-value">
+          مشغول
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- AGENCY -->
+
+<div class="card">
+
+  <div class="card-header">
+
+    <div>
+
+      <h2 class="card-title">
+        الوكالة
+      </h2>
+
+      <p class="card-description">
+        الجهة التي قدمت الطلب
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <div class="card-body">
+
+    <div class="agency-box">
+
+      <div class="agency-logo">
+        م
+      </div>
+
+      <div>
+
+        <div class="agency-name">
+          مناسك
+        </div>
+
+        <div class="agency-type">
+          وكالة حج وعمرة
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="agency-info">
+
+      <div class="inline-info">
+
+        <span>
+          حالة الحساب
+        </span>
+
+        <strong>
+          نشط
+        </strong>
+
+      </div>
+
+
+      <div class="inline-info">
+
+        <span>
+          الطلبات المرتبطة
+        </span>
+
+        <strong>
+          18 طلب
+        </strong>
+
+      </div>
+
+
+      <div class="inline-info">
+
+        <span>
+          وصول الطلب
+        </span>
+
+        <strong>
+          إدخال يدوي
+        </strong>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- FINANCE -->
+
+<div class="card">
+
+  <div class="card-header">
+
+    <div>
+
+      <h2 class="card-title">
+        المعلومات المالية
+      </h2>
+
+      <p class="card-description">
+        القيم المالية المرتبطة بالطلب
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <div class="card-body">
+
+    <div class="finance-list">
+
+
+      <div class="finance-row">
+
+        <span class="finance-label">
+          سعر البيع
+        </span>
+
+        <span class="finance-value">
+          1,200 ر.س
+        </span>
+
+      </div>
+
+
+      <div class="finance-row">
+
+        <span class="finance-label">
+          مستحق المنفذ
+        </span>
+
+        <span class="finance-value">
+          700 ر.س
+        </span>
+
+      </div>
+
+
+      <div class="finance-row finance-profit">
+
+        <div>
+
+          <div class="finance-label">
+            صافي الربح
+          </div>
+
+          <div class="finance-note">
+            سعر البيع − مستحق المنفذ
+          </div>
+
+        </div>
+
+        <div class="profit-value">
+          500 ر.س
+        </div>
+
+      </div>
+
+
+      <div class="finance-row">
+
+        <span class="finance-label">
+          حالة الدفع
+        </span>
+
+        <span class="finance-value">
+          خارج النظام
+        </span>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+</div>
+
+
+</div>
+
+
+<!-- =====================================================
+     OPEN ISSUE
+===================================================== -->
+
+<div class="card" style="margin-top:18px;">
+
+  <div class="card-header">
+
+    <div>
+
+      <h2 class="card-title">
+        مشكلة مرتبطة بالطلب
+      </h2>
+
+      <p class="card-description">
+        حالة مستقلة مرتبطة بالتنفيذ ولا تغيّر حالة الطلب الأساسية
+      </p>
+
+    </div>
+
+
+    <span class="status-small status-no-response">
+      مفتوحة
+    </span>
+
+  </div>
+
+
+  <div class="card-body">
+
+    <div class="issue-card">
+
+      <div class="issue-header">
+
+        <div class="issue-type">
+
+          <div class="issue-icon">
+            !
+          </div>
+
+          ازدحام
+        </div>
+
+        <div class="issue-status">
+          تحتاج متابعة
+        </div>
+
+      </div>
+
+
+      <div class="issue-text">
+
+        أبلغ المنفذ عن وجود ازدحام في منطقة السعي
+        مما قد يؤثر على وقت إتمام المرحلة.
+
+      </div>
+
+
+      <div class="issue-meta">
+
+        أبلغ عنها خالد محمد · اليوم 15:31 · المرحلة: السعي
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+</div>
+
+</main>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   TABS
+========================================================= */
+
+const tabs = document.querySelectorAll(".tab");
+
+const tabContents = document.querySelectorAll(".tab-content");
+
+
+tabs.forEach(tab => {
+
+  tab.addEventListener("click", () => {
+
+    const target = tab.dataset.tab;
+
+
+    tabs.forEach(item => {
+
+      item.classList.remove("active");
+
+    });
+
+
+    tabContents.forEach(content => {
+
+      content.classList.remove("active");
+
+    });
+
+
+    tab.classList.add("active");
+
+
+    document
+      .getElementById(target)
+      .classList.add("active");
+
+  });
+
+});
+
+</script>
+
+</body>
+</html>

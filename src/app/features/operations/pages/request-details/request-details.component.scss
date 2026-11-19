@@ -1,0 +1,324 @@
+.breadcrumb-line {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  color: var(--text-secondary);
+  font-size: var(--font-size-body-sm);
+  margin-bottom: 12px;
+}
+.breadcrumb-line a { color: var(--action-primary-default); }
+
+/* Two-column layout: right = info cards, left = stepper + tabs + content */
+.details-layout {
+  display: grid;
+  grid-template-columns: 340px minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+/* In RTL, first grid column appears on the right side visually; we place aside (right column) first in DOM for semantics */
+.details-right {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+.details-left {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+.details-stepper { width: 100%; }
+.details-tab-content { min-width: 0; }
+
+.details-tabs {
+  display: flex;
+  gap: 4px;
+  border-bottom: 1px solid var(--border-default);
+  flex-wrap: wrap;
+  align-items: stretch;
+}
+.details-tab {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 16px;
+  color: var(--text-disabled);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  background: transparent;
+  box-sizing: border-box;
+  border-bottom: 0;
+}
+.details-tab:hover { color: var(--text-secondary); }
+.details-tab.active {
+  color: var(--gold-600);
+  background: var(--gold-50);
+}
+.details-tab.active::after {
+  content: "";
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 0;
+  height: 3px;
+  background: var(--gold-600);
+  border-radius: 3px;
+  pointer-events: none;
+}
+
+/* Shared content card titles in details info cards */
+.info-card__title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--teal-500);
+}
+.info-card { padding: 16px; }
+
+/* 1. Service card */
+.service-card {
+  position: relative;
+  width: 100%;
+  min-height: 220px;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start; /* physical left in LTR, but we position text bottom-right visually */
+}
+.service-card__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+.service-card__pattern {
+  position: absolute;
+  top: 0;
+  inset-inline: 0;
+  width: 100%;
+  height: auto;
+  max-height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  pointer-events: none;
+}
+.service-card__content {
+  position: relative;
+  z-index: 2;
+  padding: 20px 24px;
+  width: 100%;
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.service-card__number {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--teal-100);
+  line-height: 1.4;
+}
+.service-card__title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-inverse);
+  line-height: 1.4;
+  margin-top: 2px;
+}
+.service-card__date-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-top: 8px;
+  flex-direction: row-reverse; /* icon on the right, text on the left in RTL visual */
+}
+.service-card__calendar {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.service-card__date-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+.service-card__date-label {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--teal-300);
+  line-height: 1.4;
+}
+.service-card__date-value {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--teal-20);
+  line-height: 1.4;
+}
+
+/* 2. Executor card */
+.executor-card__body {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.executor-card__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--background-muted);
+  border: 1px solid var(--border-default);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.executor-card__info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  flex: 1;
+}
+.executor-card__name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+.executor-card__meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+.executor-card__sep {
+  width: 1px;
+  height: 14px;
+  background: var(--border-default);
+  flex-shrink: 0;
+}
+
+/* 3 & 4. Order/financial info grids */
+.order-info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px 12px;
+}
+.order-info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: flex-start;
+  text-align: right;
+  min-width: 0;
+}
+.order-info-label {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+.order-info-value {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+  line-height: 1.5;
+  word-break: break-word;
+}
+
+.special-request-box {
+  margin-top: 16px;
+  background: var(--teal-20);
+  border: 1px solid var(--teal-100);
+  border-radius: 8px;
+  padding: 12px 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.special-request-title {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  margin-bottom: 4px;
+}
+.special-request-text {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+.order-banner-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  position: relative;
+}
+.order-primary-action { white-space: nowrap; display: inline-flex; align-items: center; gap: 8px; }
+.dropdown-wrap { position: relative; }
+.actions-dropdown { position: relative; }
+.actions-trigger { white-space: nowrap; display: inline-flex; align-items: center; gap: 8px; }
+.actions-menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  inset-inline-end: 0;
+  inset-inline-start: auto;
+  min-width: 220px;
+  background: var(--surface-card, #fff);
+  border: 1px solid var(--border-default);
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  padding: 4px 0;
+  z-index: 30;
+}
+.actions-menu__item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  text-align: start;
+  color: var(--text-primary);
+  font-size: 14px;
+}
+.actions-menu__item:hover,
+.actions-menu__item:focus {
+  background: var(--background-subtle);
+  outline: none;
+}
+.actions-menu__icon { flex-shrink: 0; display: inline-flex; }
+.actions-menu__label { flex: 1; }
+.actions-menu__divider {
+  height: 1px;
+  background: var(--border-default);
+  margin: 0;
+}
+
+@media (max-width: 991.98px) {
+  .details-layout {
+    grid-template-columns: 1fr;
+  }
+  .details-right {
+    order: 2;
+  }
+  .details-left {
+    order: 1;
+  }
+}

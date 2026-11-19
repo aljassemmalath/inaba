@@ -1,0 +1,125 @@
+<app-page-banner
+  [title]="step() === 1 ? 'إضافة طلب جديد' : 'مراجعة الطلب'"
+  [description]="step() === 1 ? 'أدخل بيانات الطلب الأساسية.' : 'راجع البيانات المدخلة قبل إنشاء الطلب.'" />
+
+<div class="content-card-body mb-4">
+  <app-form-stepper [steps]="steps" [current]="step()" />
+</div>
+
+<form [formGroup]="form" (ngSubmit)="step() === 1 ? next() : submit()" novalidate>
+  @if (step() === 1) {
+    <div class="stack-sections">
+      <app-form-section [number]="1" title="مصدر الطلب">
+        <app-form-field label="مصدر الطلب" [required]="true" [wrapperMode]="true" [errorMessage]="err('sourceType', { required: 'يرجى اختيار مصدر الطلب.' })">
+          <div class="source-options" role="radiogroup" aria-label="مصدر الطلب">
+            <label class="source-option" [class.is-selected]="form.controls.sourceType.value === 'agency'">
+              <input type="radio" formControlName="sourceType" value="agency" />
+              <span>وكالة / مكتب حج وعمرة</span>
+            </label>
+            <label class="source-option" [class.is-selected]="form.controls.sourceType.value === 'individual'">
+              <input type="radio" formControlName="sourceType" value="individual" />
+              <span>فرد مباشر</span>
+            </label>
+          </div>
+        </app-form-field>
+
+        @if (form.controls.sourceType.value === 'agency') {
+          <app-form-field label="الوكالة" [required]="true" [wrapperMode]="true" [errorMessage]="err('agency', { required: 'يرجى اختيار الوكالة.' })">
+            <select id="agency" class="form-select" formControlName="agency">
+              @for (o of agencyOptions; track o.value) { <option [value]="o.value">{{ o.label }}</option> }
+            </select>
+          </app-form-field>
+        }
+        @if (form.controls.sourceType.value === 'individual') {
+          <app-form-field label="بحث مباشر" [required]="true" [wrapperMode]="true" [errorMessage]="err('individualSearch', { required: 'يرجى إدخال قيمة البحث.', minlength: 'أدخل حرفين على الأقل.' })">
+            <input id="individualSearch" type="search" class="form-control" formControlName="individualSearch" placeholder="ابحث بالاسم أو الجوال أو رقم الطلب." />
+          </app-form-field>
+        }
+      </app-form-section>
+
+      <app-form-section [number]="2" title="بيانات الطلب">
+        <div class="row g-3">
+          <div class="col-12">
+            <app-form-field label="حالة المستفيد" [required]="true" [wrapperMode]="true" [errorMessage]="err('beneficiaryStatus', { required: 'يرجى اختيار حالة المستفيد.' })">
+              <select id="beneficiaryStatus" class="form-select" formControlName="beneficiaryStatus">
+                @for (o of statusOptions; track o.value) { <option [value]="o.value">{{ o.label }}</option> }
+              </select>
+            </app-form-field>
+          </div>
+          <div class="col-12 col-md-6">
+            <app-form-field label="اسم المستفيد" [required]="true" [wrapperMode]="true" [errorMessage]="err('beneficiaryName', { required: 'اسم المستفيد مطلوب.', minlength: 'أدخل اسمًا صالحًا.' })">
+              <input id="beneficiaryName" type="text" class="form-control" formControlName="beneficiaryName" />
+            </app-form-field>
+          </div>
+          <div class="col-12 col-md-6">
+            <app-form-field label="رقم الجوال" [required]="true" [wrapperMode]="true" [errorMessage]="err('mobile', { required: 'رقم الجوال مطلوب.', pattern: 'أدخل رقم جوال صالحًا.' })">
+              <input id="mobile" type="tel" class="form-control" formControlName="mobile" dir="ltr" />
+            </app-form-field>
+          </div>
+          <div class="col-12">
+            <app-form-field label="طلب خاص" [wrapperMode]="true">
+              <textarea id="specialRequest" class="form-control" rows="4" formControlName="specialRequest" placeholder="أدخل أي طلب خاص أو دعاء يرغب المستفيد في تنفيذه..."></textarea>
+            </app-form-field>
+          </div>
+        </div>
+      </app-form-section>
+
+      <app-form-section [number]="3" title="بيانات الخدمة">
+        <app-form-field label="اختيار الخدمة" [required]="true" [wrapperMode]="true" [errorMessage]="err('service', { required: 'يرجى اختيار الخدمة.' })">
+          <select id="service" class="form-select" formControlName="service">
+            @for (o of serviceOptions; track o.value) { <option [value]="o.value">{{ o.label }}</option> }
+          </select>
+        </app-form-field>
+      </app-form-section>
+    </div>
+
+    <div class="workflow-footer">
+      <button type="submit" class="btn btn-brand">التالي</button>
+      <button type="button" class="btn btn-brand-outline" (click)="cancel()">إلغاء الطلب</button>
+    </div>
+  } @else {
+    <div class="stack-sections">
+      <app-form-section [number]="1" title="مصدر الطلب">
+        <div class="review-grid review-grid--2">
+          <div class="review-item"><span class="review-label">مصدر الطلب</span><span class="review-value">{{ sourceLabel(review().sourceType) }}</span></div>
+          @if (review().sourceType === 'agency') {
+            <div class="review-item"><span class="review-label">اسم الوكالة</span><span class="review-value">{{ review().agency || '—' }}</span></div>
+          }
+          @if (review().sourceType === 'individual') {
+            <div class="review-item"><span class="review-label">بحث مباشر</span><span class="review-value">{{ review().individualSearch || '—' }}</span></div>
+          }
+        </div>
+      </app-form-section>
+
+      <app-form-section [number]="2" title="بيانات المستفيد">
+        <div class="review-grid review-grid--2">
+          <div class="review-item"><span class="review-label">اسم المستفيد</span><span class="review-value">{{ review().beneficiaryName || '—' }}</span></div>
+          <div class="review-item"><span class="review-label">رقم الجوال</span><span class="review-value" dir="ltr">{{ review().mobile || '—' }}</span></div>
+          <div class="review-item"><span class="review-label">حالة المستفيد</span><span class="review-value">{{ review().beneficiaryStatus || '—' }}</span></div>
+          <div class="review-item review-item--full"><span class="review-label">الطلب الخاص</span><span class="review-value">{{ review().specialRequest || '—' }}</span></div>
+        </div>
+      </app-form-section>
+
+      <app-form-section [number]="3" title="بيانات مالية">
+        <div class="review-grid review-grid--2">
+          <div class="review-item"><span class="review-label">الربح</span><span class="review-value">{{ financial.profit }}</span></div>
+          <div class="review-item"><span class="review-label">مستحق المنفذ</span><span class="review-value">{{ financial.executorDue }}</span></div>
+          <div class="review-item"><span class="review-label">المدة المتوقعة</span><span class="review-value">{{ financial.expectedDuration }}</span></div>
+          <div class="review-item"><span class="review-label">سعر البيع</span><span class="review-value">{{ financial.salePrice }}</span></div>
+        </div>
+      </app-form-section>
+
+      <app-form-section [number]="4" title="مراحل التنفيذ">
+        <div class="review-grid review-grid--2">
+          <div class="review-item"><span class="review-label">عدد المراحل</span><span class="review-value">4</span></div>
+        </div>
+      </app-form-section>
+    </div>
+
+    <div class="workflow-footer">
+      <button type="submit" class="btn btn-brand" [disabled]="submitting()">{{ submitting() ? 'جارٍ الإنشاء...' : 'إنشاء الطلب' }}</button>
+      <button type="button" class="btn btn-brand-outline" (click)="back()" [disabled]="submitting()">العودة</button>
+      <button type="button" class="btn btn-brand-outline" (click)="cancel()" [disabled]="submitting()">إلغاء الطلب</button>
+    </div>
+  }
+</form>

@@ -1,0 +1,13 @@
+/* CDK dialog overlay hooks (used with @angular/cdk/dialog) */
+.cdk-overlay-container, .cdk-global-overlay-wrapper { pointer-events: none; inset: 0; }
+.cdk-overlay-container { position: fixed; z-index: 1050; }
+.cdk-global-overlay-wrapper { display: flex; position: absolute; z-index: 1050; }
+.cdk-overlay-pane { position: absolute; pointer-events: auto; box-sizing: border-box; z-index: 1050; display: flex; max-width: 100%; max-height: 100%; }
+.cdk-overlay-backdrop {
+  position: absolute; inset: 0; z-index: 1050; pointer-events: auto;
+  background: rgba(41, 40, 40, 0.45);
+  transition: opacity .2s ease;
+}
+.cdk-overlay-backdrop.cdk-overlay-backdrop-showing { opacity: 1; }
+.cdk-dialog-container { display: block; outline: 0; max-height: inherit; }
+.app-modal-panel { align-items: center; justify-content: center; }

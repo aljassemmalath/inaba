@@ -1,0 +1,49 @@
+<nav class="app-sidebar" [class.open]="mobileOpen()" aria-label="التنقل الرئيسي">
+  <div class="sidebar-brand">
+    <img
+      class="sidebar-brand__logo"
+      src="assets/images/svg/inaba%20logo.svg"
+      alt="إنابة"
+      height="48"
+    />
+  </div>
+
+  <div class="sidebar-nav-wrap" [class.has-overflow-below]="hasOverflowBelow()">
+    <div #navScroll class="sidebar-nav" (scroll)="onNavScroll()">
+      @for (section of sections; track section.label) {
+        <div class="nav-section" role="group" [attr.aria-label]="section.label">
+          <div class="nav-section-heading">{{ section.label }}</div>
+          <div class="nav-children">
+            @for (child of section.children; track child.route) {
+              <a
+                class="nav-child"
+                [routerLink]="child.route"
+                routerLinkActive="active"
+                #rla="routerLinkActive"
+                [routerLinkActiveOptions]="{ exact: child.exact ?? false }"
+                (click)="onNavigate()"
+              >
+                <span class="icon-placeholder icon-placeholder--lg" aria-hidden="true">
+                  <img
+                    class="icon-placeholder__image"
+                    [src]="'assets/images/svg/Side menu icons/' +
+                      child.iconKey +
+                      (rla.isActive ? '-active' : '') +
+                      '.svg'"
+                    alt=""
+                  />
+                </span>
+                <span>{{ child.label }}</span>
+              </a>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <app-user-profile />
+</nav>
+@if (mobileOpen()) {
+  <div class="sidebar-backdrop" (click)="closeMobile.emit()" aria-hidden="true"></div>
+}

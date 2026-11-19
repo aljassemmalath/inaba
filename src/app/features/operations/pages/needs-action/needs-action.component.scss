@@ -1,0 +1,53 @@
+.needs-action-banner .banner-layout {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.banner-text { flex: 1 1 320px; }
+.banner-title { margin: 0; font-size: var(--font-size-page-title); line-height: var(--line-height-page-title); font-weight: var(--font-weight-page-title); }
+.banner-desc { margin: 6px 0 0; color: var(--text-secondary); font-size: var(--font-size-body-md); max-width: 720px; }
+.banner-actions { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.action-feedback { margin-top: 12px; font-size: var(--font-size-body-sm); color: var(--text-brand); }
+
+.na-stats-row > [class*="col"] { display: flex; }
+
+.toolbar-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.toolbar-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.toolbar-search { flex: 1 1 320px; max-width: 520px; min-width: 240px; }
+.dropdown-wrap { position: relative; }
+.toolbar-panel {
+  position: absolute;
+  inset-inline-start: 0;
+  top: calc(100% + 6px);
+  z-index: 20;
+  background: #fff;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  box-shadow: var(--card-shadow);
+  min-width: 220px;
+}
+.export-panel { padding: 6px; }
+.panel-item {
+  display: block; width: 100%; text-align: start; border: 0; background: transparent;
+  padding: 8px 10px; border-radius: var(--radius-sm); font-size: var(--font-size-body-sm); color: var(--text-primary);
+}
+.panel-item:hover { background: var(--background-muted); }
+.filter-panel { padding: 14px; min-width: min(360px, calc(100vw - 32px)); }
+.filter-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.filter-actions { margin-top: 12px; display: flex; justify-content: flex-start; }
+
+.requests-list { display: flex; flex-direction: column; gap: 12px; }
+
+@media (max-width: 767.98px) {
+  .toolbar-row { flex-direction: column-reverse; align-items: stretch; }
+  .toolbar-search { max-width: none; }
+  .filter-grid { grid-template-columns: 1fr; }
+}

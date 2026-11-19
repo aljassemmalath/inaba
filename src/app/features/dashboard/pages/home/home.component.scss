@@ -1,0 +1,100 @@
+.dashboard-section { margin-bottom: var(--space-4); }
+.card-sub-label { font-size: var(--font-size-body-sm); color: var(--text-secondary); margin-top: 2px; }
+.table-card-inner { margin: 0 -24px -8px; overflow-x: auto; }
+.table-card-inner ::ng-deep .app-table td:first-child,
+.table-card-inner ::ng-deep .app-table th:first-child { padding-inline-start: 24px; }
+.table-card-inner ::ng-deep .app-table td:last-child,
+.table-card-inner ::ng-deep .app-table th:last-child { padding-inline-end: 24px; }
+
+.home-stats-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+.home-stat-card {
+  flex: 1 1 180px;
+  min-width: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-default);
+  box-sizing: border-box;
+}
+.home-stat-card__info { min-width: 0; }
+.home-stat-card__label {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-tertiary);
+  line-height: 1.4;
+  margin-bottom: 4px;
+}
+.home-stat-card__value {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.1;
+}
+.home-stat-card__icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--text-inverse);
+}
+
+.home-stat--total { background: var(--teal-20); border-color: var(--teal-100); }
+.home-stat--total .home-stat-card__value { color: var(--teal-700); }
+.home-stat--total .home-stat-card__icon { background: var(--teal-700); box-shadow: 0 4px 8px rgba(0, 116, 104, 0.2); }
+
+.home-stat--pending { background: var(--gold-20); border-color: var(--gold-100); }
+.home-stat--pending .home-stat-card__value { color: var(--gold-700); }
+.home-stat--pending .home-stat-card__icon { background: var(--gold-500); box-shadow: 0 4px 8px rgba(206, 178, 107, 0.4); }
+
+.home-stat--completed { background: var(--teal-20); border-color: var(--teal-100); }
+.home-stat--completed .home-stat-card__value { color: var(--teal-500); }
+.home-stat--completed .home-stat-card__icon { background: var(--teal-500); box-shadow: 0 4px 8px rgba(0, 160, 146, 0.2); }
+
+.home-stat--in-progress { background: var(--info-20); border-color: var(--info-100); }
+.home-stat--in-progress .home-stat-card__value { color: var(--info-700); }
+.home-stat--in-progress .home-stat-card__icon { background: var(--info-500); box-shadow: 0 4px 8px rgba(47, 128, 183, 0.2); }
+
+.home-stat--issues { background: var(--error-20); border-color: var(--error-100); }
+.home-stat--issues .home-stat-card__value { color: var(--error-700); }
+.home-stat--issues .home-stat-card__icon { background: var(--error-500); box-shadow: 0 4px 8px rgba(214, 69, 69, 0.2); }
+
+.financial-title { display: inline-flex; align-items: center; gap: 4px; }
+.riyal-title { width: 18px; height: 18px; display: inline-block; object-fit: contain; }
+.chart-header-badges { display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+
+/* Refinements */
+:host ::ng-deep .content-card-body.h-100-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+:host ::ng-deep .content-card-body.needs-action-card .card-header-block,
+:host ::ng-deep .content-card-body.financial-summary-card > .card-header-block {
+  align-items: center;
+}
+:host ::ng-deep .content-card-body.latest-orders-card .card-header-block {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0;
+}
+:host ::ng-deep .content-card-body.latest-orders-card .table-card-inner {
+  padding: 0;
+  overflow-x: auto;
+}
+:host ::ng-deep .content-card-body.latest-orders-card .card-sub-label { display: none; }
+
+@media (min-width: 992px) {
+  .split-40 { flex: 0 0 40%; max-width: 40%; }
+  .split-60 { flex: 0 0 60%; max-width: 60%; }
+}
+

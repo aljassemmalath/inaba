@@ -1,0 +1,14 @@
+<div class="content-card-body" [class]="modifierClass()">
+  @if (title()) {
+    <div class="card-header-block">
+      <h3 class="card-title">{{ title() }}</h3>
+      <div class="card-header-action">
+        <ng-content select="[card-action]" />
+      </div>
+    </div>
+    @if (showDivider()) {
+      <div class="card-divider" aria-hidden="true"></div>
+    }
+  }
+  <ng-content />
+</div>

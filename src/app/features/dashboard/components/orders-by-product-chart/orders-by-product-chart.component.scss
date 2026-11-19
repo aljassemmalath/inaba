@@ -1,0 +1,17 @@
+.donut-layout { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.donut-visual { flex: 0 0 auto; }
+.donut-legend { display: flex; flex-direction: column; justify-content: center; gap: 12px; flex: 1 1 160px; }
+.legend-row { display: flex; align-items: center; gap: 10px; }
+.legend-label { font-size: var(--font-size-body-md); color: var(--text-secondary); flex: 1; }
+.donut-svg { display: block; max-width: 100%; height: auto; overflow: visible; }
+.donut-track { stroke: var(--background-muted); }
+.donut-seg { transition: opacity .15s ease; }
+.donut-seg--teal { filter: drop-shadow(0px 4px 8px rgba(0, 160, 146, 0.4)); }
+.donut-seg--mint { filter: drop-shadow(0px 4px 8px rgba(132, 211, 164, 0.4)); }
+.donut-seg--gold { filter: drop-shadow(0px 4px 8px rgba(206, 178, 107, 0.4)); }
+.donut-total { font-size: 22px; font-weight: 700; fill: var(--text-primary); font-family: var(--font-family-base); }
+.donut-sub { font-size: 12px; fill: var(--text-secondary); font-family: var(--font-family-base); }
+@media (max-width: 575.98px) {
+  .donut-layout { justify-content: center; }
+  .donut-legend { flex: 1 1 100%; }
+}

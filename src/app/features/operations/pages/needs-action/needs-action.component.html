@@ -1,0 +1,95 @@
+<app-page-banner
+  title="يحتاج إجراء"
+  description="تعرض هذه الصفحة الطلبات والحالات التي تتطلب اهتمامًا إداريًا أو متابعة أو تدخلًا لإتمام الإجراءات في الوقت المناسب.">
+  <div banner-actions class="d-flex gap-2 flex-wrap align-items-center">
+    <button type="button" class="btn btn-brand" (click)="showRequests()">
+      <span>عرض الطلبات</span>
+    </button>
+    <button type="button" class="btn btn-brand-outline" (click)="refresh()">
+      <img src="/assets/images/svg/Buttons/view.svg" alt="" aria-hidden="true" width="16" height="16" />
+      <span>تحديث</span>
+    </button>
+  </div>
+</app-page-banner>
+@if (lastAction()) {
+  <div class="action-feedback mb-3" role="status">{{ lastAction() }}</div>
+}
+
+<!-- 2. Summary Statistics (one outer container, borderless items with vertical dividers) -->
+<section class="mb-4" aria-label="إحصائيات الحالات">
+  <app-summary-container modifierClass="needs-action-stats">
+    @for (stat of stats; track stat.title) {
+      <app-summary-item [label]="stat.title" [value]="stat.value" [iconSrc]="stat.iconSrc" [modifierClass]="stat.modifierClass" />
+    }
+  </app-summary-container>
+</section>
+
+<!-- 3. Search and Filter Toolbar -->
+<app-filter-toolbar
+  [(search)]="search"
+  searchPlaceholder="ابحث برقم الطلب أو اسم المستفيد أو البريد الإلكتروني"
+  searchId="na-search"
+  [showFilter]="false"
+  [showExport]="false"
+  (searchChange)="onSearch($event)"
+>
+  <div toolbar-extra class="dropdown-wrap">
+    <button type="button" class="btn btn-brand-outline" (click)="toggleFilter()" [attr.aria-expanded]="filterOpen()">
+      <img src="/assets/images/svg/Buttons/filter.svg" alt="" aria-hidden="true" width="16" height="16" />
+      <span>تصفية</span>
+    </button>
+    @if (filterOpen()) {
+      <div class="toolbar-panel filter-panel">
+        <div class="filter-grid">
+          <div>
+            <label class="form-label" for="na-status">الحالة</label>
+            <select id="na-status" class="form-select" [ngModel]="statusFilter()" (ngModelChange)="onStatusChange($event)">
+              @for (opt of statusOptions; track opt.value) {
+                <option [value]="opt.value">{{ opt.label }}</option>
+              }
+            </select>
+          </div>
+          <div>
+            <label class="form-label" for="na-type">نوع الطلب</label>
+            <select id="na-type" class="form-select" [ngModel]="typeFilter()" (ngModelChange)="onTypeChange($event)">
+              @for (opt of typeOptions; track opt.value) {
+                <option [value]="opt.value">{{ opt.label }}</option>
+              }
+            </select>
+          </div>
+        </div>
+        <div class="filter-actions">
+          <button type="button" class="btn btn-sm btn-brand-outline" (click)="resetFilters()">إعادة ضبط</button>
+        </div>
+      </div>
+    }
+  </div>
+
+  <div toolbar-actions class="dropdown-wrap">
+    <button type="button" class="btn btn-brand-outline" (click)="toggleExport()" [attr.aria-expanded]="exportOpen()">
+      <img src="/assets/images/svg/Buttons/excel.svg" alt="" aria-hidden="true" width="16" height="16" />
+      <span>تصدير</span>
+    </button>
+    @if (exportOpen()) {
+      <div class="toolbar-panel export-panel" role="menu">
+        <button type="button" class="panel-item">تصدير CSV</button>
+        <button type="button" class="panel-item">تصدير Excel</button>
+        <button type="button" class="panel-item">تصدير PDF</button>
+      </div>
+    }
+  </div>
+</app-filter-toolbar>
+
+<!-- 4. Requests List -->
+<section id="needs-action-list" aria-label="قائمة الطلبات">
+  <div class="requests-list">
+    @for (req of filteredRequests(); track req.id) {
+      <app-request-card [request]="req" (action)="handleAction($event)" />
+    } @empty {
+      <div class="content-card-body text-center text-secondary" style="padding: 2.5rem;">
+        <span class="icon-placeholder icon-placeholder--xl" aria-hidden="true"><img class="icon-placeholder__image" alt="" /></span>
+        <p style="margin: 0.75rem 0 0;">لا توجد طلبات مطابقة لخيارات البحث أو التصفية.</p>
+      </div>
+    }
+  </div>
+</section>

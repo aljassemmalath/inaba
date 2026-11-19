@@ -1,0 +1,45 @@
+<div class="content-card-body request-card">
+  <div class="request-layout">
+    <section class="request-section request-info" aria-label="معلومات الطلب">
+      <div class="request-title">{{ request().title }}</div>
+      <div class="request-desc">{{ request().description }}</div>
+    </section>
+
+    <section class="request-section" aria-label="رقم الطلب">
+      <div class="field-label">رقم الطلب</div>
+      <div class="field-value">{{ request().requestNumber }}</div>
+    </section>
+
+    <section class="request-section" aria-label="المستفيد">
+      <div class="field-label">المستفيد</div>
+      <div class="field-value">{{ request().beneficiaryName }}</div>
+    </section>
+
+    <section class="request-section" aria-label="الحالة">
+      <div class="field-label">الحالة</div>
+      <div class="field-value"><app-status-badge [label]="request().status" [tone]="request().statusTone" /></div>
+    </section>
+
+    <section class="request-section" aria-label="آخر تحديث">
+      <div class="field-label">آخر تحديث</div>
+      <div class="field-value" dir="ltr" style="text-align: right;">{{ request().lastUpdated }}</div>
+    </section>
+
+    <section class="request-section request-actions" aria-label="الإجراءات المتاحة">
+      <div class="actions-group">
+        @for (act of request().actions; track act.key) {
+          <app-button
+            class="request-action-btn full"
+            [class.request-action--view]="isViewAction(act)"
+            [class.request-action--secondary]="!isViewAction(act)"
+            [variant]="isViewAction(act) ? 'primary' : 'secondary'"
+            size="sm"
+            (pressed)="onAction(request(), act)"
+          >
+            <span class="request-action-label">{{ act.label }}</span>
+          </app-button>
+        }
+      </div>
+    </section>
+  </div>
+</div>

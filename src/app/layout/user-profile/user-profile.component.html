@@ -1,0 +1,21 @@
+<section class="user-profile" aria-label="ملف المستخدم">
+  <div class="user-profile__identity">
+    <span class="user-profile__avatar" aria-hidden="true">
+      <app-icon-placeholder size="sm" />
+    </span>
+    <div class="user-profile__info">
+      <div class="user-profile__name">{{ user().name }}</div>
+      <div class="user-profile__role">{{ user().role }}</div>
+    </div>
+  </div>
+
+  <button
+    type="button"
+    class="user-profile__logout"
+    (click)="onLogout()"
+    aria-label="تسجيل الخروج"
+    title="تسجيل الخروج"
+  >
+    <app-icon-placeholder size="md" />
+  </button>
+</section>

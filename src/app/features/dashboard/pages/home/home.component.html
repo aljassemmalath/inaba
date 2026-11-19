@@ -1,0 +1,100 @@
+﻿<app-page-banner
+  title="الرئيسية"
+  description="استعرض الطلبات وابحث عنها، وفلتر حالاتها، وتابع تفاصيل كل طلب."
+  modifierClass="home-banner"
+/>
+
+<div class="dashboard-page">
+  <section class="dashboard-section" aria-label="إحصائيات">
+    <div class="home-stats-grid">
+      @for (stat of stats; track stat.title) {
+        <article class="home-stat-card" [class]="stat.modifierClass">
+          <div class="home-stat-card__info">
+            <div class="home-stat-card__label">{{ stat.title }}</div>
+            <div class="home-stat-card__value">{{ stat.value }}</div>
+          </div>
+          <div class="home-stat-card__icon" aria-hidden="true">
+            <app-icon-placeholder size="lg" [src]="stat.iconSrc" />
+          </div>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="dashboard-section">
+    <div class="row g-3">
+      <div class="col-12 col-md-6 d-flex">
+        <app-content-card title="يحتاج إجراء" modifierClass="needs-action-card h-100-card" style="width:100%">
+          <a card-action routerLink="/operations/action" class="btn btn-tertiary btn-sm card-header-tertiary-action">
+            <span>عرض جميع التنبيهات</span>
+            <img src="assets/images/svg/Buttons/arrow-left.svg" alt="" aria-hidden="true" />
+          </a>
+          <div class="d-flex flex-column gap-3">
+            @for (alert of alerts; track alert.title) {
+              <app-alert-card [count]="alert.count" [title]="alert.title" [description]="alert.description" [tone]="alert.tone" variant="elevated" modifierClass="dashboard-alert" />
+            }
+          </div>
+        </app-content-card>
+      </div>
+      <div class="col-12 col-md-6 d-flex">
+        <app-content-card modifierClass="financial-summary-card h-100-card" [showDivider]="true" style="width:100%">
+          <div class="card-header-block" style="margin-bottom:16px">
+            <h3 class="card-title financial-title">
+              <span>الملخص المالي</span>
+              <img class="riyal-title" src="assets/images/svg/saudi-riyal-symbol-cyan%20700.svg" alt="" aria-hidden="true" />
+            </h3>
+          </div>
+          <div class="card-divider" aria-hidden="true"></div>
+          <div class="d-flex flex-column gap-3">
+            @for (item of financial; track item.label) {
+              <app-financial-summary-card [label]="item.label" [value]="item.value" [iconSrc]="item.iconSrc" [modifierClass]="item.modifierClass" [isNetProfit]="!!item.isNetProfit" />
+            }
+          </div>
+        </app-content-card>
+      </div>
+    </div>
+  </section>
+
+  <section class="dashboard-section">
+    <app-content-card modifierClass="chart-card monthly-orders-card" [showDivider]="true">
+      <div class="card-header-block" style="margin-bottom:16px">
+        <h3 class="card-title">الطلبات الشهرية</h3>
+        <div class="card-header-action chart-header-badges">
+          <app-status-badge label="طلبات جديدة" tone="warning" />
+          <app-status-badge label="طلبات مكتملة" tone="cyan" />
+        </div>
+      </div>
+      <div class="card-divider" aria-hidden="true"></div>
+      <app-monthly-orders-chart [data]="monthlyOrders" />
+    </app-content-card>
+  </section>
+
+  <section class="dashboard-section">
+    <div class="row g-3 align-items-stretch">
+      <div class="col-12 col-lg-5 split-40 d-flex">
+        <app-content-card title="الطلبات حسب المنتج" modifierClass="chart-card product-chart-card h-100-card" style="height:100%;width:100%">
+          <app-orders-by-product-chart [items]="productShares" [total]="productTotal" />
+        </app-content-card>
+      </div>
+      <div class="col-12 col-lg-7 split-60 d-flex">
+        <app-content-card modifierClass="latest-orders-card h-100-card" [showDivider]="false" style="height:100%;width:100%">
+          <div class="card-header-block" style="margin-top:0">
+            <h3 class="card-title">أحدث الطلبات</h3>
+            <a routerLink="/operations/requests" class="btn btn-tertiary btn-sm card-header-tertiary-action">
+              <span>جميع الطلبات</span>
+              <img src="assets/images/svg/Buttons/arrow-left.svg" alt="" aria-hidden="true" />
+            </a>
+          </div>
+          <div class="card-divider" aria-hidden="true"></div>
+          <div class="table-card-inner">
+            <app-data-table size="compact" [columns]="latestColumns" [rows]="latestOrders.slice(0, 3)" trackByKey="id" emptyTitle="لا توجد طلبات" emptyMessage="ستظهر أحدث الطلبات هنا عند توفرها.">
+              <ng-template #statusCell let-row>
+                <app-status-badge [label]="row.status" [tone]="row.statusTone" />
+              </ng-template>
+            </app-data-table>
+          </div>
+        </app-content-card>
+      </div>
+    </div>
+  </section>
+</div>

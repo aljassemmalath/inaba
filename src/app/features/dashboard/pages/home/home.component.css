@@ -1,0 +1,43 @@
+.dashboard-section {
+  margin-bottom: var(--space-4);
+}
+
+.stats-row > [class*=col] {
+  display: flex;
+}
+
+.card-sub-label {
+  font-size: var(--font-size-body-sm);
+  color: var(--color-text-secondary);
+  margin-top: 2px;
+}
+
+.table-card-inner {
+  padding: 0 0 8px;
+}
+
+.table-card-inner :host ::ng-deep .app-table thead th:first-child,
+.table-card-inner ::ng-deep .app-table thead th:first-child {
+  padding-inline-start: 24px;
+}
+
+.table-card-inner ::ng-deep .app-table td:first-child,
+.table-card-inner ::ng-deep .app-table th:first-child {
+  padding-inline-start: 24px;
+}
+
+.table-card-inner ::ng-deep .app-table td:last-child,
+.table-card-inner ::ng-deep .app-table th:last-child {
+  padding-inline-end: 24px;
+}
+
+@media (min-width: 992px) {
+  .split-40 {
+    flex: 0 0 40%;
+    max-width: 40%;
+  }
+  .split-60 {
+    flex: 0 0 60%;
+    max-width: 60%;
+  }
+}/*# sourceMappingURL=home.component.css.map */
