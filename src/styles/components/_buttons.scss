@@ -116,9 +116,34 @@ fieldset:disabled .btn {
   color: var(--text-disabled);
 }
 
-/* Tertiary (no unnecessary border or shadow) */
-.btn-tertiary,
-.btn-brand-ghost {
+/* Neutral (solid, on neutral-100 background) */
+.btn-neutral {
+  background-color: var(--action-neutral-default);
+  border-color: var(--action-neutral-default);
+  color: var(--action-neutral-text);
+}
+.btn-neutral:not(:disabled):not(.disabled):hover {
+  background-color: var(--action-neutral-hover);
+  border-color: var(--action-neutral-hover);
+  color: var(--action-neutral-text);
+}
+.btn-neutral:not(:disabled):not(.disabled):active,
+.btn-neutral:not(:disabled):not(.disabled).active {
+  background-color: var(--action-neutral-pressed);
+  border-color: var(--action-neutral-pressed);
+  color: var(--action-neutral-text);
+}
+.btn-neutral:disabled,
+.btn-neutral.disabled {
+  background-color: var(--action-neutral-disabled);
+  border-color: var(--action-neutral-disabled);
+  color: var(--text-disabled);
+}
+
+/* Tertiary (no unnecessary border, padding or shadow; bottom line on hover/active) */
+.btn.btn-tertiary,
+.btn.btn-brand-ghost {
+  padding: 0;
   background-color: transparent;
   border-color: transparent;
   color: var(--action-tertiary-text);
@@ -126,15 +151,17 @@ fieldset:disabled .btn {
 }
 .btn-tertiary:not(:disabled):not(.disabled):hover,
 .btn-brand-ghost:not(:disabled):not(.disabled):hover {
-  background-color: var(--action-tertiary-hover);
+  background-color: transparent;
   border-color: transparent;
+  border-bottom-color: var(--action-tertiary-text);
   color: var(--action-tertiary-text);
 }
 .btn-tertiary:not(:disabled):not(.disabled):active,
 .btn-brand-ghost:not(:disabled):not(.disabled):active {
-  background-color: var(--action-tertiary-pressed);
+  background-color: transparent;
   border-color: transparent;
-  color: var(--action-tertiary-text);
+  border-bottom-color: var(--action-primary-pressed);
+  color: var(--action-primary-pressed);
 }
 .btn-tertiary:disabled,
 .btn-brand-ghost:disabled {
@@ -186,30 +213,6 @@ fieldset:disabled .btn {
 .btn-inverse.disabled {
   background-color: var(--action-inverse-disabled);
   border-color: var(--action-inverse-disabled);
-  color: var(--text-disabled);
-}
-
-/* Neutral (solid, on neutral-100 background) */
-.btn-neutral {
-  background-color: var(--action-neutral-default);
-  border-color: var(--action-neutral-default);
-  color: var(--action-neutral-text);
-}
-.btn-neutral:not(:disabled):not(.disabled):hover {
-  background-color: var(--action-neutral-hover);
-  border-color: var(--action-neutral-hover);
-  color: var(--action-neutral-text);
-}
-.btn-neutral:not(:disabled):not(.disabled):active,
-.btn-neutral:not(:disabled):not(.disabled).active {
-  background-color: var(--action-neutral-pressed);
-  border-color: var(--action-neutral-pressed);
-  color: var(--action-neutral-text);
-}
-.btn-neutral:disabled,
-.btn-neutral.disabled {
-  background-color: var(--action-neutral-disabled);
-  border-color: var(--action-neutral-disabled);
   color: var(--text-disabled);
 }
 
