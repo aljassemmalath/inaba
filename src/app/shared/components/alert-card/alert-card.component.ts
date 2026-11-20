@@ -23,9 +23,9 @@ export type AlertCardTone = 'gold' | 'info' | 'error' | 'neutral';
     .alert-item-card {
       display: flex; align-items: center; justify-content: space-between; gap: 12px;
       min-height: 60px; height: 60px; padding: 8px 16px; box-sizing: border-box;
-      border-radius: 4px; border: 1px solid var(--border-subtle); box-shadow: none; background: var(--background-default);
+      border-radius: 4px; border: none; box-shadow: var(--shadow-xs); background: var(--background-default);
     }
-    .alert-item-card.is-elevated { border: 1px solid var(--border-subtle); box-shadow: none; }
+    .alert-item-card.is-elevated { border: none; box-shadow: var(--shadow-xs); }
     .alert-main { display: flex; align-items: center; gap: 12px; min-width: 0; }
     .alert-count-box {
       width: 28px; height: 28px; min-width: 28px; padding: 0; border-radius: var(--radius-sm);

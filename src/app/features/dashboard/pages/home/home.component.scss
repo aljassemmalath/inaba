@@ -1,10 +1,6 @@
 .dashboard-section { margin-bottom: var(--space-4); }
 .card-sub-label { font-size: var(--font-size-body-sm); color: var(--text-secondary); margin-top: 2px; }
-.table-card-inner { margin: 0 -24px -8px; overflow-x: auto; }
-.table-card-inner ::ng-deep .app-table td:first-child,
-.table-card-inner ::ng-deep .app-table th:first-child { padding-inline-start: 24px; }
-.table-card-inner ::ng-deep .app-table td:last-child,
-.table-card-inner ::ng-deep .app-table th:last-child { padding-inline-end: 24px; }
+.table-card-inner { margin: 0; overflow-x: auto; }
 
 .home-stats-grid {
   display: flex;

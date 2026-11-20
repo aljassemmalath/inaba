@@ -240,6 +240,7 @@ fieldset:disabled .btn {
   background: var(--background-default);
   color: var(--text-secondary);
 }
+.btn-icon--rounded { border-radius: 50%; }
 .btn-icon:hover { background: var(--background-muted); color: var(--text-primary); }
 .btn-icon:focus-visible { outline: none; box-shadow: var(--focus-ring); }
 

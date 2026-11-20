@@ -11,8 +11,8 @@ export class MonthlyOrdersChartComponent {
 
   readonly viewW = 980;
   readonly viewH = 320;
-  readonly padL = 44; // space for Y-axis labels
-  readonly padR = 20;
+  readonly padL = 20;
+  readonly padR = 44; // space for Y-axis labels on the right
   readonly padT = 20;
   readonly padB = 56;
   readonly yMax = 50;

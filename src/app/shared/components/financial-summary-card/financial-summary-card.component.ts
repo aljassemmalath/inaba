@@ -23,8 +23,8 @@ import { IconPlaceholderComponent } from '../icon-placeholder/icon-placeholder.c
     .financial-item-card {
       display: flex; align-items: center; justify-content: space-between; gap: 12px;
       padding: 16px;
-      box-shadow: var(--shadow-xs);
-      border: none;
+      box-shadow: none;
+      border: 1px solid var(--border-subtle);
     }
     .fin-right { display: flex; align-items: center; gap: 10px; }
     .fin-icon {
