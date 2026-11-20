@@ -3,12 +3,24 @@
 .toolbar-right { display:flex; align-items:flex-start; gap:8px; flex-wrap:wrap; }
 .table-footer { display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; padding:8px 16px; border-top:1px solid var(--border-soft); }
 .table-footer ::ng-deep .d-flex { padding: 0 !important; border-top: 0 !important; }
+/* Hidden on the orders page, kept in the template so it can be restored easily. */
+.requests-summary-section { display: none; }
 .footer-rows-per-page { display:flex; align-items:center; gap:8px; font-size:var(--font-size-body-sm); color:var(--text-secondary); }
+.rows-select-wrap { position: relative; display: inline-flex; align-items: center; }
 .rows-select {
-  height:36px; min-width:64px; padding:0 12px; cursor:pointer;
+  height:36px; min-width:64px; padding-block:0; padding-inline:12px 28px; cursor:pointer;
+  appearance: none; -webkit-appearance: none;
   border:1px solid var(--border-default); border-radius:4px;
   background:var(--background-default); color:var(--text-primary);
   font-family:var(--font-family-base); font-size:13px;
+}
+.rows-select-icon {
+  position: absolute; inset-inline-end: 10px;
+  width:16px; height:16px; pointer-events: none;
+}
+/* Tertiary sub-label under the source value (وكالة البركة). */
+:host ::ng-deep .app-data-table__td[data-col='source'] .app-data-table__description {
+  color: var(--text-tertiary);
 }
 .footer-range { font-size:var(--font-size-body-sm); color:var(--text-secondary); white-space:nowrap; }
 @media (max-width: 767.98px) {

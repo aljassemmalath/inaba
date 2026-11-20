@@ -37,7 +37,7 @@ export class RequestsListComponent {
     { key: 'requestNumber', header: 'رقم الطلب' },
     { key: 'beneficiary', header: 'المستفيد' },
     { key: 'product', header: 'المنتج' },
-    { key: 'source', header: 'مصدر الطلب' },
+    { key: 'source', header: 'مصدر الطلب', descriptionKey: 'sourceDetail' },
     { key: 'executor', header: 'المنفذ' },
     { key: 'status', header: 'الحالة' },
     { key: 'indicators', header: 'مؤشرات', width: '150px' },

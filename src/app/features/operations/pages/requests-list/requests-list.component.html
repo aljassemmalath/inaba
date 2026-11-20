@@ -14,7 +14,7 @@
   </div>
 </app-page-banner>
 
-<section class="mb-4" aria-label="مؤشرات الطلبات">
+<section class="mb-4 requests-summary-section" aria-label="مؤشرات الطلبات">
   <app-summary-container modifierClass="requests-summary">
     @for (item of summary; track item.label) {
       <app-summary-item [label]="item.label" [value]="item.value" [modifierClass]="item.modifierClass" />
@@ -59,9 +59,12 @@
   <div class="table-footer">
     <label class="footer-rows-per-page">
       <span>عدد الصفوف في الصفحة</span>
-      <select class="rows-select" [ngModel]="pageSize()" (ngModelChange)="onPageSize($event)">
-        <option [value]="8">8</option><option [value]="16">16</option><option [value]="50">50</option>
-      </select>
+      <span class="rows-select-wrap">
+        <select class="rows-select" [ngModel]="pageSize()" (ngModelChange)="onPageSize($event)">
+          <option [value]="8">8</option><option [value]="16">16</option><option [value]="50">50</option>
+        </select>
+        <img class="rows-select-icon" src="assets/images/svg/Buttons/arrow%20down.svg" alt="" aria-hidden="true" />
+      </span>
     </label>
     <app-pagination [page]="page()" [pageSize]="pageSize()" [total]="total()" [detailed]="true" (pageChange)="onPage($event)" />
     <span class="footer-range">عرض {{ startItem() }}–{{ endItem() }} من أصل {{ total() }}</span>

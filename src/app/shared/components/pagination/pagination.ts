@@ -39,7 +39,7 @@ import { Component, computed, input, output } from '@angular/core';
     .page-numbers { display: flex; align-items: center; gap: 6px; }
     .page-nav {
       display: inline-flex; align-items: center; justify-content: center; gap: 4px;
-      min-width: 32px; height: 32px; padding: 0 8px;
+      min-width: 32px; height: 36px; padding: 0 8px;
       border: 1px solid var(--border-default); border-radius: 4px;
       background: var(--background-default); color: var(--text-secondary);
       font-family: var(--font-family-base); font-size: 13px; cursor: pointer;

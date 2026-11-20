@@ -7,6 +7,8 @@ export interface RequestListRow extends Record<string, unknown> {
   customerName: string;
   product: string;
   source: string;
+  /** Agency name shown as a tertiary sub-label when source is وكالة. */
+  sourceDetail?: string;
   executor: string;
   status: string;
   statusTone: BadgeTone;
