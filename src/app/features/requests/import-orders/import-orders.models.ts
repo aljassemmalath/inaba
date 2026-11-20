@@ -10,6 +10,8 @@ export interface ImportRow extends Record<string, unknown> {
   source: string;
   beneficiaryStatus: string;
   errors: string[];
+  /** Column keys whose values should be highlighted as errors in the preview. */
+  errorFields: string[];
 }
 
 export interface ImportValidationSummary {
@@ -26,10 +28,17 @@ export interface ImportParseResult {
   summary: ImportValidationSummary;
 }
 
-export const IMPORT_REQUIRED_CHECKLIST = [
-  'الخدمة',
-  'اسم المستفيد',
-  'رقم الجوال (إن وجد)',
-  'الوكالة',
-  'حالة المستفيد',
+export interface ImportRequirement {
+  number: number;
+  label: string;
+  hint?: string;
+}
+
+export const IMPORT_REQUIREMENTS: ImportRequirement[] = [
+  { number: 1, label: 'اسم المستفيد' },
+  { number: 2, label: 'رقم الجوال' },
+  { number: 3, label: 'حالة المستفيد' },
+  { number: 4, label: 'الخدمة' },
+  { number: 5, label: 'مصدر الطلب' },
+  { number: 6, label: 'الوكالة', hint: '(إن وجد)' },
 ];

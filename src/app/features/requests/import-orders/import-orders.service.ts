@@ -32,6 +32,87 @@ export class ImportOrdersService {
     return { fileName: file.name, fileSize: file.size, rows, summary };
   }
 
+  /** Seeded preview used by the UI: 48 valid rows and the 3 requested error examples. */
+  previewFile(file: File): ImportParseResult {
+    const names = [
+      'أحمد محمد', 'خالد العتيبي', 'منى الحربي', 'سارة القحطاني',
+      'عبدالله الغامدي', 'نورة الشمري', 'محمد الصالح', 'فاطمة الزهراء',
+      'عمر الدوسري', 'ريم المطيري', 'يوسف الحارثي', 'هند العسيري',
+    ];
+    const products = ['عمرة بالإنابة', 'حج بالإنابة', 'زيارة بالإنابة', 'صدقة جارية'];
+    const sources = ['وكالة / مكتب حج وعمرة', 'طلب مباشر'];
+    const statuses = ['حي', 'حي', 'مريض'];
+
+    const rows: ImportRow[] = [];
+    for (let rowIndex = 1; rowIndex <= 51; rowIndex += 1) {
+      if (rowIndex === 2) {
+        rows.push({
+          rowIndex,
+          status: 'invalid',
+          beneficiary: 'خالد العتيبي',
+          mobile: '+966 50343',
+          product: 'عمرة بالإنابة',
+          agency: 'مناسك',
+          source: 'وكالة / مكتب حج وعمرة',
+          beneficiaryStatus: 'حي',
+          errors: ['رقم جوال غير صالح'],
+          errorFields: ['mobile'],
+        });
+        continue;
+      }
+      if (rowIndex === 4) {
+        rows.push({
+          rowIndex,
+          status: 'invalid',
+          beneficiary: '',
+          mobile: '',
+          product: '',
+          agency: 'رفاه',
+          source: 'وكالة / مكتب حج وعمرة',
+          beneficiaryStatus: '',
+          errors: ['حالة المستفيد فارغة', 'اسم المستفيد فارغ', 'رقم الجوال فارغ', 'الخدمة فارغة'],
+          errorFields: ['beneficiaryStatus', 'beneficiary', 'mobile', 'product'],
+        });
+        continue;
+      }
+      if (rowIndex === 6) {
+        rows.push({
+          rowIndex,
+          status: 'invalid',
+          beneficiary: 'سارة القحطاني',
+          mobile: '+966 512345678',
+          product: 'حج بالإنابة',
+          agency: '',
+          source: '',
+          beneficiaryStatus: 'حي',
+          errors: ['مصدر الطلب فارغ'],
+          errorFields: ['source'],
+        });
+        continue;
+      }
+
+      rows.push({
+        rowIndex,
+        status: 'valid',
+        beneficiary: names[(rowIndex - 1) % names.length],
+        mobile: `+966 5${String(1000000 + rowIndex).padStart(8, '0')}`,
+        product: products[(rowIndex - 1) % products.length],
+        agency: 'مناسك',
+        source: sources[(rowIndex - 1) % sources.length],
+        beneficiaryStatus: statuses[(rowIndex - 1) % statuses.length],
+        errors: [],
+        errorFields: [],
+      });
+    }
+
+    return {
+      fileName: file.name,
+      fileSize: file.size,
+      rows,
+      summary: { totalRows: 51, validCount: 48, invalidCount: 3, headerErrors: [] },
+    };
+  }
+
   private mapRow(raw: Record<string, unknown>, rowIndex: number): ImportRow {
     const pick = (...keys: string[]): string => {
       for (const k of Object.keys(raw)) {
@@ -48,11 +129,12 @@ export class ImportOrdersService {
     const beneficiaryStatus = pick('حالة المستفيد', 'الحالة', 'status');
 
     const errors: string[] = [];
-    if (!product) errors.push('الخدمة مطلوبة.');
-    if (!beneficiary) errors.push('اسم المستفيد مطلوب.');
-    if (!beneficiaryStatus) errors.push('حالة المستفيد مفقودة.');
-    if (mobile && !/^[0-9+\s()-]{8,20}$/.test(mobile)) errors.push('رقم جوال غير صالح.');
-    if (!agency && !source) errors.push('بيانات غير متوافقة مع القالب (الوكالة/مصدر الطلب).');
+    const errorFields: string[] = [];
+    if (!product) { errors.push('الخدمة مطلوبة.'); errorFields.push('product'); }
+    if (!beneficiary) { errors.push('اسم المستفيد مطلوب.'); errorFields.push('beneficiary'); }
+    if (!beneficiaryStatus) { errors.push('حالة المستفيد مفقودة.'); errorFields.push('beneficiaryStatus'); }
+    if (mobile && !/^[0-9+\s()-]{8,20}$/.test(mobile)) { errors.push('رقم جوال غير صالح.'); errorFields.push('mobile'); }
+    if (!agency && !source) { errors.push('بيانات غير متوافقة مع القالب (الوكالة/مصدر الطلب).'); errorFields.push('source'); }
 
     return {
       rowIndex,
@@ -64,6 +146,7 @@ export class ImportOrdersService {
       source: source || (agency ? 'وكالة / مكتب حج وعمرة' : ''),
       beneficiaryStatus,
       errors,
+      errorFields,
     };
   }
 

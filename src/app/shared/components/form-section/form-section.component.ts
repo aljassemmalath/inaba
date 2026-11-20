@@ -5,7 +5,9 @@ import { Component, input } from '@angular/core';
   template: `
     <section class="content-card-body form-section" [attr.aria-labelledby]="titleId">
       <header class="form-section__header">
-        <span class="form-section__number" aria-hidden="true">{{ number() }}</span>
+        @if (number() !== null) {
+          <span class="form-section__number" aria-hidden="true">{{ number() }}</span>
+        }
         <div class="form-section__action"><ng-content select="[sectionAction]" /></div>
         <h2 class="form-section__title" [id]="titleId">{{ title() }}</h2>
       </header>
@@ -30,7 +32,7 @@ import { Component, input } from '@angular/core';
   `],
 })
 export class FormSectionComponent {
-  readonly number = input.required<number | string>();
+  readonly number = input<number | string | null>(null);
   readonly title = input.required<string>();
   get titleId(): string {
     return 'fs-' + String(this.number()) + '-' + this.title().replace(/\s+/g, '-').slice(0, 20);

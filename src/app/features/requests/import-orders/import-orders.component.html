@@ -1,18 +1,12 @@
-<app-page-banner title="استيراد الطلبات" description="أضف عدة طلبات دفعة واحدة باستخدام ملف Excel." />
+<app-page-banner
+  [title]="step() === 1 ? 'استيراد الطلبات' : 'المُعاينة'"
+  [description]="step() === 1 ? 'أضف عدة طلبات دفعة واحدة باستخدام ملف Excel.' : 'راجع صفوف الملف قبل تأكيد الاستيراد.'" />
 
 <app-progress-stepper class="mb-4" [steps]="steps()" />
 
 @if (step() === 1) {
   <div class="stack-sections">
-    <app-form-section [number]="1" title="رفع الملف">
-      <div class="template-dl">
-        <span class="template-label">قالب Excel</span>
-        <button type="button" class="btn btn-brand-outline btn-sm" (click)="downloadTemplate()">
-          <img src="assets/images/svg/Buttons/excel.svg" alt="" aria-hidden="true" width="16" height="16" />
-          <span>تنزيل قالب Excel</span>
-        </button>
-      </div>
-
+    <app-form-section title="استيراد_FILE">
       <div
         class="upload-zone"
         [class.is-dragover]="dragOver()"
@@ -20,10 +14,11 @@
         (dragover)="onDragOver($event)"
         (dragleave)="onDragLeave()"
         (drop)="onDrop($event)">
+        <img class="upload-zone__icon" src="assets/images/svg/Buttons/excel.svg" alt="" aria-hidden="true" />
         @if (!file()) {
           <p class="upload-main">اسحب ملف Excel وأفلته هنا</p>
           <p class="upload-or">أو</p>
-          <label class="btn btn-brand-outline upload-pick">
+          <label class="btn btn-outline upload-pick">
             اختيار ملف من الجهاز
             <input type="file" class="visually-hidden" accept=".xlsx,.xls" (change)="onFileInput($event)" />
           </label>
@@ -35,93 +30,113 @@
               <div class="file-size text-secondary">{{ formatSize(file()!.size) }} — جاهز للمعالجة</div>
             </div>
             <div class="file-actions">
-              <label class="btn btn-sm btn-brand-outline">استبدال
+              <label class="btn btn-sm btn-outline">استبدال
                 <input type="file" class="visually-hidden" accept=".xlsx,.xls" (change)="onFileInput($event)" />
               </label>
-              <button type="button" class="btn btn-sm btn-brand-outline" (click)="removeFile()">إزالة</button>
+              <button type="button" class="btn btn-sm btn-outline" (click)="removeFile()">إزالة</button>
             </div>
           </div>
         }
       </div>
       @if (fileError()) { <div class="form-error mt-2" role="alert">{{ fileError() }}</div> }
     </app-form-section>
+
+    <app-form-section title="متطلبات_FILE">
+      <div class="requirements-box">
+        <div class="requirements-grid">
+          <div class="requirements-col">
+            @for (req of rightRequirements; track req.number) {
+              <div class="requirement">
+                <span class="requirement__number" aria-hidden="true">{{ req.number }}</span>
+                <span class="requirement__label">{{ req.label }}</span>
+              </div>
+            }
+          </div>
+          <div class="requirements-col">
+            @for (req of leftRequirements; track req.number) {
+              <div class="requirement">
+                <span class="requirement__number" aria-hidden="true">{{ req.number }}</span>
+                <span class="requirement__label">{{ req.label }}</span>
+                @if (req.hint) { <span class="requirement__hint">{{ req.hint }}</span> }
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+
+      <div class="inline-alert inline-alert--info" role="status">
+        <span class="inline-alert__desc">استخدم القالب الجاهز لضمان توافق البيانات مع النظام وتقليل أخطاء الإدخال.</span>
+        <button type="button" class="btn btn-outline btn-sm" (click)="downloadTemplate()">
+          <img src="assets/images/svg/Buttons/excel.svg" alt="" aria-hidden="true" />
+          <span>تنزيل قالب Excel</span>
+        </button>
+      </div>
+    </app-form-section>
   </div>
 
-  <div class="workflow-footer">
-    <button type="button" class="btn btn-brand" [disabled]="!file() || parsing()" (click)="next()">{{ parsing() ? 'جارٍ معالجة الملف...' : 'التالي' }}</button>
-    <button type="button" class="btn btn-brand-outline" (click)="cancel()">إلغاء الطلب</button>
+  <div class="workflow-actions">
+    <button type="button" class="btn btn-primary" [disabled]="!file() || parsing()" (click)="next()">
+      <span>{{ parsing() ? 'جارٍ معالجة الملف...' : 'مُعاينة الملف' }}</span>
+      <img src="assets/images/svg/Buttons/arrow-left.svg" alt="" aria-hidden="true" />
+    </button>
   </div>
 } @else {
   <div class="stack-sections">
-    <app-form-section [number]="1" title="معلومات الملف">
-      @if (file()) {
-        <div class="review-grid review-grid--3">
-          <div class="review-item"><span class="review-label">اسم الملف</span><span class="review-value">{{ file()!.name }}</span></div>
-          <div class="review-item"><span class="review-label">حجم الملف</span><span class="review-value">{{ formatSize(file()!.size) }}</span></div>
-          <div class="review-item"><span class="review-label">حالة الملف</span><span class="review-value">{{ result() ? 'تمت المعالجة' : '—' }}</span></div>
+    <app-form-section title="استيراد_FILE">
+      <div class="result-badges">
+        <span class="result-badge result-badge--error">
+          <img src="assets/images/svg/add order/false.svg" alt="" aria-hidden="true" />
+          <span>{{ invalidCount() }} صفوف بها أخطاء</span>
+        </span>
+        <span class="result-badge result-badge--mint">
+          <img src="assets/images/svg/add order/true.svg" alt="" aria-hidden="true" />
+          <span>{{ validCount() }} صفًا صحيحًا</span>
+        </span>
+      </div>
+
+      <div class="table-card">
+        <app-data-table [columns]="columns" [rows]="pagedRows()" trackByKey="rowIndex" [rowClass]="rowClass" emptyTitle="لا توجد صفوف">
+          <ng-template #statusCell let-row>
+            @if (row.status === 'valid') {
+              <img class="status-valid-icon" src="assets/images/svg/add order/true.svg" alt="" aria-hidden="true" />
+            } @else {
+              <div class="status-error">
+                <span class="status-error__first">
+                  <img src="assets/images/svg/add order/alert.svg" alt="" aria-hidden="true" />
+                  <span>{{ row.errors[0] }}</span>
+                </span>
+                @if (row.errors.length > 1) {
+                  <span
+                    class="error-more"
+                    role="note"
+                    tabindex="0"
+                    [attr.aria-label]="row.errors.slice(1).join('، ')">
+                    +{{ row.errors.length - 1 }}
+                    <span class="error-tooltip" role="tooltip">{{ row.errors.slice(1).join('، ') }}</span>
+                  </span>
+                }
+              </div>
+            }
+          </ng-template>
+        </app-data-table>
+        <div class="pagination-wrap">
+          <app-pagination
+            [page]="page()"
+            [pageSize]="pageSize"
+            [total]="totalRows()"
+            [detailed]="true"
+            (pageChange)="onPageChange($event)" />
         </div>
-      }
-    </app-form-section>
-
-    <app-form-section [number]="2" title="متطلبات الملف">
-      <ol class="checklist">
-        @for (item of checklist; track item; let i = $index) { <li>{{ i + 1 }}. {{ item }}</li> }
-      </ol>
-      <p class="checklist-note">استخدم القالب الجاهز لضمان توافق البيانات مع النظام وتقليل أخطاء الإدخال.</p>
-    </app-form-section>
-
-    <app-form-section [number]="3" title="نتائج التحقق">
-      @if (result()) {
-        <app-summary-container>
-          <app-summary-item label="عدد الصفوف الصحيحة" [value]="result()!.summary.validCount" modifierClass="summary-valid" />
-          <app-summary-item label="عدد الصفوف التي تحتوي على أخطاء" [value]="result()!.summary.invalidCount" modifierClass="summary-invalid" />
-        </app-summary-container>
-        @if (result()!.summary.headerErrors.length) {
-          <ul class="error-list mt-3">
-            @for (e of result()!.summary.headerErrors; track e) { <li>{{ e }}</li> }
-          </ul>
-        }
-        @if (result()!.summary.invalidCount) {
-          <div class="mt-3">
-            <p class="text-secondary" style="font-size:var(--font-size-body-sm); margin:0 0 8px;">أمثلة على أخطاء التحقق: رقم جوال غير صالح، حالة المستفيد مفقودة، حقول مطلوبة مفقودة، بيانات غير متوافقة مع القالب.</p>
-            <ul class="error-list">
-              @for (r of result()!.rows; track r.rowIndex) {
-                @if (r.status === 'invalid') { <li>الصف {{ r.rowIndex }}: {{ r.errors.join('، ') }}</li> }
-              }
-            </ul>
-          </div>
-        }
-      }
-    </app-form-section>
-
-    <app-form-section [number]="4" title="معاينة جدول البيانات">
-      @if (result()) {
-        <div class="content-card-body table-card" style="padding:0; box-shadow:none; border:1px solid var(--border-default);">
-          <app-data-table [columns]="columns" [rows]="pagedRows()" trackByKey="rowIndex" [rowClass]="rowClass" emptyTitle="لا توجد صفوف">
-            <ng-template #statusCell let-row>
-              <app-status-badge [label]="row.status === 'valid' ? 'صالح' : 'يحتوي أخطاء'" [tone]="row.status === 'valid' ? 'success' : 'error'" />
-            </ng-template>
-          </app-data-table>
-          <div class="preview-footer">
-            <span class="text-secondary" style="font-size:var(--font-size-body-sm);">
-              الصفوف المعروضة: {{ (page() - 1) * pageSize + 1 }}–{{ (page() - 1) * pageSize + pagedRows().length }} من {{ totalRows() }}
-            </span>
-            <div class="btn-group" role="group" aria-label="ترقيم المعاينة">
-              <button type="button" class="btn btn-sm btn-brand-outline" (click)="prevPage()" [disabled]="page() <= 1">السابق</button>
-              <button type="button" class="btn btn-sm btn-brand-outline" disabled>صفحة {{ page() }}</button>
-              <button type="button" class="btn btn-sm btn-brand-outline" (click)="nextPage()" [disabled]="(page() * pageSize) >= totalRows()">التالي</button>
-            </div>
-          </div>
-        </div>
-      }
+      </div>
     </app-form-section>
   </div>
 
-  <div class="workflow-footer">
-    <button type="button" class="btn btn-brand" [disabled]="!canConfirm()" (click)="confirm()">
+  <div class="workflow-actions">
+    <button type="button" class="btn btn-primary" [disabled]="!canConfirm()" (click)="confirm()">
       {{ importing() ? 'جارٍ الاستيراد...' : 'تأكيد استيراد ' + validCount() + ' صفًا' }}
     </button>
-    <button type="button" class="btn btn-brand-outline" (click)="downloadErrors()" [disabled]="!result() || result()!.summary.invalidCount === 0">تنزيل تقرير الأخطاء</button>
-    <button type="button" class="btn btn-brand-outline" (click)="cancel()" [disabled]="importing()">إلغاء الطلب</button>
+    <button type="button" class="btn btn-outline" (click)="downloadErrors()" [disabled]="!result() || invalidCount() === 0">
+      تنزيل تقرير الأخطاء
+    </button>
   </div>
 }

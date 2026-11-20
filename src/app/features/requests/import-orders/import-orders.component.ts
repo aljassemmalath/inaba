@@ -6,19 +6,17 @@ import { PageBannerComponent } from '../../../shared/components/page-banner/page
 import { ProgressStepperComponent, StepItem } from '../../../shared/components/progress-stepper/progress-stepper.component';
 import { FormSectionComponent } from '../../../shared/components/form-section/form-section.component';
 import { DataTableComponent, DataTableColumn } from '../../../shared/components/data-table/data-table.component';
-import { StatusBadgeComponent } from '../../../shared/components/status-badge/status-badge';
-import { SummaryContainerComponent } from '../../../shared/components/summary-container/summary-container.component';
-import { SummaryItemComponent } from '../../../shared/components/summary-item/summary-item.component';
+import { PaginationComponent } from '../../../shared/components/pagination/pagination';
 import { SimpleConfirmDialogComponent } from '../../../shared/components/modal/dialogs/simple-confirm.dialog';
 import { ConfirmSuccessDialogComponent } from '../../../shared/components/modal/dialogs/confirm-success.dialog';
 import { ImportOrdersService } from './import-orders.service';
-import { IMPORT_REQUIRED_CHECKLIST, ImportParseResult, ImportRow } from './import-orders.models';
+import { IMPORT_REQUIREMENTS, ImportParseResult, ImportRequirement, ImportRow } from './import-orders.models';
 
 @Component({
   selector: 'app-import-orders',
   imports: [
     PageBannerComponent, ProgressStepperComponent, FormSectionComponent,
-    DataTableComponent, StatusBadgeComponent, SummaryContainerComponent, SummaryItemComponent,
+    DataTableComponent, PaginationComponent,
   ],
   templateUrl: './import-orders.component.html',
   styleUrl: './import-orders.component.scss',
@@ -32,11 +30,13 @@ export class ImportOrdersComponent {
   readonly steps = computed<StepItem[]>(() => {
     const current = this.step();
     return [
-      { number: 1, name: 'رفع الملف', status: current === 1 ? 'in-progress' : 'completed', statusLabel: current === 1 ? 'جارٍ التنفيذ' : 'مكتمل' },
-      { number: 2, name: 'معاينة الملف', status: current === 2 ? 'in-progress' : 'pending', statusLabel: current === 2 ? 'جارٍ التنفيذ' : 'قيد الانتظار' },
+      { number: 1, name: 'استيراد_FILE', status: current === 1 ? 'in-progress' : 'completed', statusLabel: current === 1 ? 'جارٍ التنفيذ' : 'مكتمل' },
+      { number: 2, name: 'المُعاينة', status: current === 2 ? 'in-progress' : 'pending', statusLabel: current === 2 ? 'جارٍ التنفيذ' : 'قيد الانتظار' },
     ];
   });
-  readonly checklist = IMPORT_REQUIRED_CHECKLIST;
+  readonly requirements: ImportRequirement[] = IMPORT_REQUIREMENTS;
+  readonly rightRequirements: ImportRequirement[] = IMPORT_REQUIREMENTS.slice(0, 3);
+  readonly leftRequirements: ImportRequirement[] = IMPORT_REQUIREMENTS.slice(3);
 
   readonly file = signal<File | null>(null);
   readonly dragOver = signal(false);
@@ -48,14 +48,16 @@ export class ImportOrdersComponent {
   readonly pageSize = 6;
 
   readonly columns: DataTableColumn<ImportRow>[] = [
-    { key: 'status', header: 'الحالة', width: '110px' },
-    { key: 'beneficiary', header: 'المستفيد' },
-    { key: 'mobile', header: 'الجوال', width: '140px' },
-    { key: 'product', header: 'المنتج' },
-    { key: 'agency', header: 'الوكالة' },
-    { key: 'source', header: 'مصدر الطلب' },
+    { key: 'beneficiary', header: 'المستفيد', cell: (row) => row.beneficiary || '-' },
+    { key: 'mobile', header: 'الجوال', width: '150px', cell: (row) => row.mobile || '-' },
+    { key: 'product', header: 'المنتج', cell: (row) => row.product || '-' },
+    { key: 'source', header: 'مصدر الطلب', cell: (row) => row.source || '-' },
+    { key: 'status', header: 'الحالة', width: '190px' },
   ];
-  readonly rowClass = (row: ImportRow) => (row.status === 'invalid' ? 'row-invalid' : '');
+  readonly rowClass = (row: ImportRow): string =>
+    row.status === 'invalid'
+      ? ['row-invalid', ...row.errorFields.map((field) => `cell-error--${field}`)].join(' ')
+      : '';
 
   readonly pagedRows = computed(() => {
     const rows = this.result()?.rows ?? [];
@@ -64,6 +66,7 @@ export class ImportOrdersComponent {
   });
   readonly totalRows = computed(() => this.result()?.summary.totalRows ?? 0);
   readonly validCount = computed(() => this.result()?.summary.validCount ?? 0);
+  readonly invalidCount = computed(() => this.result()?.summary.invalidCount ?? 0);
   readonly canConfirm = computed(() => !!this.result() && this.validCount() > 0 && !this.importing());
 
   formatSize(bytes: number): string {
@@ -96,7 +99,7 @@ export class ImportOrdersComponent {
     }
     this.fileError.set('');
     this.file.set(f);
-    this.result.set(null); // require re-processing if file replaced
+    this.result.set(null);
   }
 
   removeFile(): void { this.file.set(null); this.result.set(null); this.fileError.set(''); }
@@ -106,7 +109,7 @@ export class ImportOrdersComponent {
     if (!f || this.parsing()) return;
     if (this.result()) { this.step.set(2); return; }
     this.parsing.set(true);
-    this.service.parseFile(f).then((res) => {
+    Promise.resolve(this.service.previewFile(f)).then((res) => {
       this.result.set(res);
       this.page.set(1);
       this.step.set(2);
@@ -115,13 +118,7 @@ export class ImportOrdersComponent {
     }).finally(() => this.parsing.set(false));
   }
 
-  back(): void { this.step.set(1); }
-
-  prevPage(): void { this.page.update((p) => Math.max(1, p - 1)); }
-  nextPage(): void {
-    const max = Math.max(1, Math.ceil(this.totalRows() / this.pageSize));
-    this.page.update((p) => Math.min(max, p + 1));
-  }
+  onPageChange(nextPage: number): void { this.page.set(nextPage); }
 
   downloadTemplate(): void {
     this.service.downloadTemplate();
