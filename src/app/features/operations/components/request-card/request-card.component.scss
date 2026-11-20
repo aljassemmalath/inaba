@@ -4,7 +4,7 @@
   display: grid;
   grid-template-columns: minmax(220px, 2.2fr) minmax(90px, 0.7fr) minmax(120px, 0.9fr) minmax(130px, 0.9fr) minmax(140px, 1fr) clamp(240px, 28%, 320px);
   gap: 16px 20px;
-  align-items: start;
+  align-items: center;
 }
 
 .request-section { min-width: 0; }
@@ -46,6 +46,7 @@
 .actions-group {
   display: flex;
   flex-wrap: wrap;
+  justify-content: flex-end;
   gap: 8px;
   align-items: center;
   width: 100%;

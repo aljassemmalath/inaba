@@ -30,7 +30,8 @@ export class RequestsListComponent {
   readonly search = signal('');
   readonly filterOpen = signal(false);
   readonly page = signal(1);
-  readonly pageSize = signal(10);
+  readonly pageSize = signal(8);
+  readonly totalRecords = 500;
 
   readonly columns: DataTableColumn<RequestListRow>[] = [
     { key: 'requestNumber', header: 'رقم الطلب' },
@@ -50,7 +51,9 @@ export class RequestsListComponent {
     if (!q) return this.all;
     return this.all.filter((r) => [r.requestNumber, r.customerName, r.beneficiary].join(' ').toLowerCase().includes(q));
   });
-  readonly total = computed(() => this.filtered().length);
+  readonly total = computed(() => this.totalRecords);
+  readonly startItem = computed(() => (this.total() === 0 ? 0 : (this.page() - 1) * this.pageSize() + 1));
+  readonly endItem = computed(() => Math.min(this.page() * this.pageSize(), this.total()));
   readonly rows = computed(() => {
     const start = (this.page() - 1) * this.pageSize();
     return this.filtered().slice(start, start + this.pageSize());
@@ -58,7 +61,7 @@ export class RequestsListComponent {
 
   openDetails(row: RequestListRow) { this.router.navigate(['/operations/requests', row.id]); }
   onPage(p: number) { this.page.set(p); }
-  onPageSize(v: string) { this.pageSize.set(Number(v) || 10); this.page.set(1); }
+  onPageSize(v: string) { this.pageSize.set(Number(v) || 8); this.page.set(1); }
   exportData(): void { /* export hook */ }
 
   indicatorTone(ind: string): 'success' | 'warning' | 'error' | 'info' | 'neutral' | 'primary' | 'cyan' {

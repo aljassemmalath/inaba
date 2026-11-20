@@ -15,6 +15,9 @@ import { IconPlaceholderComponent } from '../icon-placeholder/icon-placeholder.c
           <img class="riyal" src="assets/images/svg/saudi-riyal-symbol-cyan%20500.svg" alt="" aria-hidden="true" />
         }
         <span>{{ value() }}</span>
+        @if (showRiyal()) {
+          <img class="riyal" src="assets/images/svg/saudi-riyal-symbol-cyan%20500.svg" alt="" aria-hidden="true" />
+        }
       </div>
     </div>
   `,
@@ -48,4 +51,5 @@ export class FinancialSummaryCardComponent {
   readonly iconSrc = input<string | null | undefined>(undefined);
   readonly modifierClass = input('');
   readonly isNetProfit = input(false);
+  readonly showRiyal = input(false);
 }

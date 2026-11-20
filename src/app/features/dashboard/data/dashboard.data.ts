@@ -21,6 +21,7 @@ export interface FinancialSummaryItem {
   iconSrc?: string;
   modifierClass: string;
   isNetProfit?: boolean;
+  showRiyal?: boolean;
 }
 
 export interface MonthlyOrdersGroup {
@@ -63,8 +64,8 @@ export const DASHBOARD_ALERTS: DashboardAlert[] = [
 ];
 
 export const FINANCIAL_SUMMARY: FinancialSummaryItem[] = [
-  { label: 'المبيعات', value: '248,500', modifierClass: 'finance-sales', iconSrc: 'assets/images/svg/Buttons/sales.svg' },
-  { label: 'مستحقات المنفذين', value: '173,200', modifierClass: 'finance-dues', iconSrc: 'assets/images/svg/Buttons/executors earnings.svg' },
+  { label: 'المبيعات', value: '248,500', modifierClass: 'finance-sales', iconSrc: 'assets/images/svg/Buttons/sales.svg', showRiyal: true },
+  { label: 'مستحقات المنفذين', value: '173,200', modifierClass: 'finance-dues', iconSrc: 'assets/images/svg/Buttons/executors earnings.svg', showRiyal: true },
   { label: 'صافي الربح', value: '75,300', modifierClass: 'finance-profit', isNetProfit: true, iconSrc: 'assets/images/svg/Buttons/net profit.svg' },
 ];
 

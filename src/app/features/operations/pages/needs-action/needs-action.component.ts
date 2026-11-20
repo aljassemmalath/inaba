@@ -42,7 +42,7 @@ export class NeedsActionComponent {
   readonly lastAction = signal<string | null>(null);
 
   readonly stats: NaStat[] = [
-    { title: 'إجمالي الحالات', value: 28, modifierClass: 'na-stat-total' },
+    { title: 'إجمالي الحالات', value: 28, iconSrc: 'assets/images/svg/Need%20Action/all.svg', modifierClass: 'na-stat-total' },
     { title: 'بانتظار الإسناد', value: 17, iconSrc: 'assets/images/svg/Need%20Action/waiting%20executer.svg', modifierClass: 'na-stat-pending-assignment' },
     { title: 'بانتظار الإشعار', value: 6, iconSrc: 'assets/images/svg/Need%20Action/waiting.svg', modifierClass: 'na-stat-pending-notify' },
     { title: 'مشاكل وأدلة', value: 3, iconSrc: 'assets/images/svg/Need%20Action/problems.svg', modifierClass: 'na-stat-issues-evidence' },

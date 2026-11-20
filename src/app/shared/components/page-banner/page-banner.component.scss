@@ -28,7 +28,7 @@
   position: relative;
   z-index: 1;
   display: flex;
-  align-items: flex-start;
+  align-items: flex-end;
   justify-content: space-between;
   gap: 16px;
   padding: 20px 24px;
@@ -55,12 +55,18 @@
 }
 .page-banner__actions {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   gap: 8px;
   flex-wrap: wrap;
   flex-shrink: 0;
 }
 .page-banner__actions:empty { display: none; }
+/* Primary always on the left, secondary on the right (RTL). */
+.page-banner__actions ::ng-deep .btn-brand,
+.page-banner__actions ::ng-deep .btn-primary { order: 1; }
+.page-banner__actions ::ng-deep .btn-brand-outline,
+.page-banner__actions ::ng-deep .btn-secondary,
+.page-banner__actions ::ng-deep .btn-outline { order: 0; }
 
 @media (max-width: 767.98px) {
   .page-banner__content { padding: 16px; }

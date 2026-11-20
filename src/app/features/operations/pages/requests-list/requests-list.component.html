@@ -59,14 +59,13 @@
     </ng-template>
   </app-data-table>
   <div class="table-footer">
-    <div class="d-flex align-items-center gap-2 flex-wrap">
-      <span class="text-secondary" style="font-size:var(--font-size-body-sm);">إجمالي السجلات: {{ total() }}</span>
-      <label class="text-secondary" style="font-size:var(--font-size-body-sm);">عدد الصفوف:
-        <select class="form-select form-select-sm d-inline-block" style="width:auto" [ngModel]="pageSize()" (ngModelChange)="onPageSize($event)">
-          <option [value]="10">10</option><option [value]="20">20</option><option [value]="50">50</option>
-        </select>
-      </label>
-    </div>
-    <app-pagination [page]="page()" [pageSize]="pageSize()" [total]="total()" (pageChange)="onPage($event)" />
+    <label class="footer-rows-per-page">
+      <span>عدد الصفوف في الصفحة</span>
+      <select class="rows-select" [ngModel]="pageSize()" (ngModelChange)="onPageSize($event)">
+        <option [value]="8">8</option><option [value]="16">16</option><option [value]="50">50</option>
+      </select>
+    </label>
+    <app-pagination [page]="page()" [pageSize]="pageSize()" [total]="total()" [detailed]="true" (pageChange)="onPage($event)" />
+    <span class="footer-range">عرض {{ startItem() }}–{{ endItem() }} من أصل {{ total() }}</span>
   </div>
 </div>

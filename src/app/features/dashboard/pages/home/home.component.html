@@ -50,7 +50,7 @@
           <div class="card-divider" aria-hidden="true"></div>
           <div class="d-flex flex-column gap-3">
             @for (item of financial; track item.label) {
-              <app-financial-summary-card [label]="item.label" [value]="item.value" [iconSrc]="item.iconSrc" [modifierClass]="item.modifierClass" [isNetProfit]="!!item.isNetProfit" />
+              <app-financial-summary-card [label]="item.label" [value]="item.value" [iconSrc]="item.iconSrc" [modifierClass]="item.modifierClass" [isNetProfit]="!!item.isNetProfit" [showRiyal]="!!item.showRiyal" />
             }
           </div>
         </app-content-card>
