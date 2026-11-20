@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Dialog } from '@angular/cdk/dialog';
 import { finalize } from 'rxjs';
 import { PageBannerComponent } from '../../../shared/components/page-banner/page-banner.component';
-import { FormStepperComponent, StepperStep } from '../../../shared/components/form-stepper/form-stepper.component';
+import { ProgressStepperComponent, StepItem } from '../../../shared/components/progress-stepper/progress-stepper.component';
 import { FormSectionComponent } from '../../../shared/components/form-section/form-section.component';
 import { DataTableComponent, DataTableColumn } from '../../../shared/components/data-table/data-table.component';
 import { StatusBadgeComponent } from '../../../shared/components/status-badge/status-badge';
@@ -17,7 +17,7 @@ import { IMPORT_REQUIRED_CHECKLIST, ImportParseResult, ImportRow } from './impor
 @Component({
   selector: 'app-import-orders',
   imports: [
-    PageBannerComponent, FormStepperComponent, FormSectionComponent,
+    PageBannerComponent, ProgressStepperComponent, FormSectionComponent,
     DataTableComponent, StatusBadgeComponent, SummaryContainerComponent, SummaryItemComponent,
   ],
   templateUrl: './import-orders.component.html',
@@ -29,7 +29,13 @@ export class ImportOrdersComponent {
   private readonly service = inject(ImportOrdersService);
 
   readonly step = signal<1 | 2>(1);
-  readonly steps: StepperStep[] = [{ number: 1, title: 'رفع الملف' }, { number: 2, title: 'معاينة الملف' }];
+  readonly steps = computed<StepItem[]>(() => {
+    const current = this.step();
+    return [
+      { number: 1, name: 'رفع الملف', status: current === 1 ? 'in-progress' : 'completed', statusLabel: current === 1 ? 'جارٍ التنفيذ' : 'مكتمل' },
+      { number: 2, name: 'معاينة الملف', status: current === 2 ? 'in-progress' : 'pending', statusLabel: current === 2 ? 'جارٍ التنفيذ' : 'قيد الانتظار' },
+    ];
+  });
   readonly checklist = IMPORT_REQUIRED_CHECKLIST;
 
   readonly file = signal<File | null>(null);

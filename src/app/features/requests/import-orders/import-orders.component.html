@@ -1,8 +1,6 @@
 <app-page-banner title="استيراد الطلبات" description="أضف عدة طلبات دفعة واحدة باستخدام ملف Excel." />
 
-<div class="content-card-body mb-4">
-  <app-form-stepper [steps]="steps" [current]="step()" />
-</div>
+<app-progress-stepper class="mb-4" [steps]="steps()" />
 
 @if (step() === 1) {
   <div class="stack-sections">

@@ -17,7 +17,11 @@ export interface StepItem {
             <div class="step-top">
               <div class="step-head">
                 <div class="step-marker">
-                  <span class="step-number">{{ step.number }}</span>
+                  @if (step.status === 'completed') {
+                    <img class="step-check" src="assets/images/svg/Buttons/tick.svg" alt="" aria-hidden="true" />
+                  } @else {
+                    <span class="step-number">{{ step.number }}</span>
+                  }
                 </div>
               </div>
               @if (!last) { <div class="step-line" aria-hidden="true"></div> }
@@ -98,6 +102,7 @@ export interface StepItem {
       margin-inline: 4px;
       min-width: 12px;
     }
+    .step-check { width: 18px; height: 18px; display: block; }
 
     /* Current (in-progress) */
     .step--in-progress .step-marker { border-color: var(--teal-500); background: var(--teal-50); color: var(--teal-500); }

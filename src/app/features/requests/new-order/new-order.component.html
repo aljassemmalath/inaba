@@ -2,26 +2,34 @@
   [title]="step() === 1 ? 'إضافة طلب جديد' : 'مراجعة الطلب'"
   [description]="step() === 1 ? 'أدخل بيانات الطلب الأساسية.' : 'راجع البيانات المدخلة قبل إنشاء الطلب.'" />
 
-<div class="content-card-body mb-4">
-  <app-form-stepper [steps]="steps" [current]="step()" />
-</div>
+<app-progress-stepper class="mb-4" [steps]="steps()" />
 
 <form [formGroup]="form" (ngSubmit)="step() === 1 ? next() : submit()" novalidate>
   @if (step() === 1) {
     <div class="stack-sections">
       <app-form-section [number]="1" title="مصدر الطلب">
-        <app-form-field label="مصدر الطلب" [required]="true" [wrapperMode]="true" [errorMessage]="err('sourceType', { required: 'يرجى اختيار مصدر الطلب.' })">
-          <div class="source-options" role="radiogroup" aria-label="مصدر الطلب">
-            <label class="source-option" [class.is-selected]="form.controls.sourceType.value === 'agency'">
-              <input type="radio" formControlName="sourceType" value="agency" />
-              <span>وكالة / مكتب حج وعمرة</span>
-            </label>
-            <label class="source-option" [class.is-selected]="form.controls.sourceType.value === 'individual'">
-              <input type="radio" formControlName="sourceType" value="individual" />
-              <span>فرد مباشر</span>
-            </label>
-          </div>
-        </app-form-field>
+        <div class="source-cards" role="radiogroup" aria-label="مصدر الطلب">
+          <label class="source-card" [class.is-selected]="form.controls.sourceType.value === 'agency'">
+            <input class="source-card__input" type="radio" formControlName="sourceType" value="agency" />
+            <span class="source-card__body">
+              <span class="source-card__text">
+                <span class="source-card__title">وكالة / مكتب حج وعمرة</span>
+                <span class="source-card__desc">الطلب مقدم من وكالة</span>
+              </span>
+              <span class="source-card__icon"><img src="assets/images/svg/add order/office.svg" alt="" aria-hidden="true" /></span>
+            </span>
+          </label>
+          <label class="source-card" [class.is-selected]="form.controls.sourceType.value === 'individual'">
+            <input class="source-card__input" type="radio" formControlName="sourceType" value="individual" />
+            <span class="source-card__body">
+              <span class="source-card__text">
+                <span class="source-card__title">طلب مباشر</span>
+                <span class="source-card__desc">طلب يتم إدخاله مباشرة دون وكالة</span>
+              </span>
+              <span class="source-card__icon"><img src="assets/images/svg/add order/user.svg" alt="" aria-hidden="true" /></span>
+            </span>
+          </label>
+        </div>
 
         @if (form.controls.sourceType.value === 'agency') {
           <app-form-field label="الوكالة" [required]="true" [wrapperMode]="true" [errorMessage]="err('agency', { required: 'يرجى اختيار الوكالة.' })">
@@ -37,35 +45,27 @@
         }
       </app-form-section>
 
-      <app-form-section [number]="2" title="بيانات الطلب">
-        <div class="row g-3">
-          <div class="col-12">
-            <app-form-field label="حالة المستفيد" [required]="true" [wrapperMode]="true" [errorMessage]="err('beneficiaryStatus', { required: 'يرجى اختيار حالة المستفيد.' })">
-              <select id="beneficiaryStatus" class="form-select" formControlName="beneficiaryStatus">
-                @for (o of statusOptions; track o.value) { <option [value]="o.value">{{ o.label }}</option> }
-              </select>
-            </app-form-field>
-          </div>
-          <div class="col-12 col-md-6">
-            <app-form-field label="اسم المستفيد" [required]="true" [wrapperMode]="true" [errorMessage]="err('beneficiaryName', { required: 'اسم المستفيد مطلوب.', minlength: 'أدخل اسمًا صالحًا.' })">
-              <input id="beneficiaryName" type="text" class="form-control" formControlName="beneficiaryName" />
-            </app-form-field>
-          </div>
-          <div class="col-12 col-md-6">
-            <app-form-field label="رقم الجوال" [required]="true" [wrapperMode]="true" [errorMessage]="err('mobile', { required: 'رقم الجوال مطلوب.', pattern: 'أدخل رقم جوال صالحًا.' })">
-              <input id="mobile" type="tel" class="form-control" formControlName="mobile" dir="ltr" />
-            </app-form-field>
-          </div>
-          <div class="col-12">
-            <app-form-field label="طلب خاص" [wrapperMode]="true">
-              <textarea id="specialRequest" class="form-control" rows="4" formControlName="specialRequest" placeholder="أدخل أي طلب خاص أو دعاء يرغب المستفيد في تنفيذه..."></textarea>
-            </app-form-field>
-          </div>
+      <app-form-section [number]="2" title="بيانات المستفيد">
+        <div class="beneficiary-grid">
+          <app-form-field label="حالة المستفيد" [required]="true" [wrapperMode]="true" [errorMessage]="err('beneficiaryStatus', { required: 'يرجى اختيار حالة المستفيد.' })">
+            <select id="beneficiaryStatus" class="form-select" formControlName="beneficiaryStatus">
+              @for (o of statusOptions; track o.value) { <option [value]="o.value">{{ o.label }}</option> }
+            </select>
+          </app-form-field>
+          <app-form-field label="رقم الجوال" [required]="true" [wrapperMode]="true" [errorMessage]="err('mobile', { required: 'رقم الجوال مطلوب.', pattern: 'أدخل رقم جوال صالحًا.' })">
+            <input id="mobile" type="tel" class="form-control" formControlName="mobile" dir="ltr" />
+          </app-form-field>
+          <app-form-field label="الاسم الكامل" [required]="true" [wrapperMode]="true" [errorMessage]="err('beneficiaryName', { required: 'الاسم الكامل مطلوب.', minlength: 'أدخل اسمًا صالحًا.' })">
+            <input id="beneficiaryName" type="text" class="form-control" formControlName="beneficiaryName" />
+          </app-form-field>
+          <app-form-field class="beneficiary-grid__wide" label="طلب خاص" [wrapperMode]="true">
+            <textarea id="specialRequest" class="form-control" rows="4" formControlName="specialRequest" placeholder="أدخل أي طلب خاص أو دعاء يرغب المستفيد في تنفيذه..."></textarea>
+          </app-form-field>
         </div>
       </app-form-section>
 
       <app-form-section [number]="3" title="بيانات الخدمة">
-        <app-form-field label="اختيار الخدمة" [required]="true" [wrapperMode]="true" [errorMessage]="err('service', { required: 'يرجى اختيار الخدمة.' })">
+        <app-form-field class="service-field" label="اختيار الخدمة" [required]="true" [wrapperMode]="true" [errorMessage]="err('service', { required: 'يرجى اختيار الخدمة.' })">
           <select id="service" class="form-select" formControlName="service">
             @for (o of serviceOptions; track o.value) { <option [value]="o.value">{{ o.label }}</option> }
           </select>
@@ -73,9 +73,12 @@
       </app-form-section>
     </div>
 
-    <div class="workflow-footer">
-      <button type="submit" class="btn btn-brand">التالي</button>
-      <button type="button" class="btn btn-brand-outline" (click)="cancel()">إلغاء الطلب</button>
+    <div class="workflow-actions">
+      <button type="submit" class="btn btn-primary continue-btn" [disabled]="form.invalid">
+        <span>متابعة</span>
+        <img src="assets/images/svg/Buttons/arrow-left.svg" alt="" aria-hidden="true" />
+      </button>
+      <button type="button" class="btn btn-outline" (click)="cancel()">إلغاء الطلب</button>
     </div>
   } @else {
     <div class="stack-sections">
@@ -110,6 +113,9 @@
       </app-form-section>
 
       <app-form-section [number]="4" title="مراحل التنفيذ">
+        <button type="button" class="section-action" sectionAction (click)="openStages()" aria-label="عرض مراحل التنفيذ" title="عرض المراحل">
+          <img src="assets/images/svg/Buttons/view.svg" alt="" aria-hidden="true" />
+        </button>
         <div class="review-grid review-grid--2">
           <div class="review-item"><span class="review-label">عدد المراحل</span><span class="review-value">4</span></div>
         </div>

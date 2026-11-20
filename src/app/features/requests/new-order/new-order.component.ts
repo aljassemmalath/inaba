@@ -1,12 +1,13 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, Inject, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Dialog } from '@angular/cdk/dialog';
+import { Dialog, DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
 import { finalize } from 'rxjs';
 import { PageBannerComponent } from '../../../shared/components/page-banner/page-banner.component';
-import { FormStepperComponent, StepperStep } from '../../../shared/components/form-stepper/form-stepper.component';
+import { ProgressStepperComponent, StepItem } from '../../../shared/components/progress-stepper/progress-stepper.component';
 import { FormSectionComponent } from '../../../shared/components/form-section/form-section.component';
 import { FormFieldComponent } from '../../../shared/components/form-field/form-field.component';
+import { ModalComponent } from '../../../shared/components/modal/modal.component';
 import { SimpleConfirmDialogComponent } from '../../../shared/components/modal/dialogs/simple-confirm.dialog';
 import { ConfirmSuccessDialogComponent } from '../../../shared/components/modal/dialogs/confirm-success.dialog';
 import { NewOrderService } from './new-order.service';
@@ -14,14 +15,48 @@ import {
   AGENCY_OPTIONS,
   BENEFICIARY_STATUS_OPTIONS,
   NEW_ORDER_FINANCIAL_MOCK,
+  NEW_ORDER_STAGES,
+  NewOrderStage,
   NewOrderValue,
   RequestSourceType,
   SERVICE_OPTIONS,
 } from './new-order.models';
 
 @Component({
+  standalone: true,
+  imports: [ModalComponent],
+  template: `
+    <app-modal modalType="center" modalSize="medium" [title]="data.title" [showCloseButton]="true">
+      <ol modal-body class="stages-list">
+        @for (stage of data.stages; track stage.number) {
+          <li class="stage-row">
+            <span class="stage-number">{{ stage.number }}</span>
+            <span class="stage-name">{{ stage.name }}</span>
+          </li>
+        }
+      </ol>
+      <ng-container modal-actions>
+        <button type="button" class="btn btn-brand" (click)="ref.close()">إغلاق</button>
+      </ng-container>
+    </app-modal>
+  `,
+  styles: [`
+    .stages-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; width: 100%; }
+    .stage-row { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border: 1px solid var(--border-subtle); border-radius: var(--radius-md); }
+    .stage-number { width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; flex-shrink: 0; border: 1px solid var(--border-subtle); font-size: 12px; font-weight: 700; }
+    .stage-name { font-size: var(--font-size-body-md); color: var(--text-primary); font-weight: 500; }
+  `],
+})
+class StagesDialogComponent {
+  constructor(
+    public ref: DialogRef,
+    @Inject(DIALOG_DATA) public data: { title: string; stages: NewOrderStage[] },
+  ) {}
+}
+
+@Component({
   selector: 'app-new-order',
-  imports: [ReactiveFormsModule, PageBannerComponent, FormStepperComponent, FormSectionComponent, FormFieldComponent],
+  imports: [ReactiveFormsModule, PageBannerComponent, ProgressStepperComponent, FormSectionComponent, FormFieldComponent],
   templateUrl: './new-order.component.html',
   styleUrl: './new-order.component.scss',
 })
@@ -34,14 +69,18 @@ export class NewOrderComponent {
   readonly step = signal<1 | 2>(1);
   readonly submitted = signal(false);
   readonly submitting = signal(false);
-  readonly steps: StepperStep[] = [
-    { number: 1, title: 'بيانات الطلب' },
-    { number: 2, title: 'مراجعة الطلب' },
-  ];
+  readonly steps = computed<StepItem[]>(() => {
+    const current = this.step();
+    return [
+      { number: 1, name: 'بيانات الطلب', status: current === 1 ? 'in-progress' : 'completed', statusLabel: current === 1 ? 'جارٍ التنفيذ' : 'مكتمل' },
+      { number: 2, name: 'مراجعة الطلب', status: current === 2 ? 'in-progress' : 'pending', statusLabel: current === 2 ? 'جارٍ التنفيذ' : 'قيد الانتظار' },
+    ];
+  });
   readonly agencyOptions = AGENCY_OPTIONS;
   readonly statusOptions = BENEFICIARY_STATUS_OPTIONS;
   readonly serviceOptions = SERVICE_OPTIONS;
   readonly financial = NEW_ORDER_FINANCIAL_MOCK;
+  readonly stages = NEW_ORDER_STAGES;
 
   readonly form = this.fb.nonNullable.group({
     sourceType: [null as RequestSourceType | null, Validators.required],
@@ -91,6 +130,13 @@ export class NewOrderComponent {
 
   back(): void {
     this.step.set(1);
+  }
+
+  openStages(): void {
+    this.dialog.open(StagesDialogComponent, {
+      panelClass: 'app-modal-panel',
+      data: { title: 'مراحل التنفيذ', stages: this.stages },
+    });
   }
 
   cancel(): void {
