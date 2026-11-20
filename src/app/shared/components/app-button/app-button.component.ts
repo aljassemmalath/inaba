@@ -1,6 +1,6 @@
 import { Component, booleanAttribute, computed, input, output } from '@angular/core';
 
-type BtnVariant = 'primary' | 'secondary' | 'tertiary' | 'danger' | 'inverse' | 'outline' | 'ghost' | 'subtle';
+type BtnVariant = 'primary' | 'secondary' | 'tertiary' | 'danger' | 'inverse' | 'outline' | 'ghost' | 'subtle' | 'neutral';
 type BtnType = 'button' | 'submit' | 'reset';
 type BtnSize = 'lg' | 'md' | 'sm';
 
@@ -45,6 +45,7 @@ export class AppButtonComponent {
       : v === 'danger' ? 'btn-danger'
       : v === 'inverse' ? 'btn-inverse'
       : v === 'subtle' ? 'btn-primary btn-subtle'
+      : v === 'neutral' ? 'btn-neutral'
       : 'btn-primary btn-brand';
     const sizeClass = this.resolvedSize() === 'md' ? 'btn-md' : 'btn-lg';
     return `btn ${variantClass} ${sizeClass}`;

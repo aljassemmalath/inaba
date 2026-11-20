@@ -12,7 +12,7 @@ export type RequestTypeKey =
 
 export interface RequestAction {
   label: string;
-  variant: 'primary' | 'secondary';
+  variant: 'primary' | 'secondary' | 'neutral';
   key: string;
 }
 

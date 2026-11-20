@@ -189,6 +189,30 @@ fieldset:disabled .btn {
   color: var(--text-disabled);
 }
 
+/* Neutral (solid, on neutral-100 background) */
+.btn-neutral {
+  background-color: var(--action-neutral-default);
+  border-color: var(--action-neutral-default);
+  color: var(--action-neutral-text);
+}
+.btn-neutral:not(:disabled):not(.disabled):hover {
+  background-color: var(--action-neutral-hover);
+  border-color: var(--action-neutral-hover);
+  color: var(--action-neutral-text);
+}
+.btn-neutral:not(:disabled):not(.disabled):active,
+.btn-neutral:not(:disabled):not(.disabled).active {
+  background-color: var(--action-neutral-pressed);
+  border-color: var(--action-neutral-pressed);
+  color: var(--action-neutral-text);
+}
+.btn-neutral:disabled,
+.btn-neutral.disabled {
+  background-color: var(--action-neutral-disabled);
+  border-color: var(--action-neutral-disabled);
+  color: var(--text-disabled);
+}
+
 /* Link-style actions (preserve existing lightweight usage) */
 .btn.btn-link {
   height: auto;

@@ -14,7 +14,7 @@ export const NEEDS_ACTION_REQUESTS: NeedsActionRequest[] = [
     requestTypeLabel: 'بانتظار الإسناد',
     lastUpdated: '2025/10/06 09:17',
     actions: [
-      { label: 'عرض الطلب', variant: 'primary', key: 'view' },
+      { label: 'عرض الطلب', variant: 'neutral', key: 'view' },
       { label: 'إعادة الإسناد', variant: 'secondary', key: 'reassign' },
     ],
   },
@@ -31,7 +31,7 @@ export const NEEDS_ACTION_REQUESTS: NeedsActionRequest[] = [
     requestTypeLabel: 'المنفذ لم يشاهد الإشعار',
     lastUpdated: '2025/10/06 08:42',
     actions: [
-      { label: 'عرض الطلب', variant: 'primary', key: 'view' },
+      { label: 'عرض الطلب', variant: 'neutral', key: 'view' },
       { label: 'إعادة إرسال الإشعار', variant: 'secondary', key: 'resend' },
     ],
   },
@@ -48,7 +48,7 @@ export const NEEDS_ACTION_REQUESTS: NeedsActionRequest[] = [
     requestTypeLabel: 'المنفذ لم يرد',
     lastUpdated: '2025/10/05 16:10',
     actions: [
-      { label: 'عرض الطلب', variant: 'primary', key: 'view' },
+      { label: 'عرض الطلب', variant: 'neutral', key: 'view' },
       { label: 'إعادة الإسناد', variant: 'secondary', key: 'reassign' },
     ],
   },
@@ -65,7 +65,7 @@ export const NEEDS_ACTION_REQUESTS: NeedsActionRequest[] = [
     requestTypeLabel: 'الطلب متأخر',
     lastUpdated: '2025/10/05 11:03',
     actions: [
-      { label: 'عرض الطلب', variant: 'primary', key: 'view' },
+      { label: 'عرض الطلب', variant: 'neutral', key: 'view' },
       { label: 'متابعة المشكلة', variant: 'secondary', key: 'follow-issue' },
     ],
   },
@@ -82,7 +82,7 @@ export const NEEDS_ACTION_REQUESTS: NeedsActionRequest[] = [
     requestTypeLabel: 'توقف رفع الأدلة',
     lastUpdated: '2025/10/04 14:28',
     actions: [
-      { label: 'عرض الطلب', variant: 'primary', key: 'view' },
+      { label: 'عرض الطلب', variant: 'neutral', key: 'view' },
       { label: 'متابعة المشكلة', variant: 'secondary', key: 'follow-issue' },
     ],
   },
@@ -99,7 +99,7 @@ export const NEEDS_ACTION_REQUESTS: NeedsActionRequest[] = [
     requestTypeLabel: 'مشكلة مفتوحة',
     lastUpdated: '2025/10/04 09:55',
     actions: [
-      { label: 'عرض الطلب', variant: 'primary', key: 'view' },
+      { label: 'عرض الطلب', variant: 'neutral', key: 'view' },
       { label: 'متابعة المشكلة', variant: 'secondary', key: 'follow-issue' },
     ],
   },
@@ -116,7 +116,7 @@ export const NEEDS_ACTION_REQUESTS: NeedsActionRequest[] = [
     requestTypeLabel: 'فشل رفع أو معالجة ملف',
     lastUpdated: '2025/10/03 17:40',
     actions: [
-      { label: 'عرض الطلب', variant: 'primary', key: 'view' },
+      { label: 'عرض الطلب', variant: 'neutral', key: 'view' },
       { label: 'إعادة محاولة الرفع', variant: 'secondary', key: 'retry-upload' },
     ],
   },
@@ -133,7 +133,7 @@ export const NEEDS_ACTION_REQUESTS: NeedsActionRequest[] = [
     requestTypeLabel: 'ملف عليه تنبيه',
     lastUpdated: '2025/10/03 10:12',
     actions: [
-      { label: 'عرض الطلب', variant: 'primary', key: 'view' },
+      { label: 'عرض الطلب', variant: 'neutral', key: 'view' },
       { label: 'مراجعة الملف', variant: 'secondary', key: 'review-file' },
     ],
   },

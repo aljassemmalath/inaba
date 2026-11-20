@@ -32,7 +32,7 @@
             class="request-action-btn full"
             [class.request-action--view]="isViewAction(act)"
             [class.request-action--secondary]="!isViewAction(act)"
-            [variant]="isViewAction(act) ? 'primary' : 'secondary'"
+            [variant]="isViewAction(act) ? 'neutral' : 'secondary'"
             size="sm"
             (pressed)="onAction(request(), act)"
           >

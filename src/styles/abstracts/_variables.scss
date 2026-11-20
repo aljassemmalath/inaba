@@ -135,6 +135,13 @@ $action-inverse-disabled: $neutral-300;
 $action-inverse-border: $teal-100;
 $action-inverse-text: $teal-700;
 
+// Actions — Neutral (solid, on neutral-100 background)
+$action-neutral-default: $neutral-100;
+$action-neutral-hover: $neutral-200;
+$action-neutral-pressed: $neutral-300;
+$action-neutral-disabled: $neutral-400;
+$action-neutral-text: $neutral-900;
+
 // Inputs — Default
 $input-background: $neutral-0;
 $input-border-default: $border-subtle;
@@ -294,6 +301,12 @@ $cyan-solid: $info-500;
   --action-inverse-disabled: #{$action-inverse-disabled};
   --action-inverse-border: #{$action-inverse-border};
   --action-inverse-text: #{$action-inverse-text};
+
+  --action-neutral-default: #{$action-neutral-default};
+  --action-neutral-hover: #{$action-neutral-hover};
+  --action-neutral-pressed: #{$action-neutral-pressed};
+  --action-neutral-disabled: #{$action-neutral-disabled};
+  --action-neutral-text: #{$action-neutral-text};
 
   // Inputs
   --input-background: #{$input-background};
