@@ -1,5 +1,5 @@
 @if (details(); as d) {
-  <app-page-banner [title]="d.title" [description]="'رقم المشكلة: ' + d.issueNumber + '   تم تسجيل المشكلة في ' + d.registeredAt">
+  <app-page-banner [title]="d.title" [description]="'رقم المشكلة: ' + d.issueNumber + '   تم تسجيل المشكلة في ' + d.registeredAt" [backRoute]="['/operations/issues']">
     <app-status-badge banner-title-badge [label]="d.status" [tone]="d.statusTone" />
   </app-page-banner>
 
@@ -65,7 +65,10 @@
         <div class="card-header-block">
           <h3 class="info-card__title">الطلب المرتبط</h3>
           <div class="card-header-action">
-            <button type="button" class="btn btn-brand-outline btn-sm" (click)="openRequest()">عرض تفاصيل الطلب</button>
+            <button type="button" class="btn btn-tertiary btn-sm" (click)="openRequest()">
+              <img src="assets/images/svg/Buttons/arrow-left.svg" alt="" aria-hidden="true" width="16" height="16" />
+              <span>عرض تفاصيل الطلب</span>
+            </button>
           </div>
         </div>
         <div class="card-divider"></div>

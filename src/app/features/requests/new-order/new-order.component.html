@@ -1,6 +1,7 @@
 <app-page-banner
   [title]="step() === 1 ? 'إضافة طلب جديد' : 'مراجعة الطلب'"
-  [description]="step() === 1 ? 'أدخل بيانات الطلب الأساسية.' : 'راجع البيانات المدخلة قبل إنشاء الطلب.'" />
+  [description]="step() === 1 ? 'أدخل بيانات الطلب الأساسية.' : 'راجع البيانات المدخلة قبل إنشاء الطلب.'"
+  [backRoute]="['/operations/requests']" />
 
 <app-progress-stepper class="mb-4" [steps]="steps()" />
 

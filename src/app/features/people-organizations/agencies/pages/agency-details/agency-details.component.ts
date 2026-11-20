@@ -4,7 +4,8 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { PageBannerComponent } from '../../../../../shared/components/page-banner/page-banner.component';
 import { StatusBadgeComponent, BadgeTone } from '../../../../../shared/components/status-badge/status-badge';
 import { DataTableComponent, DataTableColumn } from '../../../../../shared/components/data-table/data-table.component';
-import { IconPlaceholderComponent } from '../../../../../shared/components/icon-placeholder/icon-placeholder.component';
+import { SummaryContainerComponent } from '../../../../../shared/components/summary-container/summary-container.component';
+import { SummaryItemComponent } from '../../../../../shared/components/summary-item/summary-item.component';
 import { AGENCIES_MOCK } from '../../data/mock-agencies';
 import { AgencyRow } from '../../models/agency.model';
 
@@ -20,7 +21,7 @@ interface AgencyOrderRow extends Record<string, unknown> {
 
 @Component({
   selector: 'app-agency-details-page',
-  imports: [PageBannerComponent, StatusBadgeComponent, DataTableComponent, IconPlaceholderComponent],
+  imports: [PageBannerComponent, StatusBadgeComponent, DataTableComponent, SummaryContainerComponent, SummaryItemComponent],
   templateUrl: './agency-details.component.html',
   styleUrl: './agency-details.component.scss',
 })

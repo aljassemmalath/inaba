@@ -37,6 +37,24 @@
 
 .page-banner__text { flex: 1 1 320px; min-width: 0; }
 .page-banner__title-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.page-banner__back {
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid var(--border-subtle);
+  background: var(--background-default);
+  box-shadow: var(--shadow-xs);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 34px;
+  cursor: pointer;
+  color: var(--text-secondary);
+}
+.page-banner__back img { width: 16px; height: 16px; flex-shrink: 0; }
+.page-banner__back:hover { background: var(--background-muted); }
+.page-banner__back:focus-visible { outline: none; box-shadow: var(--focus-ring); }
 .page-banner__title-badge:empty { display: none; }
 .page-banner__title-badge ::ng-deep .status-badge { padding: 8px; }
 .page-banner__title {

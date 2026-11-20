@@ -6,7 +6,23 @@
   flex-wrap: wrap;
   margin-bottom: 16px;
 }
+.page-header__title-row { display: flex; align-items: center; gap: 12px; }
 .page-header__title { margin: 0; font-size: 22px; font-weight: 700; color: var(--text-primary); }
+.page-back-btn {
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid var(--border-subtle);
+  background: var(--background-default);
+  box-shadow: var(--shadow-xs);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 34px;
+  cursor: pointer;
+}
+.page-back-btn:focus-visible { outline: none; box-shadow: var(--focus-ring); }
 .page-header__actions { display: flex; gap: 8px; flex-wrap: wrap; }
 
 .info-card__title { margin: 0; font-size: 16px; font-weight: 600; color: var(--teal-500); }

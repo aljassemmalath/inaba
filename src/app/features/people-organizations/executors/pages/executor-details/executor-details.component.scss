@@ -136,6 +136,8 @@
 .executor-tabs-section { padding: 0; overflow: hidden; }
 .executor-tabs-section .app-tabs { padding: 0 12px; }
 .executor-tab-content { padding: 16px; min-height: 140px; }
+.executor-performance { width: 100%; }
+.executor-performance app-summary-container { margin-bottom: 4px; }
 
 @media (max-width: 991.98px) {
   .executor-layout { grid-template-columns: 1fr; }

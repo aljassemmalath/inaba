@@ -7,4 +7,5 @@
   background: #fff; border: 1px solid var(--border-default); border-radius: var(--radius-md); box-shadow: var(--card-shadow);
 }
 .simple-pagination { padding: 12px 24px; border-top: 1px solid var(--border-soft); font-size: var(--font-size-body-sm); color: var(--text-secondary); }
+.problem-action { min-width: 88px; }
 @media (max-width: 767.98px) { .problems-search { width: 100%; min-width: 0; } .toolbar-right, .toolbar-left { width: 100%; } }

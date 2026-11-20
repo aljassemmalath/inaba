@@ -113,6 +113,20 @@
 }
 
 /* Description / helper text cell variant */
+.app-data-table__cell-with-icon {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  width: 100%;
+}
+.app-data-table__cell-with-icon .app-data-table__cell-stack { flex: 1 1 auto; }
+.app-data-table__cell-icon {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 20px;
+  object-fit: contain;
+}
 .app-data-table__cell-stack {
   display: flex;
   flex-direction: column;

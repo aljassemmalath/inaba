@@ -29,6 +29,16 @@ import { Component, input } from '@angular/core';
       width: 1px;
       background: var(--border-default);
     }
+    .summary-container.summary-container--bordered { gap: 12px; }
+    .summary-container.summary-container--bordered ::ng-deep app-summary-item {
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-md);
+      background: var(--background-default);
+      box-shadow: var(--shadow-xs);
+      box-sizing: border-box;
+      min-height: 72px;
+    }
+    .summary-container.summary-container--bordered ::ng-deep app-summary-item::after { display: none; }
     @media (max-width: 767.98px) {
       .summary-container ::ng-deep app-summary-item::after { display: none; }
       .summary-container { gap: 8px 0; }

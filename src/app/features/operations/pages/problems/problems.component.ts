@@ -1,6 +1,6 @@
 import { Component, computed, effect, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
-import { DataTableColumn, DataTableComponent } from '../../../../shared/components/data-table/data-table.component';
+import { DataTableCellDirective, DataTableColumn, DataTableComponent } from '../../../../shared/components/data-table/data-table.component';
 import { FilterToolbarComponent } from '../../../../shared/components/filter-toolbar/filter-toolbar.component';
 import { PageBannerComponent } from '../../../../shared/components/page-banner/page-banner.component';
 import { StatusBadgeComponent } from '../../../../shared/components/status-badge/status-badge';
@@ -11,7 +11,7 @@ import { ProblemRow } from '../../models/problem.model';
 
 @Component({
   selector: 'app-problems-page',
-  imports: [PageBannerComponent, SummaryContainerComponent, SummaryItemComponent, FilterToolbarComponent, DataTableComponent, StatusBadgeComponent],
+  imports: [PageBannerComponent, SummaryContainerComponent, SummaryItemComponent, FilterToolbarComponent, DataTableComponent, DataTableCellDirective, StatusBadgeComponent],
   templateUrl: './problems.component.html',
   styleUrl: './problems.component.scss',
 })
@@ -32,14 +32,30 @@ export class ProblemsComponent {
   }
 
   readonly columns: DataTableColumn<ProblemRow>[] = [
-    { key: 'problem', header: 'المشكلة' },
+    {
+      key: 'problem',
+      header: 'المشكلة',
+      cell: (row) => row.problem,
+      description: (row) => row.problemDetail,
+      icon: (row) => row.problemIcon,
+    },
     { key: 'requestNumber', header: 'الطلب' },
     { key: 'executor', header: 'المنفذ' },
     { key: 'stage', header: 'المرحلة' },
-    { key: 'reportedAt', header: 'وقت البلاغ' },
+    {
+      key: 'reportedAt',
+      header: 'وقت البلاغ',
+      cell: (row) => row.reportedAtDate,
+      description: (row) => row.reportedAtTime,
+    },
     { key: 'status', header: 'الحالة' },
-    { key: 'lastUpdated', header: 'آخر تحديث' },
-    { key: 'actions', header: 'الإجراءات', width: '90px' },
+    {
+      key: 'lastUpdated',
+      header: 'آخر تحديث',
+      cell: (row) => row.lastUpdatedDate,
+      description: (row) => row.lastUpdatedTime,
+    },
+    { key: 'actions', header: 'الإجراءات', width: '110px' },
   ];
 
   readonly filtered = computed(() => {

@@ -1,4 +1,4 @@
-import { Component, contentChild, input, TemplateRef } from '@angular/core';
+import { Component, contentChild, contentChildren, Directive, inject, input, TemplateRef } from '@angular/core';
 import { NgTemplateOutlet } from '@angular/common';
 import { EmptyStateComponent } from '../empty-state/empty-state';
 
@@ -12,8 +12,19 @@ export interface DataTableColumn<T = unknown> {
   description?: (row: T) => string | null | undefined;
   /** Row key to read description/helper text from when `description` is not provided. */
   descriptionKey?: string;
+  /** Optional icon shown beside a description cell (rendered on the inline-start/right side in RTL). */
+  icon?: (row: T) => string | null | undefined;
   /** When true, the Saudi Riyal icon is shown once in the header (not per cell) and stripped from body values. */
   currency?: boolean;
+}
+
+@Directive({
+  selector: '[appDataTableCell]',
+  standalone: true,
+})
+export class DataTableCellDirective {
+  readonly key = input.required<string>({ alias: 'appDataTableCell' });
+  readonly template = inject<TemplateRef<{ $implicit: unknown }>>(TemplateRef);
 }
 
 @Component({
@@ -34,6 +45,7 @@ export class DataTableComponent<T extends Record<string, unknown> = Record<strin
   readonly actionsTemplate = contentChild<TemplateRef<{ $implicit: T }>>('actionsCell');
   readonly indicatorsTemplate = contentChild<TemplateRef<{ $implicit: T }>>('indicatorsCell');
   readonly amountTemplate = contentChild<TemplateRef<{ $implicit: T }>>('amountCell');
+  readonly customCells = contentChildren(DataTableCellDirective);
 
   trackRow = (_: number, row: T): unknown => (row as Record<string, unknown>)[this.trackByKey()] ?? _;
 
@@ -62,6 +74,11 @@ export class DataTableComponent<T extends Record<string, unknown> = Record<strin
     return { prefix: value.slice(0, i).trimEnd(), suffix: value.slice(i + 1) };
   }
 
+  icon(row: T, col: DataTableColumn<T>): string {
+    const v = col.icon ? col.icon(row) : null;
+    return v == null ? '' : String(v);
+  }
+
   displayText(row: T, col: DataTableColumn<T>): string {
     const v = this.text(row, col);
     if (col.currency) return v.replace(/₪/g, '').replace(/\s{2,}/g, ' ').trim();
@@ -73,18 +90,26 @@ export class DataTableComponent<T extends Record<string, unknown> = Record<strin
   }
 
   hasCustom(key: string): boolean {
-    return (this.isStatusKey(key) && !!this.statusTemplate())
+    return !!this.customCell(key)
+      || (this.isStatusKey(key) && !!this.statusTemplate())
       || (key === 'actions' && !!this.actionsTemplate())
       || (key === 'indicators' && !!this.indicatorsTemplate())
       || (key === 'amount' && !!this.amountTemplate());
   }
 
   tpl(key: string): TemplateRef<{ $implicit: T }> | null {
+    const custom = this.customCell(key);
+    if (custom) return custom;
     if (this.isStatusKey(key)) return this.statusTemplate() ?? null;
     if (key === 'actions') return this.actionsTemplate() ?? null;
     if (key === 'indicators') return this.indicatorsTemplate() ?? null;
     if (key === 'amount') return this.amountTemplate() ?? null;
     return null;
+  }
+
+  private customCell(key: string): TemplateRef<{ $implicit: T }> | null {
+    const cell = this.customCells().find((c) => c.key() === key);
+    return cell ? (cell.template as TemplateRef<{ $implicit: T }>) : null;
   }
 
   private isStatusKey(key: string): boolean {

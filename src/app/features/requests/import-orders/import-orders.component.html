@@ -1,6 +1,7 @@
 <app-page-banner
   [title]="step() === 1 ? 'استيراد الطلبات' : 'المُعاينة'"
-  [description]="step() === 1 ? 'أضف عدة طلبات دفعة واحدة باستخدام ملف Excel.' : 'راجع صفوف الملف قبل تأكيد الاستيراد.'" />
+  [description]="step() === 1 ? 'أضف عدة طلبات دفعة واحدة باستخدام ملف Excel.' : 'راجع صفوف الملف قبل تأكيد الاستيراد.'"
+  [backRoute]="['/operations/requests']" />
 
 <app-progress-stepper class="mb-4" [steps]="steps()" />
 

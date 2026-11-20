@@ -7,7 +7,8 @@
 
   <app-page-banner
     [title]="'تفاصيل الطلب #' + d.requestNumber"
-    [description]="'حالة الطلب الحالية ' + d.status + '، ويتم تحديث مراحله وأدلته تلقائيًا وفق آخر الإجراءات.'">
+    [description]="'حالة الطلب الحالية ' + d.status + '، ويتم تحديث مراحله وأدلته تلقائيًا وفق آخر الإجراءات.'"
+    [backRoute]="['/operations/requests']">
     <app-status-badge banner-title-badge [label]="d.status" [tone]="d.statusTone" />
     <div banner-actions class="order-banner-actions" (click)="$event.stopPropagation()">
       @if (actionsConfig(); as cfg) {

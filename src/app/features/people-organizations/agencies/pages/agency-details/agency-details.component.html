@@ -1,5 +1,13 @@
 @if (agency(); as a) {
-  <app-page-banner [title]="'تفاصيل المكتب'" [description]="a.agency" />
+  <app-page-banner [title]="'تفاصيل المكتب'" [description]="a.agency" [backRoute]="['/people-organizations/agencies']" />
+
+  <section class="mb-4" aria-label="ملخص الوكالة">
+    <app-summary-container modifierClass="agency-summary">
+      <app-summary-item label="إجمالي الطلبات" [value]="a.requestsCount" iconSrc="assets/images/svg/Home-page/total-requests.svg" />
+      <app-summary-item label="قيد التنفيذ" [value]="a.inProgressCount" iconSrc="assets/images/svg/Home-page/requests-in-progress.svg" />
+      <app-summary-item label="مكتملة" [value]="a.completedCount ?? 0" iconSrc="assets/images/svg/Home-page/completed-requests.svg" />
+    </app-summary-container>
+  </section>
 
   <div class="agency-layout">
     <div class="agency-right">
@@ -34,39 +42,9 @@
         </div>
       </div>
     </div>
-
-    <div class="agency-left" aria-label="ملخص الوكالة">
-      <article class="home-stat-card home-stat--total agency-stat">
-        <div class="home-stat-card__info">
-          <div class="home-stat-card__label">إجمالي الطلبات</div>
-          <div class="home-stat-card__value">{{ a.requestsCount }}</div>
-        </div>
-        <div class="home-stat-card__icon" aria-hidden="true">
-          <app-icon-placeholder size="lg" src="assets/images/svg/Home-page/total-requests.svg" />
-        </div>
-      </article>
-      <article class="home-stat-card home-stat--in-progress agency-stat">
-        <div class="home-stat-card__info">
-          <div class="home-stat-card__label">قيد التنفيذ</div>
-          <div class="home-stat-card__value">{{ a.inProgressCount }}</div>
-        </div>
-        <div class="home-stat-card__icon" aria-hidden="true">
-          <app-icon-placeholder size="lg" src="assets/images/svg/Home-page/requests-in-progress.svg" />
-        </div>
-      </article>
-      <article class="home-stat-card home-stat--completed agency-stat">
-        <div class="home-stat-card__info">
-          <div class="home-stat-card__label">مكتملة</div>
-          <div class="home-stat-card__value">{{ a.completedCount ?? 0 }}</div>
-        </div>
-        <div class="home-stat-card__icon" aria-hidden="true">
-          <app-icon-placeholder size="lg" src="assets/images/svg/Home-page/completed-requests.svg" />
-        </div>
-      </article>
-    </div>
   </div>
 
-  <div class="content-card-body table-card agency-orders-card">
+  <div class="content-card-body table-card agency-orders-card" aria-label="طلبات الوكالة">
     <h3 class="info-card__title">طلبات الوكالة</h3>
     <div class="card-divider"></div>
     <app-data-table [columns]="orderColumns" [rows]="orders()" trackByKey="id" emptyTitle="لا توجد طلبات" emptyMessage="لا توجد طلبات مرتبطة بهذه الوكالة حالياً.">

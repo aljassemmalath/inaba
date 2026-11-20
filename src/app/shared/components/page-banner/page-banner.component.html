@@ -3,6 +3,11 @@
   <div class="page-banner__content">
     <div class="page-banner__text">
       <div class="page-banner__title-row">
+        @if (backRoute() !== null) {
+          <button type="button" class="page-banner__back" (click)="goBack()" aria-label="الرجوع" title="رجوع">
+            <img src="assets/images/svg/Buttons/previous arrow.svg" alt="" aria-hidden="true" width="16" height="16" />
+          </button>
+        }
         <h1 class="page-banner__title">{{ title() }}</h1>
         <div class="page-banner__title-badge"><ng-content select="[banner-title-badge]" /></div>
       </div>

@@ -1,5 +1,5 @@
 import { Component, computed, inject, signal } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Dialog } from '@angular/cdk/dialog';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { DataTableComponent, DataTableColumn } from '../../../../../shared/components/data-table/data-table.component';
@@ -16,6 +16,7 @@ import { DueRow, SettlementRow } from '../../models/due.model';
 })
 export class EntitlementsDetailsComponent {
   private readonly route = inject(ActivatedRoute);
+  private readonly router = inject(Router);
   private readonly dialog = inject(Dialog);
   readonly due = signal<DueRow | null>(null);
 
@@ -32,6 +33,10 @@ export class EntitlementsDetailsComponent {
       const found = DUES_MOCK.find((d) => d.id === id) ?? DUES_MOCK[0];
       this.due.set(found ?? null);
     });
+  }
+
+  goBack(): void {
+    void this.router.navigate(['/finance-reports/dues']);
   }
 
   amountSign(amount: string): 'positive' | 'negative' | 'neutral' {

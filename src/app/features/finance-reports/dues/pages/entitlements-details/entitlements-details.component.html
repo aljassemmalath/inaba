@@ -1,6 +1,11 @@
 @if (due(); as d) {
   <div class="page-header">
-    <h1 class="page-header__title">تفاصيل المستحقات</h1>
+    <div class="page-header__title-row">
+      <button type="button" class="page-back-btn" (click)="goBack()" aria-label="الرجوع" title="رجوع">
+        <img src="assets/images/svg/Buttons/previous arrow.svg" alt="" aria-hidden="true" width="16" height="16" />
+      </button>
+      <h1 class="page-header__title">تفاصيل المستحقات</h1>
+    </div>
     <div class="page-header__actions">
       <button type="button" class="btn btn-brand-outline" (click)="exportExcel()">
         <img src="assets/images/svg/Buttons/excel.svg" alt="" aria-hidden="true" width="16" height="16" />

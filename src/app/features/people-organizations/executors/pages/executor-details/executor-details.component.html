@@ -1,5 +1,5 @@
 @if (details(); as d) {
-  <app-page-banner [title]="d.name" description="عرض بيانات المنفذ ومتابعة الطلب الحالي وسجل الأداء والمستحقات.">
+  <app-page-banner [title]="d.name" description="عرض بيانات المنفذ ومتابعة الطلب الحالي وسجل الأداء والمستحقات." [backRoute]="['/people-organizations/executors']">
     <div banner-actions class="executor-actions-wrap">
       <button type="button" class="btn btn-brand-outline executor-actions-btn" (click)="toggleActions($event)" [attr.aria-expanded]="actionsOpen()" aria-haspopup="menu">
         <span>الإجراءات</span>
@@ -97,9 +97,28 @@
 
     <div class="executor-tab-content">
       @if (activeTab() === 'performance') {
-        <app-empty-state title="لا توجد مؤشرات أداء" message="ستظهر مؤشرات أداء المنفذ هنا عند توفر البيانات." />
+        <section class="executor-performance" aria-label="مؤشرات الأداء">
+          <app-summary-container modifierClass="executor-performance-summary">
+            @for (item of d.performance; track item.label) {
+              <app-summary-item [label]="item.label" [value]="item.value" [iconSrc]="item.iconSrc" />
+            }
+          </app-summary-container>
+        </section>
       } @else if (activeTab() === 'orders') {
-        <app-empty-state title="لا يوجد سجل طلبات" message="لا توجد طلبات سابقة لهذا المنفذ حالياً." />
+        <app-data-table [columns]="orderColumns" [rows]="d.orderHistory" trackByKey="id"
+          emptyTitle="لا يوجد سجل طلبات" emptyMessage="لا توجد طلبات سابقة لهذا المنفذ حالياً.">
+          <ng-template appDataTableCell="assignmentResult" let-row>
+            <app-status-badge [label]="row.assignmentResult" [tone]="row.assignmentTone" />
+          </ng-template>
+          <ng-template #statusCell let-row>
+            <app-status-badge [label]="row.status" [tone]="row.statusTone" />
+          </ng-template>
+          <ng-template #actionsCell let-row>
+            <button type="button" class="btn-icon" aria-label="عرض تفاصيل الطلب" title="عرض" (click)="openOrder(row); $event.stopPropagation()">
+              <span class="icon-placeholder icon-placeholder--sm"><img class="icon-placeholder__image is-visible" src="assets/images/svg/Buttons/view.svg" alt="" /></span>
+            </button>
+          </ng-template>
+        </app-data-table>
       } @else if (activeTab() === 'dues') {
         <app-empty-state title="لا توجد مستحقات" message="لا توجد بيانات مستحقات متاحة لهذا المنفذ حالياً." />
       }

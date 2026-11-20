@@ -1,4 +1,4 @@
-<app-page-banner [title]="meta.title" [description]="meta.description">
+<app-page-banner [title]="meta.title" [description]="meta.description" [backRoute]="['/finance-reports/reports']">
   <div banner-actions class="d-flex gap-2 flex-wrap align-items-center">
     <button type="button" class="btn btn-brand-outline" (click)="exportData()">
       <img src="assets/images/svg/Buttons/excel.svg" alt="" aria-hidden="true" width="16" height="16" />

@@ -4,17 +4,20 @@ import { Dialog } from '@angular/cdk/dialog';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { PageBannerComponent } from '../../../../../shared/components/page-banner/page-banner.component';
 import { StatusBadgeComponent } from '../../../../../shared/components/status-badge/status-badge';
+import { DataTableCellDirective, DataTableColumn, DataTableComponent } from '../../../../../shared/components/data-table/data-table.component';
+import { SummaryContainerComponent } from '../../../../../shared/components/summary-container/summary-container.component';
+import { SummaryItemComponent } from '../../../../../shared/components/summary-item/summary-item.component';
 import { IconPlaceholderComponent } from '../../../../../shared/components/icon-placeholder/icon-placeholder.component';
 import { EmptyStateComponent } from '../../../../../shared/components/empty-state/empty-state';
 import { SimpleConfirmDialogComponent, GenericFormDialogComponent } from '../../../../../shared/components/modal/dialogs';
 import { getExecutorDetails } from '../../data/mock-executor-details';
-import { ExecutorDetails } from '../../models/executor-details.model';
+import { ExecutorDetails, ExecutorOrderRow } from '../../models/executor-details.model';
 
 type ExecutorTab = 'performance' | 'orders' | 'dues';
 
 @Component({
   selector: 'app-executor-details-page',
-  imports: [PageBannerComponent, StatusBadgeComponent, IconPlaceholderComponent, EmptyStateComponent],
+  imports: [PageBannerComponent, StatusBadgeComponent, DataTableComponent, DataTableCellDirective, SummaryContainerComponent, SummaryItemComponent, IconPlaceholderComponent, EmptyStateComponent],
   templateUrl: './executor-details.component.html',
   styleUrl: './executor-details.component.scss',
 })
@@ -35,6 +38,16 @@ export class ExecutorDetailsComponent {
     { id: 'adjustment', label: 'إضافة تسوية', icon: 'assets/images/svg/Buttons/add.svg', dividerAfter: true, confirm: false },
     { id: 'reset', label: 'إعادة تعيين كلمة المرور', icon: 'assets/images/svg/Buttons/view.svg', dividerAfter: true, confirm: true },
     { id: 'disable', label: 'تعطيل الحساب', icon: 'assets/images/svg/Executers/disabled.svg', dividerAfter: false, confirm: true },
+  ];
+
+  readonly orderColumns: DataTableColumn<ExecutorOrderRow>[] = [
+    { key: 'actions', header: 'الإجراءات', width: '90px' },
+    { key: 'completionDate', header: 'تاريخ الإسناد' },
+    { key: 'assignmentDate', header: 'تاريخ الإسناد' },
+    { key: 'status', header: 'حالة الطلب' },
+    { key: 'assignmentResult', header: 'نتيجة الإسناد' },
+    { key: 'product', header: 'المنتج' },
+    { key: 'requestNumber', header: 'رقم الطلب' },
   ];
 
   constructor() {
@@ -168,6 +181,10 @@ export class ExecutorDetailsComponent {
     const d = this.details();
     if (!d?.currentRequest) return;
     this.router.navigate(['/operations/requests', d.currentRequest.id]);
+  }
+
+  openOrder(row: ExecutorOrderRow): void {
+    this.router.navigate(['/operations/requests', row.id]);
   }
 
   progressPercent(): number {

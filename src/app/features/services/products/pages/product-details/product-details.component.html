@@ -1,5 +1,5 @@
 @if (product(); as p) {
-  <app-page-banner [title]="'تفاصيل المنتج'" [description]="p.name" />
+  <app-page-banner [title]="'تفاصيل المنتج'" [description]="p.name" [backRoute]="['/services/products']" />
 
   <div class="product-details-layout">
     <div class="product-right">
