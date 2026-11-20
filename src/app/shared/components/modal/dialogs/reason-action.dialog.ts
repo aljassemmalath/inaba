@@ -13,7 +13,7 @@ export interface ReasonActionData { title: string; description: string; reasonLa
       <div class="form-stack">
         <div>
           <label class="form-label" [attr.for]="id">{{ data.reasonLabel }} <span class="text-danger">*</span></label>
-          <textarea [id]="id" class="form-control" rows="4" [placeholder]="data.reasonPlaceholder" [(ngModel)]="reason"></textarea>
+          <textarea [id]="id" class="form-control form-control--large" rows="4" [placeholder]="data.reasonPlaceholder" [(ngModel)]="reason"></textarea>
         </div>
         @if (data.note) { <p class="hint-note">{{ data.note }}</p> }
       </div>

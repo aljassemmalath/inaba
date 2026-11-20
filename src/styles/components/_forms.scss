@@ -18,6 +18,8 @@
 }
 .form-control::placeholder { color: var(--text-tertiary); }
 
+.form-control--large { min-height: 100px; resize: vertical; }
+
 .input-search {
   padding-inline-start: 2.25rem;
 }

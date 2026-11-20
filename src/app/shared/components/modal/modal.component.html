@@ -6,7 +6,9 @@
   @if (modalType() === 'right') {
     <header class="app-modal__header app-modal__header--right">
       <div class="app-modal__header-main">
-        <app-icon-placeholder size="lg" />
+        <span class="app-modal__icon-circle">
+          <app-icon-placeholder size="lg" [src]="userIcon" />
+        </span>
         <div class="app-modal__titles">
           @if (title()) { <h2 class="app-modal__title">{{ title() }}</h2> }
           @if (description()) { <p class="app-modal__desc">{{ description() }}</p> }
@@ -35,7 +37,9 @@
       </button>
     }
     <div class="app-modal__center">
-      <div class="app-modal__center-icon"><app-icon-placeholder size="xl" /></div>
+      <div class="app-modal__icon-circle">
+        <app-icon-placeholder size="lg" [src]="userIcon" />
+      </div>
       @if (title()) { <h2 class="app-modal__title app-modal__title--center">{{ title() }}</h2> }
       @if (description()) { <p class="app-modal__desc app-modal__desc--center">{{ description() }}</p> }
       <div class="app-modal__body app-modal__body--center">

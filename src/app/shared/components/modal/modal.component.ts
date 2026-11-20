@@ -20,6 +20,8 @@ import { MODAL_SIZE_WIDTH, ModalSize, ModalType } from './modal.types';
 export class ModalComponent {
   private readonly dialogRef = inject(DialogRef<unknown>, { optional: true });
 
+  readonly userIcon = 'assets/images/svg/Header/user.svg';
+
   readonly modalType = input<ModalType>('right');
   readonly modalSize = input<ModalSize>('medium');
   readonly title = input('');
