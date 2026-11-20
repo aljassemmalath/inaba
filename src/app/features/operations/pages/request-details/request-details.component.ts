@@ -21,15 +21,15 @@ export interface OrderActionsConfig {
 }
 
 const ICON = {
-  addUser: '/assets/images/svg/Buttons/user%20add.svg',
-  addNotification: '/assets/images/svg/Buttons/notification.svg',
-  edit: '/assets/images/svg/Buttons/edit-02.svg',
-  note: '/assets/images/svg/Buttons/comment-add-01.svg',
-  delete: '/assets/images/svg/Buttons/delete-02.svg',
-  reassign: '/assets/images/svg/Buttons/reassign.svg',
-  unassign: '/assets/images/svg/Buttons/unassign.svg',
-  freeze: '/assets/images/svg/Buttons/video-off.svg',
-  arrowDown: '/assets/images/svg/Buttons/arrow%20down.svg',
+  addUser: 'assets/images/svg/Buttons/user%20add.svg',
+  addNotification: 'assets/images/svg/Buttons/notification.svg',
+  edit: 'assets/images/svg/Buttons/edit-02.svg',
+  note: 'assets/images/svg/Buttons/comment-add-01.svg',
+  delete: 'assets/images/svg/Buttons/delete-02.svg',
+  reassign: 'assets/images/svg/Buttons/reassign.svg',
+  unassign: 'assets/images/svg/Buttons/unassign.svg',
+  freeze: 'assets/images/svg/Buttons/video-off.svg',
+  arrowDown: 'assets/images/svg/Buttons/arrow%20down.svg',
 };
 
 @Component({

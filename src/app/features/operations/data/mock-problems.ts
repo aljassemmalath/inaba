@@ -10,7 +10,7 @@ export const PROBLEMS_MOCK: ProblemRow[] = [
 ];
 
 export const PROBLEMS_SUMMARY = [
-  { label: 'قيد المتابعة', value: 3, modifierClass: 'problems-followup', iconSrc: '/assets/images/svg/Problems/under%20review.svg' },
-  { label: 'مفتوحة', value: 3, modifierClass: 'problems-open', iconSrc: '/assets/images/svg/Problems/open%20problems.svg' },
-  { label: 'إجمالي المشاكل', value: 6, modifierClass: 'problems-total', iconSrc: '/assets/images/svg/Problems/all%20problems.svg' },
+  { label: 'قيد المتابعة', value: 3, modifierClass: 'problems-followup', iconSrc: 'assets/images/svg/Problems/under%20review.svg' },
+  { label: 'مفتوحة', value: 3, modifierClass: 'problems-open', iconSrc: 'assets/images/svg/Problems/open%20problems.svg' },
+  { label: 'إجمالي المشاكل', value: 6, modifierClass: 'problems-total', iconSrc: 'assets/images/svg/Problems/all%20problems.svg' },
 ];

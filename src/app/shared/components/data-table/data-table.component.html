@@ -17,7 +17,7 @@
                 @if (col.currency) {
                   <span class="app-data-table__th-currency">
                     <span>{{ col.header }}</span>
-                    <img class="riyal-icon" src="/assets/images/svg/saudi-riyal-symbol-cyan%20700.svg" alt="ر.س" />
+                    <img class="riyal-icon" src="assets/images/svg/saudi-riyal-symbol-cyan%20700.svg" alt="ر.س" />
                   </span>
                 } @else {
                   {{ col.header }}
@@ -43,12 +43,12 @@
                       <div class="app-data-table__cell-stack">
                         <span class="app-data-table__primary">
                           @if (showInlineRiyal(row, col)) {
-                            <span class="riyal-inline">@if (riyalParts(text(row, col)).prefix) {<span>{{ riyalParts(text(row, col)).prefix }}</span>}<img class="riyal-icon" src="/assets/images/svg/saudi-riyal-symbol-cyan%20700.svg" alt="ر.س" />@if (riyalParts(text(row, col)).suffix) {<span>{{ riyalParts(text(row, col)).suffix }}</span>}</span>
+                            <span class="riyal-inline">@if (riyalParts(text(row, col)).prefix) {<span>{{ riyalParts(text(row, col)).prefix }}</span>}<img class="riyal-icon" src="assets/images/svg/saudi-riyal-symbol-cyan%20700.svg" alt="ر.س" />@if (riyalParts(text(row, col)).suffix) {<span>{{ riyalParts(text(row, col)).suffix }}</span>}</span>
                           } @else { {{ displayText(row, col) }} }
                         </span>
                         <span class="app-data-table__description">
                           @if (hasRiyal(description(row, col))) {
-                            <span class="riyal-inline">@if (riyalParts(description(row, col)).prefix) {<span>{{ riyalParts(description(row, col)).prefix }}</span>}<img class="riyal-icon" src="/assets/images/svg/saudi-riyal-symbol-cyan%20700.svg" alt="ر.س" />@if (riyalParts(description(row, col)).suffix) {<span>{{ riyalParts(description(row, col)).suffix }}</span>}</span>
+                            <span class="riyal-inline">@if (riyalParts(description(row, col)).prefix) {<span>{{ riyalParts(description(row, col)).prefix }}</span>}<img class="riyal-icon" src="assets/images/svg/saudi-riyal-symbol-cyan%20700.svg" alt="ر.س" />@if (riyalParts(description(row, col)).suffix) {<span>{{ riyalParts(description(row, col)).suffix }}</span>}</span>
                           } @else { {{ description(row, col) }} }
                         </span>
                       </div>
@@ -58,7 +58,7 @@
                         [class.cell-emphasis]="col.key === 'requestNumber' || col.key === 'orderNumber' || col.key === 'problem'"
                       >
                         @if (showInlineRiyal(row, col)) {
-                          <span class="riyal-inline">@if (riyalParts(text(row, col)).prefix) {<span>{{ riyalParts(text(row, col)).prefix }}</span>}<img class="riyal-icon" src="/assets/images/svg/saudi-riyal-symbol-cyan%20700.svg" alt="ر.س" />@if (riyalParts(text(row, col)).suffix) {<span>{{ riyalParts(text(row, col)).suffix }}</span>}</span>
+                          <span class="riyal-inline">@if (riyalParts(text(row, col)).prefix) {<span>{{ riyalParts(text(row, col)).prefix }}</span>}<img class="riyal-icon" src="assets/images/svg/saudi-riyal-symbol-cyan%20700.svg" alt="ر.س" />@if (riyalParts(text(row, col)).suffix) {<span>{{ riyalParts(text(row, col)).suffix }}</span>}</span>
                         } @else { {{ displayText(row, col) }} }
                       </span>
                     }

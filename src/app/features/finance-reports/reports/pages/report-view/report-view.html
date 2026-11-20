@@ -1,11 +1,11 @@
 <app-page-banner [title]="meta.title" [description]="meta.description">
   <div banner-actions class="d-flex gap-2 flex-wrap align-items-center">
     <button type="button" class="btn btn-brand-outline" (click)="exportData()">
-      <img src="/assets/images/svg/Buttons/excel.svg" alt="" aria-hidden="true" width="16" height="16" />
+      <img src="assets/images/svg/Buttons/excel.svg" alt="" aria-hidden="true" width="16" height="16" />
       <span>تصدير البيانات</span>
     </button>
     <button type="button" class="btn btn-brand-outline" (click)="openFilter()">
-      <img src="/assets/images/svg/Buttons/filter.svg" alt="" aria-hidden="true" width="16" height="16" />
+      <img src="assets/images/svg/Buttons/filter.svg" alt="" aria-hidden="true" width="16" height="16" />
       <span>فلترة</span>
     </button>
   </div>
@@ -24,7 +24,7 @@
       <app-data-table [columns]="productsColumns" [rows]="productsRows()" trackByKey="id" emptyTitle="لا توجد بيانات" emptyMessage="لا توجد نتائج مطابقة.">
         <ng-template #actionsCell let-row>
           <button type="button" class="btn-icon" aria-label="عرض تفاصيل المنتج" title="عرض" (click)="openProductDetails(row); $event.stopPropagation()">
-            <span class="icon-placeholder icon-placeholder--sm"><img class="icon-placeholder__image is-visible" src="/assets/images/svg/Buttons/view.svg" alt="" /></span>
+            <span class="icon-placeholder icon-placeholder--sm"><img class="icon-placeholder__image is-visible" src="assets/images/svg/Buttons/view.svg" alt="" /></span>
           </button>
         </ng-template>
       </app-data-table>
@@ -36,7 +36,7 @@
         </ng-template>
         <ng-template #actionsCell let-row>
           <button type="button" class="btn-icon" aria-label="عرض" title="عرض">
-            <span class="icon-placeholder icon-placeholder--sm"><img class="icon-placeholder__image is-visible" src="/assets/images/svg/Buttons/view.svg" alt="" /></span>
+            <span class="icon-placeholder icon-placeholder--sm"><img class="icon-placeholder__image is-visible" src="assets/images/svg/Buttons/view.svg" alt="" /></span>
           </button>
         </ng-template>
       </app-data-table>
@@ -69,7 +69,7 @@
     <header class="filter-drawer__header">
       <h2 class="filter-drawer__title">فلترة</h2>
       <button type="button" class="btn-icon" aria-label="إغلاق" (click)="closeFilter()">
-        <span class="icon-placeholder icon-placeholder--sm"><img class="icon-placeholder__image is-visible" src="/assets/images/svg/Buttons/delete-02.svg" alt="" /></span>
+        <span class="icon-placeholder icon-placeholder--sm"><img class="icon-placeholder__image is-visible" src="assets/images/svg/Buttons/delete-02.svg" alt="" /></span>
       </button>
     </header>
     <div class="filter-drawer__body">

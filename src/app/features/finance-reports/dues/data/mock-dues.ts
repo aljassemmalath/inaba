@@ -1,10 +1,10 @@
 import { DueRow } from '../models/due.model';
 
 export const DUES_SUMMARY = [
-  { label: 'إجمالي المستحقات', value: '₪ 173,200', modifierClass: 'dues-total', iconSrc: '/assets/images/svg/Dues/all.svg' },
-  { label: 'مستحقات الشهر الحالي', value: '₪ 48,750', modifierClass: 'dues-month', iconSrc: '/assets/images/svg/Dues/calendar.svg' },
-  { label: 'جاهزة للدفع الخارجي', value: '₪ 31,400', modifierClass: 'dues-ready', iconSrc: '/assets/images/svg/Dues/checkmark-circle.svg' },
-  { label: 'التسويات', value: '₪ 2,150', modifierClass: 'dues-adjustments', iconSrc: '/assets/images/svg/Dues/balance-scale.svg' },
+  { label: 'إجمالي المستحقات', value: '₪ 173,200', modifierClass: 'dues-total', iconSrc: 'assets/images/svg/Dues/all.svg' },
+  { label: 'مستحقات الشهر الحالي', value: '₪ 48,750', modifierClass: 'dues-month', iconSrc: 'assets/images/svg/Dues/calendar.svg' },
+  { label: 'جاهزة للدفع الخارجي', value: '₪ 31,400', modifierClass: 'dues-ready', iconSrc: 'assets/images/svg/Dues/checkmark-circle.svg' },
+  { label: 'التسويات', value: '₪ 2,150', modifierClass: 'dues-adjustments', iconSrc: 'assets/images/svg/Dues/balance-scale.svg' },
 ];
 
 export const DUES_MOCK: DueRow[] = [

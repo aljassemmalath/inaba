@@ -13,7 +13,7 @@ import { SupervisorRow } from '../../models/supervisor.model';
       <app-data-table [columns]="columns" [rows]="rows" trackByKey="id">
         <ng-template #actionsCell let-row>
           <button type="button" class="btn-icon" aria-label="عرض تفاصيل المشرف" title="عرض">
-            <span class="icon-placeholder icon-placeholder--sm"><img class="icon-placeholder__image is-visible" src="/assets/images/svg/Buttons/view.svg" alt="" /></span>
+            <span class="icon-placeholder icon-placeholder--sm"><img class="icon-placeholder__image is-visible" src="assets/images/svg/Buttons/view.svg" alt="" /></span>
           </button>
         </ng-template>
       </app-data-table>

@@ -43,10 +43,10 @@ export class NeedsActionComponent {
 
   readonly stats: NaStat[] = [
     { title: 'إجمالي الحالات', value: 28, modifierClass: 'na-stat-total' },
-    { title: 'بانتظار الإسناد', value: 17, iconSrc: '/assets/images/svg/Need%20Action/waiting%20executer.svg', modifierClass: 'na-stat-pending-assignment' },
-    { title: 'بانتظار الإشعار', value: 6, iconSrc: '/assets/images/svg/Need%20Action/waiting.svg', modifierClass: 'na-stat-pending-notify' },
-    { title: 'مشاكل وأدلة', value: 3, iconSrc: '/assets/images/svg/Need%20Action/problems.svg', modifierClass: 'na-stat-issues-evidence' },
-    { title: 'فشل رفع أو معالجة ملف', value: 2, iconSrc: '/assets/images/svg/Need%20Action/file-remove.svg', modifierClass: 'na-stat-file-failures' },
+    { title: 'بانتظار الإسناد', value: 17, iconSrc: 'assets/images/svg/Need%20Action/waiting%20executer.svg', modifierClass: 'na-stat-pending-assignment' },
+    { title: 'بانتظار الإشعار', value: 6, iconSrc: 'assets/images/svg/Need%20Action/waiting.svg', modifierClass: 'na-stat-pending-notify' },
+    { title: 'مشاكل وأدلة', value: 3, iconSrc: 'assets/images/svg/Need%20Action/problems.svg', modifierClass: 'na-stat-issues-evidence' },
+    { title: 'فشل رفع أو معالجة ملف', value: 2, iconSrc: 'assets/images/svg/Need%20Action/file-remove.svg', modifierClass: 'na-stat-file-failures' },
   ];
 
   readonly filteredRequests = computed(() => {

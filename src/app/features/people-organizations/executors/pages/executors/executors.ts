@@ -27,7 +27,7 @@ import { ExecutorRow } from '../../models/executor.model';
         </ng-template>
         <ng-template #actionsCell let-row>
           <button type="button" class="btn-icon" aria-label="عرض تفاصيل المنفذ" title="عرض" (click)="openDetails(row); $event.stopPropagation()">
-            <span class="icon-placeholder icon-placeholder--sm"><img class="icon-placeholder__image is-visible" src="/assets/images/svg/Buttons/view.svg" alt="" /></span>
+            <span class="icon-placeholder icon-placeholder--sm"><img class="icon-placeholder__image is-visible" src="assets/images/svg/Buttons/view.svg" alt="" /></span>
           </button>
         </ng-template>
       </app-data-table>

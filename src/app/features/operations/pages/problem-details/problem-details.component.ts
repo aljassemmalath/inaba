@@ -15,7 +15,7 @@ import { ProblemDetails } from '../../models/problem-details.model';
   template: `
     <app-modal modalType="center" modalSize="small" [title]="'معاينة المرفق'" [showCloseButton]="true">
       <div modal-body class="p-2" style="text-align:center;">
-        <span class="icon-placeholder icon-placeholder--xl" aria-hidden="true"><img class="icon-placeholder__image is-visible" src="/assets/images/svg/Buttons/view.svg" alt="" /></span>
+        <span class="icon-placeholder icon-placeholder--xl" aria-hidden="true"><img class="icon-placeholder__image is-visible" src="assets/images/svg/Buttons/view.svg" alt="" /></span>
         <p style="margin:12px 0 0; font-weight:500;">{{ data.fileName }}</p>
         <p style="margin:4px 0 0; color:var(--text-secondary); font-size:13px;">معاينة الملف غير متاحة حاليًا (لا يوجد رابط مرفق).</p>
       </div>

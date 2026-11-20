@@ -19,7 +19,7 @@ import { SearchBarComponent } from '../search-bar/search-bar.component';
           }
           @if (showFilter()) {
             <button type="button" class="btn btn-brand-outline" (click)="filterClick.emit()" [attr.aria-expanded]="filterExpanded()">
-              <img src="/assets/images/svg/Buttons/filter.svg" alt="" aria-hidden="true" width="16" height="16" />
+              <img src="assets/images/svg/Buttons/filter.svg" alt="" aria-hidden="true" width="16" height="16" />
               <span>{{ filterLabel() }}</span>
             </button>
           }
@@ -29,7 +29,7 @@ import { SearchBarComponent } from '../search-bar/search-bar.component';
           <ng-content select="[toolbar-actions]" />
           @if (showExport()) {
             <button type="button" class="btn btn-brand-outline" (click)="exportClick.emit()" [attr.aria-expanded]="exportExpanded()">
-              <img src="/assets/images/svg/Buttons/excel.svg" alt="" aria-hidden="true" width="16" height="16" />
+              <img src="assets/images/svg/Buttons/excel.svg" alt="" aria-hidden="true" width="16" height="16" />
               <span>{{ exportLabel() }}</span>
             </button>
           }

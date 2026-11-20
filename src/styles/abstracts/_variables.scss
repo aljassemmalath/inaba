@@ -467,7 +467,7 @@ $cyan-solid: $info-500;
   --neutral-100: #{$neutral-100};
 
   // Page banner decorative pattern (local asset)
-  --page-banner-pattern: url("/assets/images/svg/banner%20pattern.svg");
+  --page-banner-pattern: url("../../assets/images/svg/banner pattern.svg");
   // Modal (set --modal-pattern to a background-image later)
   --modal-pattern: none;
   --modal-size-lg: 800px;

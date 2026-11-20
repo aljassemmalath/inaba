@@ -3,7 +3,7 @@
     <div banner-actions class="executor-actions-wrap">
       <button type="button" class="btn btn-brand-outline executor-actions-btn" (click)="toggleActions($event)" [attr.aria-expanded]="actionsOpen()" aria-haspopup="menu">
         <span>الإجراءات</span>
-        <img src="/assets/images/svg/Buttons/filter.svg" alt="" aria-hidden="true" width="16" height="16" />
+        <img src="assets/images/svg/Buttons/filter.svg" alt="" aria-hidden="true" width="16" height="16" />
       </button>
       @if (actionsOpen()) {
         <div class="executor-actions-menu" role="menu">
@@ -69,7 +69,7 @@
             <div class="request-number-row">
               <span class="request-number-value">{{ cr.requestNumber }}</span>
               <button type="button" class="copy-btn" (click)="copyRequestNumber()" [attr.aria-label]="copied() ? 'تم النسخ' : 'نسخ رقم الطلب'" [attr.title]="copied() ? 'تم النسخ' : 'نسخ رقم الطلب'">
-                <app-icon-placeholder size="sm" src="/assets/images/svg/Buttons/view.svg" />
+                <app-icon-placeholder size="sm" src="assets/images/svg/Buttons/view.svg" />
               </button>
               @if (copied()) { <span class="copied-hint">تم النسخ</span> }
             </div>

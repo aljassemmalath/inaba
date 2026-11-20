@@ -1,11 +1,11 @@
 import { ExecutorRow } from '../models/executor.model';
 
 export const EXECUTORS_SUMMARY = [
-  { label: 'إجمالي المنفذين', value: 48, hint: '', modifierClass: 'exec-total', iconSrc: '/assets/images/svg/Executers/all.svg' },
-  { label: 'مُتاح', value: 19, hint: '(يمكن إسناد طلب جديد)', modifierClass: 'exec-available', iconSrc: '/assets/images/svg/Executers/available.svg' },
-  { label: 'مشغول', value: 22, hint: '(لديه طلب جارٍ)', modifierClass: 'exec-busy', iconSrc: '/assets/images/svg/Executers/busy.svg' },
-  { label: 'خارج الدوام', value: 5, hint: '(غير متاح للإسناد)', modifierClass: 'exec-offduty', iconSrc: '/assets/images/svg/Executers/off.svg' },
-  { label: 'معطل', value: 2, hint: '(لا يستطيع الدخول)', modifierClass: 'exec-disabled', iconSrc: '/assets/images/svg/Executers/disabled.svg' },
+  { label: 'إجمالي المنفذين', value: 48, hint: '', modifierClass: 'exec-total', iconSrc: 'assets/images/svg/Executers/all.svg' },
+  { label: 'مُتاح', value: 19, hint: '(يمكن إسناد طلب جديد)', modifierClass: 'exec-available', iconSrc: 'assets/images/svg/Executers/available.svg' },
+  { label: 'مشغول', value: 22, hint: '(لديه طلب جارٍ)', modifierClass: 'exec-busy', iconSrc: 'assets/images/svg/Executers/busy.svg' },
+  { label: 'خارج الدوام', value: 5, hint: '(غير متاح للإسناد)', modifierClass: 'exec-offduty', iconSrc: 'assets/images/svg/Executers/off.svg' },
+  { label: 'معطل', value: 2, hint: '(لا يستطيع الدخول)', modifierClass: 'exec-disabled', iconSrc: 'assets/images/svg/Executers/disabled.svg' },
 ];
 
 export const EXECUTORS_MOCK: ExecutorRow[] = [

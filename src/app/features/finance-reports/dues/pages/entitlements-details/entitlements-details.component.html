@@ -3,7 +3,7 @@
     <h1 class="page-header__title">تفاصيل المستحقات</h1>
     <div class="page-header__actions">
       <button type="button" class="btn btn-brand-outline" (click)="exportExcel()">
-        <img src="/assets/images/svg/Buttons/excel.svg" alt="" aria-hidden="true" width="16" height="16" />
+        <img src="assets/images/svg/Buttons/excel.svg" alt="" aria-hidden="true" width="16" height="16" />
         <span>تصدير Excel</span>
       </button>
     </div>
@@ -17,24 +17,24 @@
         <div class="home-stat-card__info">
           <div class="home-stat-card__label">الإجمالي بعد التسويات</div>
           <div class="home-stat-card__value riyal-inline">
-            <img class="riyal-icon" src="/assets/images/svg/saudi-riyal-symbol-cyan%20700.svg" alt="ر.س" />
+            <img class="riyal-icon" src="assets/images/svg/saudi-riyal-symbol-cyan%20700.svg" alt="ر.س" />
             <span>{{ d.finalDue.replace('₪','').trim() }}</span>
           </div>
         </div>
         <div class="home-stat-card__icon" aria-hidden="true">
-          <app-icon-placeholder size="lg" src="/assets/images/svg/Dues/all.svg" />
+          <app-icon-placeholder size="lg" src="assets/images/svg/Dues/all.svg" />
         </div>
       </article>
       <article class="home-stat-card home-stat--completed ent-stat">
         <div class="home-stat-card__info">
           <div class="home-stat-card__label">مستحقات الطلبات</div>
           <div class="home-stat-card__value riyal-inline">
-            <img class="riyal-icon" src="/assets/images/svg/saudi-riyal-symbol-cyan%20700.svg" alt="ر.س" />
+            <img class="riyal-icon" src="assets/images/svg/saudi-riyal-symbol-cyan%20700.svg" alt="ر.س" />
             <span>{{ d.baseAmount.replace('₪','').trim() }}</span>
           </div>
         </div>
         <div class="home-stat-card__icon" aria-hidden="true">
-          <app-icon-placeholder size="lg" src="/assets/images/svg/Dues/checkmark-circle.svg" />
+          <app-icon-placeholder size="lg" src="assets/images/svg/Dues/checkmark-circle.svg" />
         </div>
       </article>
       <article class="home-stat-card home-stat--in-progress ent-stat">
@@ -54,7 +54,7 @@
       <h3 class="info-card__title">التسويات</h3>
       <div class="card-header-action">
         <button type="button" class="btn btn-brand btn-sm" (click)="addSettlement()">
-          <img src="/assets/images/svg/Buttons/add.svg" alt="" aria-hidden="true" width="16" height="16" />
+          <img src="assets/images/svg/Buttons/add.svg" alt="" aria-hidden="true" width="16" height="16" />
           <span>إضافة تسوية</span>
         </button>
       </div>
@@ -66,7 +66,7 @@
           [class.amount-positive]="amountSign(row.amount) === 'positive'"
           [class.amount-negative]="amountSign(row.amount) === 'negative'">
           <span class="riyal-inline">
-            <img class="riyal-icon" src="/assets/images/svg/saudi-riyal-symbol-cyan%20700.svg" alt="ر.س" />
+            <img class="riyal-icon" src="assets/images/svg/saudi-riyal-symbol-cyan%20700.svg" alt="ر.س" />
             <span>{{ amountNumber(row.amount) }}</span>
           </span>
         </span>

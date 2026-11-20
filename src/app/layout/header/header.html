@@ -7,14 +7,14 @@
   </div>
   <div class="header-left">
     <button type="button" class="btn-icon position-relative" aria-label="الإشعارات">
-      <app-icon-placeholder size="md" src="/assets/images/svg/Header/notification.svg" />
+      <app-icon-placeholder size="md" src="assets/images/svg/Header/notification.svg" />
       <span class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle" style="margin-inline-start:-10px;margin-top:10px">
         <span class="visually-hidden">إشعارات جديدة</span>
       </span>
     </button>
     <div class="position-relative">
       <button type="button" class="header-profile-btn" (click)="toggleMenu()" aria-haspopup="menu" [attr.aria-expanded]="menuOpen()" aria-label="قائمة المستخدم">
-        <app-icon-placeholder size="md" src="/assets/images/svg/Header/user.svg" />
+        <app-icon-placeholder size="md" src="assets/images/svg/Header/user.svg" />
       </button>
       @if (menuOpen()) {
         <div class="dropdown-menu dropdown-menu-end show" style="position:absolute;inset-inline-end:0;top:calc(100% + 6px);min-width:180px">

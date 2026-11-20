@@ -8,7 +8,7 @@ import { IconPlaceholderComponent } from '../icon-placeholder/icon-placeholder.c
   template: `
     <div class="search-wrap" [style.width]="width()" [style.min-width]="minWidth()">
       <span class="search-icon" aria-hidden="true">
-        <app-icon-placeholder size="sm" src="/assets/images/svg/Header/search.svg" />
+        <app-icon-placeholder size="sm" src="assets/images/svg/Header/search.svg" />
       </span>
       <label class="visually-hidden" [attr.for]="inputId()">{{ label() }}</label>
       <input

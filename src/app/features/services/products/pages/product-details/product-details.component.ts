@@ -16,7 +16,7 @@ import { Product, ProductStage } from '../../models/product.model';
   template: `
     <app-modal modalType="center" modalSize="small" [title]="data.title" [showCloseButton]="true">
       <div modal-body style="text-align:center; padding:8px 0;">
-        <app-icon-placeholder size="xl" src="/assets/images/svg/Buttons/view.svg" />
+        <app-icon-placeholder size="xl" src="assets/images/svg/Buttons/view.svg" />
         <p style="margin:12px 0 0; font-weight:500;">{{ data.subtitle }}</p>
         <p style="margin:4px 0 0; color:var(--text-secondary); font-size:13px;">{{ data.message }}</p>
       </div>

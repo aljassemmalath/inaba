@@ -30,11 +30,11 @@ export class ExecutorDetailsComponent {
   readonly copied = signal(false);
 
   readonly actions = [
-    { id: 'edit', label: 'تعديل بيانات المُنفذ', icon: '/assets/images/svg/Buttons/edit-02.svg', dividerAfter: true, confirm: false },
-    { id: 'duty', label: 'تغيير حالة الدوام', icon: '/assets/images/svg/Executers/available.svg', dividerAfter: true, confirm: false },
-    { id: 'adjustment', label: 'إضافة تسوية', icon: '/assets/images/svg/Buttons/add.svg', dividerAfter: true, confirm: false },
-    { id: 'reset', label: 'إعادة تعيين كلمة المرور', icon: '/assets/images/svg/Buttons/view.svg', dividerAfter: true, confirm: true },
-    { id: 'disable', label: 'تعطيل الحساب', icon: '/assets/images/svg/Executers/disabled.svg', dividerAfter: false, confirm: true },
+    { id: 'edit', label: 'تعديل بيانات المُنفذ', icon: 'assets/images/svg/Buttons/edit-02.svg', dividerAfter: true, confirm: false },
+    { id: 'duty', label: 'تغيير حالة الدوام', icon: 'assets/images/svg/Executers/available.svg', dividerAfter: true, confirm: false },
+    { id: 'adjustment', label: 'إضافة تسوية', icon: 'assets/images/svg/Buttons/add.svg', dividerAfter: true, confirm: false },
+    { id: 'reset', label: 'إعادة تعيين كلمة المرور', icon: 'assets/images/svg/Buttons/view.svg', dividerAfter: true, confirm: true },
+    { id: 'disable', label: 'تعطيل الحساب', icon: 'assets/images/svg/Executers/disabled.svg', dividerAfter: false, confirm: true },
   ];
 
   constructor() {

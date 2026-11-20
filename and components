@@ -1,0 +1,68 @@
+warning: in the working copy of 'src/app/features/finance-reports/dues/data/mock-dues.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/app/features/finance-reports/dues/pages/dues/dues.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/app/features/finance-reports/dues/pages/entitlements-details/entitlements-details.component.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/app/features/finance-reports/reports/pages/report-view/report-view.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/app/features/operations/data/mock-problems.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/app/features/operations/pages/needs-action/needs-action.component.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/app/features/operations/pages/needs-action/needs-action.component.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/app/features/operations/pages/operations/operations.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/app/features/operations/pages/problem-details/problem-details.component.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/app/features/operations/pages/problem-details/problem-details.component.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/app/features/operations/pages/problems/problems.component.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/app/features/operations/pages/request-details/request-details.component.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/app/features/operations/pages/request-details/request-details.component.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/app/features/operations/pages/requests-list/requests-list.component.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/app/features/people-organizations/agencies/pages/agencies/agencies.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/app/features/people-organizations/agencies/pages/agency-details/agency-details.component.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/app/features/people-organizations/executors/data/mock-executors.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/app/features/people-organizations/executors/pages/executor-details/executor-details.component.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/app/features/people-organizations/executors/pages/executor-details/executor-details.component.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/app/features/people-organizations/executors/pages/executors/executors.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/app/features/people-organizations/supervisors/pages/supervisors/supervisors.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/app/features/requests/import-orders/import-orders.component.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/app/features/services/products/pages/product-details/product-details.component.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/app/features/services/products/pages/product-details/product-details.component.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/app/layout/header/header.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/app/shared/components/data-table/data-table.component.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/app/shared/components/filter-toolbar/filter-toolbar.component.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/app/shared/components/header-search-bar/header-search-bar.component.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/app/shared/components/page-banner/page-banner.component.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/app/shared/components/page-banner/page-banner.component.scss', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/app/shared/components/search-bar/search-bar.component.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/app/shared/components/summary-item/summary-item.component.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/styles/abstracts/_variables.scss', LF will be replaced by CRLF the next time Git touches it
+ angular.json                                           |  1 [32m+[m
+ .../features/finance-reports/dues/data/mock-dues.ts    |  8 [32m++++[m[31m----[m
+ .../features/finance-reports/dues/pages/dues/dues.ts   |  2 [32m+[m[31m-[m
+ .../entitlements-details.component.html                | 14 [32m+++++++[m[31m-------[m
+ .../reports/pages/report-view/report-view.html         | 10 [32m+++++[m[31m-----[m
+ src/app/features/operations/data/mock-problems.ts      |  6 [32m+++[m[31m---[m
+ .../pages/needs-action/needs-action.component.html     |  6 [32m+++[m[31m---[m
+ .../pages/needs-action/needs-action.component.ts       |  8 [32m++++[m[31m----[m
+ .../operations/pages/operations/operations.html        |  8 [32m++++[m[31m----[m
+ .../problem-details/problem-details.component.html     |  4 [32m++[m[31m--[m
+ .../pages/problem-details/problem-details.component.ts |  2 [32m+[m[31m-[m
+ .../operations/pages/problems/problems.component.html  |  2 [32m+[m[31m-[m
+ .../request-details/request-details.component.html     | 14 [32m+++++++[m[31m-------[m
+ .../pages/request-details/request-details.component.ts | 18 [32m+++++++++[m[31m---------[m
+ .../pages/requests-list/requests-list.component.html   |  6 [32m+++[m[31m---[m
+ .../agencies/pages/agencies/agencies.ts                |  2 [32m+[m[31m-[m
+ .../pages/agency-details/agency-details.component.html |  2 [32m+[m[31m-[m
+ .../executors/data/mock-executors.ts                   | 10 [32m+++++[m[31m-----[m
+ .../executor-details/executor-details.component.html   |  4 [32m++[m[31m--[m
+ .../executor-details/executor-details.component.ts     | 10 [32m+++++[m[31m-----[m
+ .../executors/pages/executors/executors.ts             |  2 [32m+[m[31m-[m
+ .../supervisors/pages/supervisors/supervisors.ts       |  2 [32m+[m[31m-[m
+ .../import-orders/import-orders.component.html         |  2 [32m+[m[31m-[m
+ .../product-details/product-details.component.html     | 14 [32m+++++++[m[31m-------[m
+ .../pages/product-details/product-details.component.ts |  2 [32m+[m[31m-[m
+ src/app/layout/header/header.html                      |  4 [32m++[m[31m--[m
+ .../components/data-table/data-table.component.html    |  8 [32m++++[m[31m----[m
+ .../filter-toolbar/filter-toolbar.component.ts         |  4 [32m++[m[31m--[m
+ .../header-search-bar/header-search-bar.component.ts   |  2 [32m+[m[31m-[m
+ .../components/page-banner/page-banner.component.css   |  2 [32m+[m[31m-[m
+ .../components/page-banner/page-banner.component.scss  |  2 [32m+[m[31m-[m
+ .../components/search-bar/search-bar.component.ts      |  2 [32m+[m[31m-[m
+ .../components/summary-item/summary-item.component.ts  |  2 [32m+[m[31m-[m
+ src/styles/abstracts/_variables.scss                   |  2 [32m+[m[31m-[m
+ 34 files changed, 94 insertions(+), 93 deletions(-)

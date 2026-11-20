@@ -14,7 +14,7 @@ import { CircleIconComponent } from '../circle-icon/circle-icon.component';
           @if (isRiyal()) {
             <span class="riyal-value">
               @if (riyalParts().prefix) { <span>{{ riyalParts().prefix }}</span> }
-              <img class="riyal-icon" src="/assets/images/svg/saudi-riyal-symbol-cyan%20700.svg" alt="ر.س" />
+              <img class="riyal-icon" src="assets/images/svg/saudi-riyal-symbol-cyan%20700.svg" alt="ر.س" />
               @if (riyalParts().suffix) { <span>{{ riyalParts().suffix }}</span> }
             </span>
           } @else {

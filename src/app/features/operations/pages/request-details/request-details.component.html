@@ -49,13 +49,13 @@
     <aside class="details-right" aria-label="بطاقات المعلومات">
       <!-- 1. Service card -->
       <div class="service-card" aria-label="بطاقة الخدمة">
-        <img class="service-card__bg" src="/assets/images/imgs/order%20details/service%20image.png" alt="" aria-hidden="true" />
-        <img class="service-card__pattern" src="/assets/images/svg/order%20details/pattern.svg" alt="" aria-hidden="true" />
+        <img class="service-card__bg" src="assets/images/imgs/order%20details/service%20image.png" alt="" aria-hidden="true" />
+        <img class="service-card__pattern" src="assets/images/svg/order%20details/pattern.svg" alt="" aria-hidden="true" />
         <div class="service-card__content">
           <div class="service-card__number">#{{ d.requestNumber }}</div>
           <div class="service-card__title">{{ d.serviceName }}</div>
           <div class="service-card__date-row">
-            <img class="service-card__calendar" src="/assets/images/svg/order%20details/calendar.svg" alt="" aria-hidden="true" />
+            <img class="service-card__calendar" src="assets/images/svg/order%20details/calendar.svg" alt="" aria-hidden="true" />
             <div class="service-card__date-text">
               <div class="service-card__date-label">تاريخ الإنشاء</div>
               <div class="service-card__date-value" dir="ltr">{{ d.createdAt }}</div>
@@ -70,7 +70,7 @@
         <div class="card-divider"></div>
         <div class="executor-card__body">
           <div class="executor-card__avatar" aria-hidden="true">
-            <app-icon-placeholder size="md" src="/assets/images/svg/Header/user.svg" />
+            <app-icon-placeholder size="md" src="assets/images/svg/Header/user.svg" />
           </div>
           <div class="executor-card__info">
             <div class="executor-card__name">{{ d.executorName }}</div>
@@ -128,15 +128,15 @@
         <div class="order-info-grid">
           <div class="order-info-item">
             <span class="order-info-label">مستحق المنفذ</span>
-            <span class="order-info-value riyal-inline"><img class="riyal-icon" src="/assets/images/svg/saudi-riyal-symbol-cyan%20700.svg" alt="ر.س" /> {{ d.executorEntitlement.replace('₪', '').trim() }}</span>
+            <span class="order-info-value riyal-inline"><img class="riyal-icon" src="assets/images/svg/saudi-riyal-symbol-cyan%20700.svg" alt="ر.س" /> {{ d.executorEntitlement.replace('₪', '').trim() }}</span>
           </div>
           <div class="order-info-item">
             <span class="order-info-label">سعر البيع</span>
-            <span class="order-info-value riyal-inline"><img class="riyal-icon" src="/assets/images/svg/saudi-riyal-symbol-cyan%20700.svg" alt="ر.س" /> {{ d.sellingPrice.replace('₪', '').trim() }}</span>
+            <span class="order-info-value riyal-inline"><img class="riyal-icon" src="assets/images/svg/saudi-riyal-symbol-cyan%20700.svg" alt="ر.س" /> {{ d.sellingPrice.replace('₪', '').trim() }}</span>
           </div>
           <div class="order-info-item">
             <span class="order-info-label">صافي الربح</span>
-            <span class="order-info-value riyal-inline"><img class="riyal-icon" src="/assets/images/svg/saudi-riyal-symbol-cyan%20700.svg" alt="ر.س" /> {{ d.netProfit.replace('₪', '').trim() }}</span>
+            <span class="order-info-value riyal-inline"><img class="riyal-icon" src="assets/images/svg/saudi-riyal-symbol-cyan%20700.svg" alt="ر.س" /> {{ d.netProfit.replace('₪', '').trim() }}</span>
           </div>
           <div class="order-info-item">
             <span class="order-info-label">حالة الدفع</span>

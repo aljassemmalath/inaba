@@ -23,7 +23,7 @@ import { IconPlaceholderComponent } from '../icon-placeholder/icon-placeholder.c
         (ngModelChange)="value.set($event)"
       />
       <span class="header-search__icon" aria-hidden="true">
-        <app-icon-placeholder size="md" src="/assets/images/svg/Header/search.svg" />
+        <app-icon-placeholder size="md" src="assets/images/svg/Header/search.svg" />
       </span>
     </div>
     @if (error()) { <div class="header-search__error" role="alert">{{ error() }}</div> }

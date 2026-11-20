@@ -46,6 +46,7 @@
           },
           "configurations": {
             "production": {
+              "baseHref": "/inaba/",
               "budgets": [
                 {
                   "type": "initial",
