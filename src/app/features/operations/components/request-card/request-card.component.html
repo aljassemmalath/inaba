@@ -29,7 +29,7 @@
       <div class="actions-group">
         @for (act of request().actions; track act.key) {
           <app-button
-            class="request-action-btn full"
+            class="request-action-btn"
             [class.request-action--view]="isViewAction(act)"
             [class.request-action--secondary]="!isViewAction(act)"
             [variant]="isViewAction(act) ? 'neutral' : 'secondary'"

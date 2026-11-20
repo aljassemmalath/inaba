@@ -44,8 +44,8 @@
 }
 
 .actions-group {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 8px;
   align-items: center;
   width: 100%;
@@ -55,7 +55,7 @@
 .actions-group .request-action--secondary { order: 2; }
 
 .request-action-btn {
-  width: 100%;
+  width: auto;
   min-width: 0;
 }
 
@@ -97,5 +97,4 @@
   .request-layout { grid-template-columns: 1fr; }
   .request-info, .request-actions { grid-column: auto; }
   .request-actions { max-width: 100%; }
-  .actions-group { grid-template-columns: 1fr; }
 }
