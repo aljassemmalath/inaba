@@ -51,7 +51,7 @@ export class HomeComponent {
     { title: 'طلبات قيد التنفيذ', value: '286', modifierClass: 'home-stat--in-progress', iconSrc: 'assets/images/svg/Home-page/requests-in-progress.svg' },
     { title: 'مشاكل مفتوحة', value: '9', modifierClass: 'home-stat--issues', iconSrc: 'assets/images/svg/Home-page/open-issues.svg' },
   ];
-  readonly alerts = DASHBOARD_ALERTS;
+  readonly alerts = [...DASHBOARD_ALERTS, ...DASHBOARD_ALERTS];
   readonly financial = FINANCIAL_SUMMARY;
   readonly monthlyOrders = MONTHLY_ORDERS;
   readonly productShares = PRODUCT_SHARES;

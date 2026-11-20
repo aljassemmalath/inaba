@@ -29,10 +29,13 @@
             <span>عرض جميع التنبيهات</span>
             <img src="assets/images/svg/Buttons/arrow-left.svg" alt="" aria-hidden="true" />
           </a>
-          <div class="d-flex flex-column gap-3">
-            @for (alert of alerts; track alert.title) {
-              <app-alert-card [count]="alert.count" [title]="alert.title" [description]="alert.description" [tone]="alert.tone" variant="elevated" modifierClass="dashboard-alert" />
-            }
+          <div class="alerts-scroll-wrap">
+            <div class="alerts-scroll d-flex flex-column gap-3">
+              @for (alert of alerts; track $index) {
+                <app-alert-card [count]="alert.count" [title]="alert.title" [description]="alert.description" [tone]="alert.tone" variant="elevated" modifierClass="dashboard-alert" />
+              }
+            </div>
+            <div class="alerts-scroll-fade" aria-hidden="true"></div>
           </div>
         </app-content-card>
       </div>

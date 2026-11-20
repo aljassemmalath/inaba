@@ -67,6 +67,30 @@
 .riyal-title { width: 18px; height: 18px; display: inline-block; object-fit: contain; }
 .chart-header-badges { display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 
+.alerts-scroll-wrap {
+  position: relative;
+  display: flex;
+  flex: 1 1 0;
+  min-height: 0;
+}
+.alerts-scroll {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  padding-inline-end: 4px;
+  padding-block-end: 4px;
+  scrollbar-width: thin;
+}
+.alerts-scroll app-alert-card { flex-shrink: 0; }
+.alerts-scroll-fade {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 32px;
+  background: linear-gradient(to top, #fff 0%, rgba(255, 255, 255, 0) 100%);
+  pointer-events: none;
+}
+
 /* Refinements */
 :host ::ng-deep .content-card-body.h-100-card {
   height: 100%;

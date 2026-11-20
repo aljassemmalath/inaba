@@ -1,6 +1,7 @@
-.donut-layout { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+:host { display: flex; flex: 1 1 auto; align-items: center; justify-content: center; width: 100%; }
+.donut-layout { display: flex; align-items: center; justify-content: center; gap: 24px; flex-wrap: wrap; width: 100%; }
 .donut-visual { flex: 0 0 auto; }
-.donut-legend { display: flex; flex-direction: column; justify-content: center; gap: 12px; flex: 1 1 160px; }
+.donut-legend { display: flex; flex-direction: column; justify-content: center; gap: 12px; flex: 0 1 180px; }
 .legend-row { display: flex; align-items: center; gap: 10px; }
 .legend-label { font-size: var(--font-size-body-md); color: var(--text-secondary); flex: 1; }
 .donut-svg { display: block; max-width: 100%; height: auto; overflow: visible; }
@@ -12,6 +13,5 @@
 .donut-total { font-size: 22px; font-weight: 700; fill: var(--text-primary); font-family: var(--font-family-base); }
 .donut-sub { font-size: 12px; fill: var(--text-secondary); font-family: var(--font-family-base); }
 @media (max-width: 575.98px) {
-  .donut-layout { justify-content: center; }
   .donut-legend { flex: 1 1 100%; }
 }
