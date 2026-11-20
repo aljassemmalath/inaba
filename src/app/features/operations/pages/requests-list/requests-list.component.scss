@@ -18,8 +18,12 @@
 
 .indicators-cell {
   display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
   align-items: center;
+}
+/* Keep the indicators column narrow and stack the labels inside one badge. */
+.indicators-cell ::ng-deep .status-badge {
+  max-width: 130px;
+  white-space: normal;
+  line-height: 1.6;
 }
 .indicators-empty { color: var(--text-secondary); }

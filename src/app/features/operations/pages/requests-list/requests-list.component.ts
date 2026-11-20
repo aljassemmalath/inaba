@@ -40,8 +40,7 @@ export class RequestsListComponent {
     { key: 'source', header: 'مصدر الطلب' },
     { key: 'executor', header: 'المنفذ' },
     { key: 'status', header: 'الحالة' },
-    { key: 'indicators', header: 'مؤشرات' },
-    { key: 'lastExecution', header: 'آخر تنفيذ' },
+    { key: 'indicators', header: 'مؤشرات', width: '150px' },
     { key: 'requestDate', header: 'تاريخ الطلب' },
     { key: 'actions', header: 'الإجراءات', width: '90px' },
   ];
@@ -64,21 +63,4 @@ export class RequestsListComponent {
   onPageSize(v: string) { this.pageSize.set(Number(v) || 8); this.page.set(1); }
   exportData(): void { /* export hook */ }
 
-  indicatorTone(ind: string): 'success' | 'warning' | 'error' | 'info' | 'neutral' | 'primary' | 'cyan' {
-    switch (ind) {
-      case 'رفض المنفذ':
-      case 'متأخر':
-        return 'error';
-      case 'ملف عليه تنبيه':
-      case 'تنفيذ سابق ملغي':
-      case 'بانتظار رد المنفذ':
-        return 'warning';
-      case 'لم يشاهد الإشعار':
-        return 'info';
-      case 'حُذف الدليل بعد الاحتفاظ':
-        return 'neutral';
-      default:
-        return 'neutral';
-    }
-  }
 }

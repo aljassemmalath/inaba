@@ -6,7 +6,7 @@ import { Component, computed, input, output } from '@angular/core';
     @if (detailed()) {
       <nav class="pagination-detailed" aria-label="ترقيم الصفحات">
         <button type="button" class="page-nav" [disabled]="page() <= 1" (click)="change(page() - 1)">
-          <span class="page-arrow">›</span>
+          <img class="page-arrow-icon" src="assets/images/svg/Buttons/previous arrow.svg" alt="" aria-hidden="true" />
           <span>السابق</span>
         </button>
         <div class="page-numbers">
@@ -20,7 +20,7 @@ import { Component, computed, input, output } from '@angular/core';
         </div>
         <button type="button" class="page-nav" [disabled]="page() >= totalPages()" (click)="change(page() + 1)">
           <span>التالي</span>
-          <span class="page-arrow">‹</span>
+          <img class="page-arrow-icon" src="assets/images/svg/Buttons/next arrow.svg" alt="" aria-hidden="true" />
         </button>
       </nav>
     } @else {
@@ -37,21 +37,28 @@ import { Component, computed, input, output } from '@angular/core';
   styles: [`
     .pagination-detailed { display: flex; align-items: center; justify-content: center; gap: 6px; }
     .page-numbers { display: flex; align-items: center; gap: 6px; }
-    .page-nav,
-    .page-number {
+    .page-nav {
       display: inline-flex; align-items: center; justify-content: center; gap: 4px;
       min-width: 32px; height: 32px; padding: 0 8px;
       border: 1px solid var(--border-default); border-radius: 4px;
       background: var(--background-default); color: var(--text-secondary);
       font-family: var(--font-family-base); font-size: 13px; cursor: pointer;
     }
+    .page-number {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-width: 32px; height: 32px; padding: 0 8px;
+      border: none; border-radius: 4px;
+      background: transparent; color: var(--text-secondary);
+      font-family: var(--font-family-base); font-size: 13px; cursor: pointer;
+    }
     .page-nav:disabled { opacity: 0.45; cursor: not-allowed; }
     .page-number.is-active {
-      background: var(--action-primary-default); border-color: var(--action-primary-default);
-      color: var(--action-primary-text);
+      background: var(--neutral-100);
+      border: none;
+      color: var(--text-primary);
     }
     .page-ellipsis { padding: 0 4px; color: var(--text-secondary); }
-    .page-arrow { font-size: 18px; line-height: 1; }
+    .page-arrow-icon { width: 16px; height: 16px; display: block; }
   `],
 })
 export class PaginationComponent {

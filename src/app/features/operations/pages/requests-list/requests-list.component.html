@@ -45,9 +45,7 @@
         <span class="indicators-empty">-</span>
       } @else {
         <div class="indicators-cell">
-          @for (ind of row.indicators; track ind) {
-            <app-status-badge [label]="ind" [tone]="indicatorTone(ind)" />
-          }
+          <app-status-badge [label]="row.indicators.join(' / ')" tone="warning" />
         </div>
       }
     </ng-template>
