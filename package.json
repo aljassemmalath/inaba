@@ -6,6 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
+    "watch:sass": "sass --watch --source-map --load-path=src/styles src:src",
     "test": "ng test"
   },
   "private": true,

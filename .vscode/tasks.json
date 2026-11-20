@@ -21,6 +21,30 @@
       }
     },
     {
+      "label": "Watch Sass",
+      "type": "npm",
+      "script": "watch:sass",
+      "isBackground": true,
+      "runOptions": {
+        "runOn": "folderOpen"
+      },
+      "problemMatcher": {
+        "owner": "sass",
+        "pattern": {
+          "regexp": "^Error:"
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "Compiling|\\.scss",
+          "endsPattern": "Compiled|Sass is watching"
+        }
+      },
+      "presentation": {
+        "reveal": "silent",
+        "panel": "dedicated"
+      }
+    },
+    {
       "type": "npm",
       "script": "test",
       "isBackground": true,
