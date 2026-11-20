@@ -38,7 +38,7 @@ export interface GenericFormData {
               {{ f.label }} @if (f.required) { <span class="text-danger">*</span> }
             </label>
             @if (f.type === 'textarea') {
-              <textarea class="form-control" [id]="f.key" rows="3" [placeholder]="f.placeholder || ''" [(ngModel)]="model[f.key]"></textarea>
+              <textarea class="form-control form-control--large" [id]="f.key" rows="3" [placeholder]="f.placeholder || ''" [(ngModel)]="model[f.key]"></textarea>
             } @else if (f.type === 'select') {
               <select class="form-select" [id]="f.key" [(ngModel)]="model[f.key]">
                 <option value="">{{ f.placeholder || 'اختر...' }}</option>
