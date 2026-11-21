@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { DialogRef } from '@angular/cdk/dialog';
 import { FormsModule } from '@angular/forms';
+import { InlineAlertComponent } from '../../inline-alert/inline-alert.component';
 import { ModalComponent } from '../modal.component';
 
 interface ExecutorOption {
@@ -12,7 +13,7 @@ interface ExecutorOption {
 
 @Component({
   standalone: true,
-  imports: [ModalComponent, FormsModule],
+  imports: [ModalComponent, FormsModule, InlineAlertComponent],
   template: `
     <app-modal modalType="right" modalSize="medium" title="إسناد الطلب" description="اختر منفذًا متاحًا لتنفيذ هذا الطلب.">
       <div class="assign-content">
@@ -39,7 +40,7 @@ interface ExecutorOption {
           <div class="filter">
             <label class="form-label" for="assign-sort">الترتيب</label>
             <select id="assign-sort" class="form-select" [(ngModel)]="sort">
-              <option value="least">الأقل حملاً أولاً</option>
+              <option value="default">الأقل حملاً أولاً</option>
               <option value="most">الأكثر حملاً أولاً</option>
             </select>
           </div>
@@ -67,9 +68,9 @@ interface ExecutorOption {
           }
         </div>
 
-        <div class="inline-alert inline-alert--text" role="status">
-          <span class="inline-alert__desc">لا يظهر هنا المنفذون المشغولون ولا من هم خارج الدوام.</span>
-        </div>
+        <app-inline-alert variant="text">
+          لا يظهر هنا المنفذون المشغولون ولا من هم خارج الدوام.
+        </app-inline-alert>
       </div>
 
       <ng-container modal-footer>
@@ -119,15 +120,16 @@ export class AssignOrderDialogComponent {
 
   search = '';
   supervisor = 'all';
-  sort: 'least' | 'most' = 'least';
+  sort: 'default' | 'most' = 'default';
   selected = '';
 
   get filteredExecutors(): ExecutorOption[] {
     const term = this.search.trim();
-    return this.executors
+    const matching = this.executors
       .filter((executor) => !term || executor.name.includes(term))
-      .filter((executor) => this.supervisor === 'all' || executor.supervisor === this.supervisor)
-      .sort((a, b) => (this.sort === 'least' ? a.count - b.count : b.count - a.count));
+      .filter((executor) => this.supervisor === 'all' || executor.supervisor === this.supervisor);
+
+    return this.sort === 'most' ? [...matching].sort((a, b) => b.count - a.count) : matching;
   }
 
   assign(): void {
