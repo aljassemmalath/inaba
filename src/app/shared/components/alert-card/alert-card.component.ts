@@ -13,8 +13,9 @@ export type AlertCardTone = 'gold' | 'info' | 'error' | 'neutral';
           <div class="alert-desc">{{ description() }}</div>
         </div>
       </div>
-      <button type="button" class="btn btn-brand-outline btn-sm alert-action" (click)="action.emit()">
-        {{ actionLabel() }}
+      <button type="button" class="btn btn-primary-outline btn-sm alert-action" (click)="action.emit()">
+        <span>{{ actionLabel() }}</span>
+        <img src="assets/images/svg/Buttons/view-teal.svg" alt="" aria-hidden="true" />
       </button>
     </div>
   `,
@@ -41,6 +42,7 @@ export type AlertCardTone = 'gold' | 'info' | 'error' | 'neutral';
     .alert-title { font-weight: 600; color: var(--text-primary); font-size: var(--font-size-body-md); }
     .alert-desc { color: var(--text-secondary); font-size: var(--font-size-body-sm); margin-top: 1px; }
     .alert-action { flex-shrink: 0; }
+    .alert-action img { width: 16px; height: 16px; flex: 0 0 16px; object-fit: contain; }
   `],
 })
 export class AlertCardComponent {

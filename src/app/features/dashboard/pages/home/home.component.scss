@@ -101,12 +101,6 @@
 :host ::ng-deep .content-card-body.financial-summary-card > .card-header-block {
   align-items: center;
 }
-:host ::ng-deep .needs-action-view img {
-  width: 16px;
-  height: 16px;
-  flex: 0 0 16px;
-  object-fit: contain;
-}
 :host ::ng-deep .content-card-body.latest-orders-card .card-header-block {
   display: flex;
   align-items: center;

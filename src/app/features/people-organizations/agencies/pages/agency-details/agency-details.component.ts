@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { PageBannerComponent } from '../../../../../shared/components/page-banner/page-banner.component';
 import { StatusBadgeComponent, BadgeTone } from '../../../../../shared/components/status-badge/status-badge';
+import { ContentCardComponent } from '../../../../../shared/components/content-card/content-card.component';
 import { DataTableComponent, DataTableColumn } from '../../../../../shared/components/data-table/data-table.component';
 import { SummaryContainerComponent } from '../../../../../shared/components/summary-container/summary-container.component';
 import { SummaryItemComponent } from '../../../../../shared/components/summary-item/summary-item.component';
@@ -21,7 +22,7 @@ interface AgencyOrderRow extends Record<string, unknown> {
 
 @Component({
   selector: 'app-agency-details-page',
-  imports: [PageBannerComponent, StatusBadgeComponent, DataTableComponent, SummaryContainerComponent, SummaryItemComponent],
+  imports: [PageBannerComponent, StatusBadgeComponent, ContentCardComponent, DataTableComponent, SummaryContainerComponent, SummaryItemComponent],
   templateUrl: './agency-details.component.html',
   styleUrl: './agency-details.component.scss',
 })

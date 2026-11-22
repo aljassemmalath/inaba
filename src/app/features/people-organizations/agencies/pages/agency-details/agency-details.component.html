@@ -1,14 +1,6 @@
 @if (agency(); as a) {
   <app-page-banner [title]="'تفاصيل المكتب'" [description]="a.agency" [backRoute]="['/people-organizations/agencies']" />
 
-  <section class="mb-4" aria-label="ملخص الوكالة">
-    <app-summary-container modifierClass="agency-summary">
-      <app-summary-item label="إجمالي الطلبات" [value]="a.requestsCount" iconSrc="assets/images/svg/Home-page/total-requests.svg" />
-      <app-summary-item label="قيد التنفيذ" [value]="a.inProgressCount" iconSrc="assets/images/svg/Home-page/requests-in-progress.svg" />
-      <app-summary-item label="مكتملة" [value]="a.completedCount ?? 0" iconSrc="assets/images/svg/Home-page/completed-requests.svg" />
-    </app-summary-container>
-  </section>
-
   <div class="agency-layout">
     <div class="agency-right">
       <div class="content-card-body info-card">
@@ -42,11 +34,17 @@
         </div>
       </div>
     </div>
+
+    <div class="agency-left">
+      <app-summary-container modifierClass="agency-summary agency-summary--stacked" aria-label="ملخص الوكالة">
+        <app-summary-item label="إجمالي الطلبات" [value]="a.requestsCount" iconSrc="assets/images/svg/Home-page/total-requests.svg" />
+        <app-summary-item label="قيد التنفيذ" [value]="a.inProgressCount" iconSrc="assets/images/svg/Home-page/requests-in-progress.svg" />
+        <app-summary-item label="مكتملة" [value]="a.completedCount ?? 0" iconSrc="assets/images/svg/Home-page/completed-requests.svg" />
+      </app-summary-container>
+    </div>
   </div>
 
-  <div class="content-card-body table-card agency-orders-card" aria-label="طلبات الوكالة">
-    <h3 class="info-card__title">طلبات الوكالة</h3>
-    <div class="card-divider"></div>
+  <app-content-card title="طلبات الوكالة" modifierClass="agency-orders-card" [showDivider]="true">
     <app-data-table [columns]="orderColumns" [rows]="orders()" trackByKey="id" emptyTitle="لا توجد طلبات" emptyMessage="لا توجد طلبات مرتبطة بهذه الوكالة حالياً.">
       <ng-template #statusCell let-row>
         <app-status-badge [label]="row.status" [tone]="row.statusTone" />
@@ -57,5 +55,5 @@
         </button>
       </ng-template>
     </app-data-table>
-  </div>
+  </app-content-card>
 }

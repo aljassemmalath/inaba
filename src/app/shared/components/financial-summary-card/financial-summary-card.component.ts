@@ -11,11 +11,8 @@ import { IconPlaceholderComponent } from '../icon-placeholder/icon-placeholder.c
         <div class="fin-label">{{ label() }}</div>
       </div>
       <div class="fin-value">
-        @if (isNetProfit()) {
-          <img class="riyal" src="assets/images/svg/saudi-riyal-symbol-cyan%20500.svg" alt="" aria-hidden="true" />
-        }
         <span>{{ value() }}</span>
-        @if (showRiyal()) {
+        @if (isNetProfit() || showRiyal()) {
           <img class="riyal" src="assets/images/svg/saudi-riyal-symbol-cyan%20500.svg" alt="" aria-hidden="true" />
         }
       </div>
@@ -38,7 +35,7 @@ import { IconPlaceholderComponent } from '../icon-placeholder/icon-placeholder.c
     .fin-label { font-size: var(--font-size-body-md); color: var(--text-secondary); }
     .fin-value { font-size: 20px; font-weight: 700; color: var(--text-primary); display: inline-flex; align-items: center; gap: 4px; }
     .financial-item-card.is-net-profit { background: var(--teal-50); }
-    .financial-item-card.is-net-profit .fin-icon { background: var(--teal-50); border-color: var(--teal-100); }
+    .financial-item-card.is-net-profit .fin-icon { background: var(--background-default); border-color: var(--teal-100); }
     .financial-item-card.is-net-profit .fin-value { color: var(--teal-500); }
     .riyal { width: 16px; height: 16px; display: inline-block; object-fit: contain; flex-shrink: 0; }
   `],

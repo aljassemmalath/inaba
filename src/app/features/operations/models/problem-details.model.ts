@@ -1,4 +1,5 @@
 import { BadgeTone } from '../../../shared/components/status-badge/status-badge';
+import { TimelineEvent } from '../../../shared/components/timeline/timeline.component';
 
 export interface ProblemDetails {
   id: string;
@@ -12,6 +13,8 @@ export interface ProblemDetails {
   stage: string;
   description: string;
   attachmentName: string;
+  actionLog: TimelineEvent[];
+  resolutionNote?: { text: string; author: string };
   relatedRequest: {
     id: string;
     requestNumber: string;

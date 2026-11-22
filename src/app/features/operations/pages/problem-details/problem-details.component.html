@@ -1,6 +1,13 @@
 @if (details(); as d) {
   <app-page-banner [title]="d.title" [description]="'رقم المشكلة: ' + d.issueNumber + '   تم تسجيل المشكلة في ' + d.registeredAt" [backRoute]="['/operations/issues']">
-    <app-status-badge banner-title-badge [label]="d.status" [tone]="d.statusTone" />
+    <app-status-badge banner-title-badge [label]="status()" [tone]="statusTone()" />
+    <div banner-actions>
+      @if (isOpen()) {
+        <button type="button" class="btn btn-brand" (click)="startFollowUp()">بدء المتابعة</button>
+      } @else if (isInProgress()) {
+        <button type="button" class="btn btn-brand" (click)="resolveIssue()">حل المشكلة</button>
+      }
+    </div>
   </app-page-banner>
 
   <div class="problem-layout">
@@ -57,6 +64,15 @@
           </button>
         </div>
       </div>
+
+      <!-- Card 3: سجل الإجراءات -->
+      @if (!isOpen()) {
+        <div class="content-card-body info-card">
+          <h3 class="info-card__title">سجل الإجراءات</h3>
+          <div class="card-divider"></div>
+          <app-timeline [events]="actionLog()" [highlightFirst]="isResolved()" [firstMarkerIcon]="isResolved() ? 'assets/images/svg/Buttons/tick.svg' : null" />
+        </div>
+      }
     </div>
 
     <!-- Left column col-4 -->
@@ -99,6 +115,16 @@
             <span class="info-value">{{ d.relatedRequest.beneficiaryName }}</span>
           </div>
         </div>
+
+        @if (isResolved()) {
+          @if (d.resolutionNote; as note) {
+            <div class="resolution-note">
+              <div class="info-label mb-1">ملاحظة الحل</div>
+              <p class="resolution-note__text">{{ note.text }}</p>
+              <div class="resolution-note__author">{{ note.author }}</div>
+            </div>
+          }
+        }
       </div>
     </div>
   </div>

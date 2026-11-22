@@ -1,11 +1,28 @@
 .agency-layout {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 2fr 1fr; /* بيانات الوكالة col-8 / الملخص col-4 */
   gap: 16px;
   align-items: start;
   margin-bottom: 16px;
 }
-.agency-right { min-width: 0; }
+.agency-right,
+.agency-left { min-width: 0; }
+
+:host ::ng-deep .agency-summary.agency-summary--stacked {
+  flex-direction: column;
+  gap: 12px;
+}
+:host ::ng-deep .agency-summary.agency-summary--stacked app-summary-item {
+  width: 100%;
+  flex: 0 0 auto;
+  min-width: 0;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  background: var(--background-default);
+  box-sizing: border-box;
+}
+:host ::ng-deep .agency-summary.agency-summary--stacked app-summary-item::after { display: none; }
+:host ::ng-deep .agency-summary.agency-summary--stacked .summary-item { padding: 12px 16px; }
 
 .info-card__title {
   margin: 0;
@@ -29,6 +46,9 @@
 .agency-orders-card { margin-top: 0; }
 .agency-orders-card .info-card__title { margin-bottom: 0; }
 
+@media (max-width: 991.98px) {
+  .agency-layout { grid-template-columns: 1fr; }
+}
 @media (max-width: 767.98px) {
   .info-grid--2 { grid-template-columns: 1fr; }
 }

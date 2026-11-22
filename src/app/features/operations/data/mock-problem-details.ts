@@ -1,5 +1,35 @@
+import { TimelineEvent } from '../../../shared/components/timeline/timeline.component';
 import { ProblemDetails } from '../models/problem-details.model';
 import { PROBLEMS_MOCK } from './mock-problems';
+
+const RESOLUTION_NOTE =
+  'مثال على نص ملاحظة الحل مثال على نص ملاحظة الحل مثال على نص ملاحظة الحل مثال على نص ملاحظة الحل مثال على نص ملاحظة الحل مثال على نص ملاحظة الحل';
+
+function buildActionLog(reportedAt: string, description: string, executor: string): TimelineEvent[] {
+  return [
+    {
+      title: 'حل المشكلة',
+      dateTime: reportedAt,
+      description: 'تم حل المشكلة وإضافة ملاحظة الحل.',
+      actor: 'مدير النظام (أحمد)',
+      role: 'مدير النظام',
+    },
+    {
+      title: 'بدء المتابعة',
+      dateTime: reportedAt,
+      description: 'تم بدء متابعة المشكلة وتحديد الإجراءات اللازمة لمعالجتها.',
+      actor: 'مدير النظام (أحمد)',
+      role: 'مدير النظام',
+    },
+    {
+      title: 'بلاغ المشكلة',
+      dateTime: reportedAt,
+      description,
+      actor: executor,
+      role: 'منفذ',
+    },
+  ];
+}
 
 export function getProblemDetails(id: string): ProblemDetails {
   const base = PROBLEMS_MOCK.find((p) => p.id === id) ?? PROBLEMS_MOCK[0];
@@ -18,6 +48,8 @@ export function getProblemDetails(id: string): ProblemDetails {
       stage: 'الطواف',
       description: 'تعذر استكمال مرحلة الطواف بسبب عدم توفر دليل مطابق للمتطلبات المحددة.',
       attachmentName: 'evidence-10470.mp4',
+      actionLog: buildActionLog('7 أكتوبر 2026، 10:30 ص', 'تعذر استكمال مرحلة الطواف بسبب عدم توفر دليل مطابق للمتطلبات المحددة.', 'سعد المالكي'),
+      resolutionNote: { text: RESOLUTION_NOTE, author: 'مدير النظام (أحمد)' },
       relatedRequest: {
         id: '10470',
         requestNumber: '10470',
@@ -42,8 +74,10 @@ export function getProblemDetails(id: string): ProblemDetails {
     type: base.problem,
     source: 'تطبيق المنفذ',
     stage: base.stage,
-    description: base.problem,
+    description: base.problemDetail,
     attachmentName: `evidence-${base.requestNumber}.mp4`,
+    actionLog: buildActionLog(base.reportedAt, base.problemDetail, base.executor),
+    resolutionNote: { text: RESOLUTION_NOTE, author: 'مدير النظام (أحمد)' },
     relatedRequest: {
       id: base.requestNumber,
       requestNumber: base.requestNumber,

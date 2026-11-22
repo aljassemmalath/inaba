@@ -12,9 +12,13 @@ export interface TimelineEvent {
   selector: 'app-timeline',
   template: `
     <div class="timeline" role="list">
-      @for (ev of events(); track ev.title + ev.dateTime) {
-        <article class="timeline-item" role="listitem">
-          <div class="timeline-marker" aria-hidden="true"></div>
+      @for (ev of events(); track ev.title + ev.dateTime; let first = $first) {
+        <article class="timeline-item" [class.is-highlighted]="highlightFirst() && first" role="listitem">
+          <div class="timeline-marker" [class.with-icon]="highlightFirst() && first && !!firstMarkerIcon()" aria-hidden="true">
+            @if (highlightFirst() && first && firstMarkerIcon()) {
+              <img [src]="firstMarkerIcon()" alt="" />
+            }
+          </div>
           <div class="timeline-content">
             <div class="timeline-head">
               <h4 class="timeline-title">{{ ev.title }}</h4>
@@ -36,6 +40,18 @@ export interface TimelineEvent {
       position: absolute; inset-inline-start: -22px; top: 4px; width: 12px; height: 12px; border-radius: 50%;
       background: #fff; border: 2px solid var(--action-primary-default); box-sizing: border-box;
     }
+    .timeline-item.is-highlighted .timeline-content {
+      background: var(--teal-20);
+      border: 1px solid var(--teal-100);
+      border-radius: var(--radius-md);
+      padding: 12px;
+    }
+    .timeline-marker.with-icon {
+      inset-inline-start: -26px; top: 2px; width: 20px; height: 20px;
+      background: var(--teal-500); border: 0;
+      display: inline-flex; align-items: center; justify-content: center;
+    }
+    .timeline-marker.with-icon img { width: 12px; height: 12px; display: block; }
     .timeline-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
     .timeline-title { margin: 0; font-size: var(--font-size-body-md); font-weight: 600; color: var(--text-primary); }
     .timeline-time { font-size: var(--font-size-body-sm); color: var(--text-tertiary); }
@@ -45,4 +61,7 @@ export interface TimelineEvent {
 })
 export class TimelineComponent {
   readonly events = input.required<TimelineEvent[]>();
+  /** Highlights the newest (first) event — used for resolved issue action logs. */
+  readonly highlightFirst = input(false);
+  readonly firstMarkerIcon = input<string | null>(null);
 }

@@ -9,9 +9,13 @@ import { BadgeTone } from '../status-badge/status-badge';
   imports: [RouterLink, IconPlaceholderComponent, StatusBadgeComponent],
   template: `
     <article class="content-card-body report-card">
-      <div class="report-card__top">
-        <app-icon-placeholder size="lg" [src]="iconSrc()" />
+      <div class="report-card__badge">
         <app-status-badge [label]="category()" [tone]="categoryTone()" />
+      </div>
+      <div class="report-card__top">
+        <span class="report-card__icon-circle">
+          <app-icon-placeholder size="lg" [src]="iconSrc()" />
+        </span>
       </div>
       <div class="report-card__body">
         <h3 class="report-card__title">{{ title() }}</h3>
@@ -28,6 +32,7 @@ import { BadgeTone } from '../status-badge/status-badge';
   styles: [`
     :host { display: block; height: 100%; }
     .report-card {
+      position: relative;
       height: 100%; display: flex; flex-direction: column; gap: 10px;
       padding: 20px;
       background: var(--background-default);
@@ -37,8 +42,21 @@ import { BadgeTone } from '../status-badge/status-badge';
       box-shadow: none !important;
       box-sizing: border-box;
     }
+    .report-card__badge {
+      position: absolute;
+      top: 20px;
+      inset-inline-end: 20px; /* physical top-left in RTL */
+    }
     .report-card__top {
-      display: flex; flex-direction: column; align-items: flex-start; gap: 8px;
+      display: flex; align-items: flex-start;
+    }
+    .report-card__icon-circle {
+      width: 48px; height: 48px; flex: 0 0 48px;
+      border-radius: 50%;
+      border: 1px solid var(--teal-100);
+      background: var(--background-default);
+      display: inline-flex; align-items: center; justify-content: center;
+      box-sizing: border-box;
     }
     .report-card__body { flex: 1 1 auto; }
     .report-card__title {
