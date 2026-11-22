@@ -94,7 +94,7 @@ export class ExecutorsPageComponent {
     { key: 'currentRequest', header: 'الطلب الحالي' },
     { key: 'completed', header: 'المكتملة' },
     { key: 'dues', header: 'المستحقات', currency: true },
-    { key: 'actions', header: 'الإجراءات', width: '90px' },
+    { key: 'actions', header: 'الإجراءات', width: '160px' },
   ];
 
   openDetails(row: ExecutorRow): void {

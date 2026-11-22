@@ -11,15 +11,15 @@ a.btn {
   padding-block: 7px; /* (40 - 24 - 2 borders) / 2 */
   padding-inline: 16px;
   border: 1px solid transparent;
-  border-radius: 4px;
+  border-radius: var(--radius-md);
   font-family: var(--font-family-base);
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 700; 
   line-height: 24px;
   text-decoration: none;
   vertical-align: middle;
   cursor: pointer;
-  box-shadow: none;
+  box-shadow: var(--control-shadow);
   transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
   -webkit-appearance: none;
   appearance: none;
@@ -81,6 +81,32 @@ fieldset:disabled .btn {
   background-color: var(--action-primary-subtle);
   border-color: var(--action-primary-subtle);
   color: var(--action-tertiary-text);
+}
+
+/* Primary teal outline: transparent fill, teal-500 border and text */
+.btn-primary-outline,
+.btn.btn-primary-outline {
+  background-color: var(--background-default);
+  border-color: var(--teal-500);
+  color: var(--teal-500);
+}
+.btn-primary-outline:not(:disabled):not(.disabled):hover,
+.btn.btn-primary-outline:not(:disabled):not(.disabled):hover {
+  background-color: var(--teal-50);
+  border-color: var(--teal-500);
+  color: var(--teal-700);
+}
+.btn-primary-outline:not(:disabled):not(.disabled):active,
+.btn.btn-primary-outline:not(:disabled):not(.disabled).active {
+  background-color: var(--teal-50);
+  border-color: var(--teal-700);
+  color: var(--teal-700);
+}
+.btn-primary-outline:disabled,
+.btn-primary-outline.disabled {
+  background-color: var(--background-default);
+  border-color: var(--border-default);
+  color: var(--text-disabled);
 }
 
 /* Secondary */
@@ -147,7 +173,6 @@ fieldset:disabled .btn {
   background-color: transparent;
   border-color: transparent;
   color: var(--action-tertiary-text);
-  box-shadow: none;
 }
 .btn-tertiary:not(:disabled):not(.disabled):hover,
 .btn-brand-ghost:not(:disabled):not(.disabled):hover {
@@ -221,11 +246,13 @@ fieldset:disabled .btn {
   height: auto;
   padding: 0;
   border: 0;
-  border-radius: 4px;
+  border-radius: var(--radius-md);
   background: transparent;
   color: var(--action-tertiary-text);
   font-weight: 500;
   line-height: 20px;
+  padding-inline: 0;
+  padding-block: 0;
 }
 .btn.btn-link:hover { background: transparent; color: var(--action-primary-hover); }
 .btn.btn-link:active { background: transparent; color: var(--action-primary-pressed); }
@@ -238,12 +265,11 @@ fieldset:disabled .btn {
   width: 36px;
   height: 36px;
   padding: 0;
-  border-radius: 4px;
+  border-radius: var(--radius-md);
   border: 1px solid var(--border-default);
   background: var(--background-default);
   color: var(--text-secondary);
 }
-.btn-icon--rounded { border-radius: 50%; }
 .btn-icon:hover { background: var(--background-muted); color: var(--text-primary); }
 .btn-icon:focus-visible { outline: none; box-shadow: var(--focus-ring); }
 

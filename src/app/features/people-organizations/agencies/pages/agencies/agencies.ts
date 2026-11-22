@@ -34,7 +34,7 @@ export class AgenciesPageComponent {
     { key: 'requestsCount', header: 'عدد الطلبات' },
     { key: 'inProgressCount', header: 'الطلبات قيد التنفيذ' },
     { key: 'status', header: 'الحالة' },
-    { key: 'actions', header: 'الإجراءات', width: '90px' },
+    { key: 'actions', header: 'الإجراءات', width: '160px' },
   ];
 
   openDetails(row: AgencyRow): void {

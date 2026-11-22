@@ -16,6 +16,7 @@ import { REPORTS_CARDS } from '../../data/reports.data';
             [description]="report.description"
             [category]="report.category"
             [categoryTone]="report.categoryTone"
+            [iconSrc]="report.iconSrc"
             [link]="['/finance-reports/reports', report.key]"
           />
         </div>

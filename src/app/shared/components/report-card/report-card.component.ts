@@ -1,40 +1,69 @@
 import { Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { CircleIconComponent } from '../circle-icon/circle-icon.component';
 import { IconPlaceholderComponent } from '../icon-placeholder/icon-placeholder.component';
 import { StatusBadgeComponent } from '../status-badge/status-badge';
 import { BadgeTone } from '../status-badge/status-badge';
 
 @Component({
   selector: 'app-report-card',
-  imports: [RouterLink, CircleIconComponent, IconPlaceholderComponent, StatusBadgeComponent],
+  imports: [RouterLink, IconPlaceholderComponent, StatusBadgeComponent],
   template: `
     <article class="content-card-body report-card">
       <div class="report-card__top">
-        <div class="report-card__icons">
-          <app-icon-placeholder size="lg" />
-          <app-circle-icon variant="outlined" size="md" iconSize="sm" modifierClass="report-arrow" />
-        </div>
+        <app-icon-placeholder size="lg" [src]="iconSrc()" />
         <app-status-badge [label]="category()" [tone]="categoryTone()" />
       </div>
       <div class="report-card__body">
         <h3 class="report-card__title">{{ title() }}</h3>
         <p class="report-card__desc">{{ description() }}</p>
       </div>
-      <div class="report-card__footer">
-        <a class="btn btn-brand-outline" [routerLink]="link()">عرض التقرير</a>
-      </div>
+      <a class="report-card__footer" [routerLink]="link()">
+        <span class="report-card__view-label">عرض التقرير</span>
+        <span class="report-card__view-circle" aria-hidden="true">
+          <img src="assets/images/svg/Buttons/arrow-left.svg" alt="" />
+        </span>
+      </a>
     </article>
   `,
   styles: [`
     :host { display: block; height: 100%; }
-    .report-card { height: 100%; display: flex; flex-direction: column; }
-    .report-card__top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
-    .report-card__icons { display: inline-flex; align-items: center; gap: 8px; }
-    .report-card__body { flex: 1; }
-    .report-card__title { margin: 0 0 6px; font-size: var(--font-size-section); line-height: var(--line-height-section); font-weight: var(--font-weight-section); color: var(--text-primary); }
-    .report-card__desc { margin: 0; color: var(--text-secondary); font-size: var(--font-size-body-md); line-height: 1.6; }
-    .report-card__footer { margin-top: 16px; }
+    .report-card {
+      height: 100%; display: flex; flex-direction: column; gap: 10px;
+      padding: 20px;
+      background: var(--background-default);
+      border: 1px solid var(--border-default);
+      border-inline-start: 2px solid var(--teal-700);
+      border-radius: var(--radius-lg);
+      box-shadow: none !important;
+      box-sizing: border-box;
+    }
+    .report-card__top {
+      display: flex; flex-direction: column; align-items: flex-start; gap: 8px;
+    }
+    .report-card__body { flex: 1 1 auto; }
+    .report-card__title {
+      margin: 0 0 6px; font-size: var(--font-size-section); line-height: var(--line-height-section);
+      font-weight: var(--font-weight-section); color: var(--text-primary);
+    }
+    .report-card__desc {
+      margin: 0; color: var(--text-secondary); font-size: var(--font-size-body-md); line-height: 1.6;
+    }
+    .report-card__footer {
+      margin-top: auto; display: flex; align-items: center; justify-content: flex-end;
+      gap: 10px; text-decoration: none;
+    }
+    .report-card__view-label {
+      color: var(--teal-700); font-size: var(--font-size-body-md); font-weight: 600;
+    }
+    .report-card__view-circle {
+      width: 36px; height: 36px; flex: 0 0 36px; border-radius: 50%;
+      display: inline-flex; align-items: center; justify-content: center;
+      background: var(--teal-700); box-shadow: var(--control-shadow);
+    }
+    .report-card__view-circle img {
+      width: 16px; height: 16px; display: block; filter: brightness(0) invert(1);
+    }
+    .report-card__footer:hover .report-card__view-label { color: var(--teal-500); }
   `],
 })
 export class ReportCardComponent {
@@ -42,5 +71,6 @@ export class ReportCardComponent {
   readonly description = input.required<string>();
   readonly category = input.required<string>();
   readonly categoryTone = input<BadgeTone>('neutral');
+  readonly iconSrc = input('assets/images/svg/Reports/orders.svg');
   readonly link = input<any[] | string>(['/finance-reports/reports']);
 }

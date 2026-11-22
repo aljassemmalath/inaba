@@ -48,6 +48,7 @@ import { IconPlaceholderComponent } from '../icon-placeholder/icon-placeholder.c
       /* icon on the right (physical) with RTL text alignment */
       padding: 0 40px 0 12px;
       text-align: right;
+      box-shadow: var(--control-shadow);
       transition: border-color .15s ease, box-shadow .15s ease, background-color .15s ease;
     }
     .header-search__input::placeholder { color: var(--text-placeholder); }
@@ -55,7 +56,7 @@ import { IconPlaceholderComponent } from '../icon-placeholder/icon-placeholder.c
     .header-search__input:focus {
       outline: none;
       border-color: var(--border-focus);
-      box-shadow: var(--focus-ring);
+      box-shadow: var(--control-shadow), var(--focus-ring);
     }
     .header-search__input:disabled {
       background: var(--background-muted);

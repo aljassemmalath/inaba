@@ -1,13 +1,13 @@
 import { AgenciesReportRow, EntitlementsReportRow, ExecutorsReportRow, OrdersReportRow, ProductsReportRow, ProfitsReportRow, ReportCard, SupervisorsReportRow } from '../models/report.model';
 
 export const REPORTS_CARDS: ReportCard[] = [
-  { key: 'requests', title: 'تقرير الطلبات', description: 'متابعة حجم الطلبات وحالاتها ومعدلات الإنجاز خلال فترة محددة.', category: 'التشغيل', categoryTone: 'primary' },
-  { key: 'products', title: 'تقرير المنتجات', description: 'متابعة أداء المنتجات والخدمات من حيث عدد الطلبات والمبيعات وصافي الربح لكل منتج.', category: 'التشغيل', categoryTone: 'primary' },
-  { key: 'executors', title: 'تقرير المنفذين', description: 'متابعة الأداء التشغيلي للمنفذين ومؤشرات الإنجاز والتأخير والرفض.', category: 'الأداء', categoryTone: 'warning' },
-  { key: 'supervisors', title: 'تقرير المشرفين', description: 'متابعة حجم الفريق التابع لكل مشرف وملخص أداء المنفذين المرتبطين به.', category: 'الأداء', categoryTone: 'warning' },
-  { key: 'agencies', title: 'تقرير الوكالات', description: 'متابعة نشاط الوكالات وعدد طلباتها وحالات الإنجاز خلال الفترة.', category: 'الشركاء', categoryTone: 'success' },
-  { key: 'dues', title: 'تقرير المستحقات', description: 'ملخص المستحقات المرتبطة بالطلبات والمنفذين وحركة التسويات.', category: 'الماليات', categoryTone: 'info' },
-  { key: 'profits', title: 'تقرير الأرباح', description: 'ملخص الإيرادات والتكاليف وصافي الربح على مستوى الفترة والمنتجات.', category: 'الماليات', categoryTone: 'info' },
+  { key: 'requests', title: 'تقرير الطلبات', description: 'متابعة حجم الطلبات وحالاتها ومعدلات الإنجاز خلال فترة محددة.', category: 'التشغيل', categoryTone: 'primary', iconSrc: 'assets/images/svg/Reports/orders.svg' },
+  { key: 'products', title: 'تقرير المنتجات', description: 'متابعة أداء المنتجات والخدمات من حيث عدد الطلبات والمبيعات وصافي الربح لكل منتج.', category: 'التشغيل', categoryTone: 'primary', iconSrc: 'assets/images/svg/Reports/products.svg' },
+  { key: 'executors', title: 'تقرير المنفذين', description: 'متابعة الأداء التشغيلي للمنفذين ومؤشرات الإنجاز والتأخير والرفض.', category: 'الأداء', categoryTone: 'warning', iconSrc: 'assets/images/svg/Reports/executers.svg' },
+  { key: 'supervisors', title: 'تقرير المشرفين', description: 'متابعة حجم الفريق التابع لكل مشرف وملخص أداء المنفذين المرتبطين به.', category: 'الأداء', categoryTone: 'warning', iconSrc: 'assets/images/svg/Reports/supervisors.svg' },
+  { key: 'agencies', title: 'تقرير الوكالات', description: 'متابعة نشاط الوكالات وعدد طلباتها وحالات الإنجاز خلال الفترة.', category: 'الشركاء', categoryTone: 'success', iconSrc: 'assets/images/svg/Reports/agencies.svg' },
+  { key: 'dues', title: 'تقرير المستحقات', description: 'ملخص المستحقات المرتبطة بالطلبات والمنفذين وحركة التسويات.', category: 'الماليات', categoryTone: 'info', iconSrc: 'assets/images/svg/Reports/dues.svg' },
+  { key: 'profits', title: 'تقرير الأرباح', description: 'ملخص الإيرادات والتكاليف وصافي الربح على مستوى الفترة والمنتجات.', category: 'الماليات', categoryTone: 'info', iconSrc: 'assets/images/svg/Reports/profit.svg' },
 ];
 
 export const ORDERS_REPORT_ROWS: OrdersReportRow[] = [

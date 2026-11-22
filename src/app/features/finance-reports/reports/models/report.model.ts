@@ -6,6 +6,7 @@ export interface ReportCard {
   description: string;
   category: string;
   categoryTone: BadgeTone;
+  iconSrc: string;
 }
 
 export interface OrdersReportRow extends Record<string, unknown> {

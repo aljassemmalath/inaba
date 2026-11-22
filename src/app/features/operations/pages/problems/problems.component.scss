@@ -8,4 +8,14 @@
 }
 .simple-pagination { padding: 12px 24px; border-top: 1px solid var(--border-soft); font-size: var(--font-size-body-sm); color: var(--text-secondary); }
 .problem-action { min-width: 88px; }
+.problems-table-card ::ng-deep .app-data-table__table { table-layout: fixed; }
+.problems-table-card ::ng-deep .app-data-table__td[data-col='problem'] { max-width: 220px; }
+.problems-table-card ::ng-deep .app-data-table__td[data-col='problem'] .app-data-table__primary,
+.problems-table-card ::ng-deep .app-data-table__td[data-col='problem'] .app-data-table__description {
+  display: block;
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
 @media (max-width: 767.98px) { .problems-search { width: 100%; min-width: 0; } .toolbar-right, .toolbar-left { width: 100%; } }

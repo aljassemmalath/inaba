@@ -7,8 +7,8 @@
   border-radius: var(--radius-lg);
   box-shadow: none;
   margin-bottom: var(--space-4);
-  overflow: hidden;
-  
+  /* Keep dropdown menus (e.g. الإجراءات) visible outside the banner. */
+  overflow: visible;
 }
 
 /* Decorative pattern layer: full-bleed, independent of content padding. */
@@ -22,6 +22,7 @@
   background-repeat: no-repeat;
   background-position: inline-end center;
   background-size: auto 100%;
+  border-radius: var(--radius-lg);
 }
 
 .page-banner__content {
@@ -72,6 +73,8 @@
   max-width: 720px;
 }
 .page-banner__actions {
+  position: relative;
+  z-index: 2;
   display: flex;
   align-items: flex-end;
   gap: 8px;

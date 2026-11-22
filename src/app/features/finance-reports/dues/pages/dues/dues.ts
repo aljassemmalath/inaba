@@ -43,7 +43,7 @@ export class DuesPageComponent {
     { key: 'baseAmount', header: 'المبلغ الأساسي', currency: true },
     { key: 'netAdjustments', header: 'صافي التسويات', currency: true },
     { key: 'finalDue', header: 'المستحق النهائي', currency: true },
-    { key: 'actions', header: 'الإجراءات', width: '90px' },
+    { key: 'actions', header: 'الإجراءات', width: '160px' },
   ];
   readonly filtered = computed(() => {
     const q = this.search().trim().toLowerCase();

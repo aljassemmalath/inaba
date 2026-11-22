@@ -16,7 +16,7 @@ interface ExecutorOption {
   imports: [ModalComponent, FormsModule, InlineAlertComponent],
   template: `
     <app-modal modalType="right" modalSize="medium" title="إسناد الطلب" description="اختر منفذًا متاحًا لتنفيذ هذا الطلب.">
-      <div class="assign-content">
+      <div modal-body class="assign-content">
         <div class="assign-filters">
           <div class="filter">
             <label class="form-label" for="assign-search">بحث المنفذ</label>
@@ -80,15 +80,16 @@ interface ExecutorOption {
     </app-modal>
   `,
   styles: [`
-    .assign-content { display: flex; flex-direction: column; gap: 16px; }
-    .assign-filters { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) minmax(0, 1fr); gap: 12px; }
+    .assign-content { display: flex; flex-direction: column; gap: 16px; width: 100%; }
+    .assign-filters { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; width: 100%; }
     .filter { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
     .executor-cards {
-      display: flex; gap: 12px; overflow: auto; max-height: 260px;
-      padding: 2px 2px 8px; scrollbar-width: thin;
+      display: flex; flex-direction: column; gap: 8px;
+      overflow-y: auto; overflow-x: hidden; max-height: 260px;
+      padding: 2px 4px 4px 2px; scrollbar-width: thin;
     }
     .executor-card {
-      flex: 0 0 260px; display: flex; align-items: flex-start; gap: 10px;
+      flex: 0 0 auto; width: 100%; display: flex; align-items: flex-start; gap: 10px;
       padding: 14px; box-sizing: border-box; cursor: pointer;
       border: 1px solid var(--border-default); border-radius: var(--radius-md);
       background: #FFFFFF; transition: border-color 0.15s ease, background-color 0.15s ease;
@@ -102,7 +103,6 @@ interface ExecutorOption {
     .empty-state { margin: 0; font-size: var(--font-size-body-sm); color: var(--text-tertiary); }
     @media (max-width: 767.98px) {
       .assign-filters { grid-template-columns: 1fr; }
-      .executor-card { flex-basis: 230px; }
     }
   `],
 })

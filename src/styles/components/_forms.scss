@@ -11,10 +11,11 @@
   font-size: var(--font-size-body-md);
   color: var(--text-primary);
   min-height: 40px;
+  box-shadow: var(--control-shadow);
 }
 .form-control:focus, .form-select:focus {
   border-color: var(--action-primary-default);
-  box-shadow: var(--focus-ring);
+  box-shadow: var(--control-shadow), var(--focus-ring);
 }
 .form-control::placeholder { color: var(--text-tertiary); }
 

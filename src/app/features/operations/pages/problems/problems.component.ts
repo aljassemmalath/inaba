@@ -35,6 +35,7 @@ export class ProblemsComponent {
     {
       key: 'problem',
       header: 'المشكلة',
+      width: '220px',
       cell: (row) => row.problem,
       description: (row) => row.problemDetail,
       icon: (row) => row.problemIcon,

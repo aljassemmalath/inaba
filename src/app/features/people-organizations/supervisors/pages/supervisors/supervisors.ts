@@ -26,6 +26,6 @@ export class SupervisorsPageComponent {
     { key: 'supervisor', header: 'المشرف' },
     { key: 'mobile', header: 'الجوال' },
     { key: 'executorsCount', header: 'عدد المنفذين المرتبطين' },
-    { key: 'actions', header: 'الإجراءات', width: '90px' },
+    { key: 'actions', header: 'الإجراءات', width: '160px' },
   ];
 }
