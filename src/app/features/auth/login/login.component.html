@@ -1,0 +1,102 @@
+<div class="login-page" dir="ltr">
+  <div class="row g-0 login-page__row">
+    <section class="col-7 login-hero" aria-label="صورة تسجيل الدخول">
+      <img
+        class="login-hero__image"
+        src="assets/images/imgs/Login/kaaba_hero_background%201.png"
+        alt=""
+        aria-hidden="true"
+      />
+      <img
+        class="login-hero__pattern"
+        src="assets/images/imgs/Login/Pattern.svg"
+        alt=""
+        aria-hidden="true"
+      />
+    </section>
+
+    <section class="col-5 login-panel" dir="rtl">
+      <div class="login-panel__content">
+        <header class="login-heading">
+          <p class="login-heading__eyebrow">مرحبًا بك في</p>
+          <h1 class="login-heading__title">بوابة الإدارة – نظام خدمات الإنابة</h1>
+          <p class="login-heading__description">
+            يرجى إدخال البريد الإلكتروني وكلمة المرور لتسجيل الدخول.
+          </p>
+        </header>
+
+        <form class="login-form" (ngSubmit)="onSubmit()">
+          <div class="login-field">
+            <label class="form-label" for="login-email">البريد الإلكتروني</label>
+            <div class="login-input-wrap">
+              <input
+                id="login-email"
+                name="email"
+                class="form-control login-input"
+                type="email"
+                autocomplete="username"
+                placeholder="أدخل بريدك الإلكتروني"
+                [(ngModel)]="email"
+              />
+              <img
+                class="login-input-icon"
+                src="assets/images/svg/login/mail.svg"
+                alt=""
+                aria-hidden="true"
+              />
+            </div>
+          </div>
+
+          <div class="login-field">
+            <label class="form-label" for="login-password">كلمة المرور</label>
+            <div class="login-input-wrap">
+              <input
+                id="login-password"
+                name="password"
+                class="form-control login-input login-input--password"
+                [type]="passwordVisible() ? 'text' : 'password'"
+                autocomplete="current-password"
+                placeholder="أدخل كلمة المرور"
+                [(ngModel)]="password"
+              />
+              <img
+                class="login-input-icon"
+                src="assets/images/svg/login/square-lock-password.svg"
+                alt=""
+                aria-hidden="true"
+              />
+              <button
+                type="button"
+                class="login-password-toggle"
+                [attr.aria-label]="passwordVisible() ? 'إخفاء كلمة المرور' : 'عرض كلمة المرور'"
+                [attr.title]="passwordVisible() ? 'إخفاء كلمة المرور' : 'عرض كلمة المرور'"
+                (click)="togglePasswordVisibility()"
+              >
+                <img src="assets/images/svg/login/view.svg" alt="" aria-hidden="true" />
+              </button>
+            </div>
+          </div>
+
+          <div class="login-options">
+            <div class="form-check">
+              <input
+                id="login-remember"
+                name="rememberMe"
+                class="form-check-input"
+                type="checkbox"
+                [(ngModel)]="rememberMe"
+              />
+              <label class="form-check-label" for="login-remember">تذكرني</label>
+            </div>
+            <button type="button" class="btn btn-tertiary login-forgot">نسيت كلمة المرور؟</button>
+          </div>
+
+          <button type="submit" class="btn btn-brand login-submit">
+            <span>تسجيل الدخول</span>
+            <img src="assets/images/svg/login/login.svg" alt="" aria-hidden="true" />
+          </button>
+        </form>
+      </div>
+    </section>
+  </div>
+</div>

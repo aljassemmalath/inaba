@@ -3,6 +3,12 @@ import { MainLayoutComponent } from './layout/main-layout/main-layout';
 
 export const routes: Routes = [
   {
+    path: 'login',
+    loadComponent: () =>
+      import('./features/auth/login/login.component').then((m) => m.LoginComponent),
+    title: 'تسجيل الدخول',
+  },
+  {
     path: '',
     component: MainLayoutComponent,
     children: [

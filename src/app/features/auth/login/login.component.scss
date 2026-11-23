@@ -1,0 +1,250 @@
+:host {
+  display: block;
+  min-height: 100vh;
+}
+
+.login-page,
+.login-page__row {
+  min-height: 100vh;
+}
+
+.login-page__row {
+  margin: 0;
+}
+
+.login-hero {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  background: var(--teal-700);
+}
+
+.login-hero__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.login-hero__pattern {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: min(62%, 620px);
+  max-width: none;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+}
+
+.login-panel {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 56px;
+  background: var(--background-default);
+}
+
+.login-panel__content {
+  width: 100%;
+  max-width: 440px;
+}
+
+.login-heading {
+  margin-bottom: 32px;
+  text-align: right;
+}
+
+.login-heading__eyebrow,
+.login-heading__description {
+  margin: 0;
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 400;
+  color: var(--text-secondary);
+}
+
+.login-heading__eyebrow {
+  margin-bottom: 8px;
+}
+
+.login-heading__title {
+  margin: 0 0 12px;
+  font-size: 30px;
+  line-height: 1.35;
+  font-weight: 700;
+  color: var(--teal-500);
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.login-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-field .form-label {
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.login-input-wrap {
+  position: relative;
+}
+
+.login-input {
+  width: 100%;
+  height: 48px;
+  padding: 0 44px 0 16px;
+  font-size: 14px;
+  text-align: right;
+}
+
+.login-input--password {
+  padding: 0 44px;
+}
+
+.login-input::placeholder {
+  font-size: 14px;
+  color: var(--text-tertiary);
+}
+
+.login-input-icon {
+  position: absolute;
+  top: 50%;
+  right: 14px;
+  width: 16px;
+  height: 16px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.login-password-toggle {
+  position: absolute;
+  top: 50%;
+  left: 8px;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  cursor: pointer;
+}
+
+.login-password-toggle img {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+.login-password-toggle:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.login-options {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 2px;
+}
+
+.login-options .form-check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 24px;
+  margin-bottom: 0;
+  padding-left: 0;
+}
+
+.login-options .form-check-input {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  cursor: pointer;
+  border-color: var(--border-default);
+  box-shadow: none;
+}
+
+.login-options .form-check-input:checked {
+  background-color: var(--teal-500);
+  border-color: var(--teal-500);
+}
+
+.login-options .form-check-input:focus {
+  box-shadow: var(--focus-ring);
+}
+
+.login-options .form-check-label {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.login-forgot {
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.login-submit {
+  width: 100%;
+  height: 48px;
+  margin-top: 4px;
+  font-size: 16px;
+}
+
+.login-submit img {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 16px;
+  object-fit: contain;
+}
+
+@media (max-width: 991.98px) {
+  .login-hero {
+    display: none;
+  }
+
+  .login-panel {
+    flex: 0 0 100%;
+    max-width: 100%;
+    padding: 40px 32px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .login-panel {
+    align-items: flex-start;
+    padding: 32px 20px;
+  }
+
+  .login-heading__title {
+    font-size: 26px;
+  }
+
+  .login-heading__eyebrow,
+  .login-heading__description {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
