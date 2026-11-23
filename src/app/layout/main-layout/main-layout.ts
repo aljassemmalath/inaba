@@ -1,5 +1,5 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, inject, signal } from '@angular/core';
+import { Router, RouterOutlet } from '@angular/router';
 import { HeaderComponent } from '../header/header';
 import { SidebarComponent } from '../sidebar/sidebar';
 
@@ -10,7 +10,14 @@ import { SidebarComponent } from '../sidebar/sidebar';
   styleUrl: './main-layout.scss',
 })
 export class MainLayoutComponent {
+  private readonly router = inject(Router);
+
   readonly sidebarOpen = signal(false);
+
+  logout(): void {
+    void this.router.navigate(['/login']);
+  }
+
   toggleSidebar(): void {
     this.sidebarOpen.update((v) => !v);
   }

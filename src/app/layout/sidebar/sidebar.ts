@@ -12,6 +12,7 @@ import { UserProfileComponent } from '../user-profile/user-profile.component';
 export class SidebarComponent implements AfterViewInit {
   readonly mobileOpen = input(false);
   readonly closeMobile = output<void>();
+  readonly logout = output<void>();
   readonly sections = APP_NAVIGATION;
   readonly hasOverflowBelow = signal(false);
 

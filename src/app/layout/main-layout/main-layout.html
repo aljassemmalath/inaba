@@ -1,7 +1,7 @@
 <div class="app-shell">
-  <app-sidebar [mobileOpen]="sidebarOpen()" (closeMobile)="closeSidebar()" />
+  <app-sidebar [mobileOpen]="sidebarOpen()" (closeMobile)="closeSidebar()" (logout)="logout()" />
   <div class="app-main">
-    <app-header (toggleSidebar)="toggleSidebar()" />
+    <app-header (toggleSidebar)="toggleSidebar()" (logout)="logout()" />
     <main class="page-container">
       <router-outlet />
     </main>

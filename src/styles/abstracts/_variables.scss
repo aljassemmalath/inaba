@@ -88,7 +88,7 @@ $text-error: $error-700;
 
 // Borders
 $border-subtle: $neutral-200;
-$border-default: $neutral-300;
+$border-default: $neutral-200;
 $border-strong: $neutral-400;
 $border-focus: $teal-500;
 $border-brand: $teal-200;
@@ -185,35 +185,42 @@ $icons-bg-disabled: $background-muted;
 $icons-border-hover: $border-strong;
 $icons-inverse: $neutral-0;
 
-// Status — shared state structure (values preserve established visual appearance)
-$success-background: #ECFDF3;
-$success-background-strong: #ECFDF3;
-$success-border: #ABEFC6;
-$success-icon: #027A48;
-$success-text: #027A48;
-$success-solid: #12B76A;
+// Status — shared state structure, sourced from the palette above
+$success-background: $mint-50;
+$success-background-strong: $mint-50;
+$success-border: $mint-200;
+$success-icon: $mint-800;
+$success-text: $mint-800;
+$success-solid: $mint-600;
 
-$warning-background: #FFFAEB;
-$warning-background-strong: #FFFAEB;
-$warning-border: #FEDF89;
-$warning-icon: #B54708;
-$warning-text: #B54708;
+$warning-background: $gold-50;
+$warning-background-strong: $gold-50;
+$warning-border: $gold-200;
+$warning-icon: $gold-700;
+$warning-text: $gold-700;
 $warning-solid: $gold-500;
 
-$info-background: #EFF8FF;
-$info-background-strong: #EFF8FF;
-$info-border: #B2DDFF;
-$info-icon: #175CD3;
-$info-text: #175CD3;
+$info-background: $info-20;
+$info-background-strong: $info-20;
+$info-border: $info-200;
+$info-icon: $info-700;
+$info-text: $info-700;
 $info-solid: $info-500;
 
-$error-background: #FEF3F2;
-$error-background-strong: #FEF3F2;
-$error-border: #FDA29B;
-$error-icon: #D92D20;
-$error-text: #B42318;
+$error-background: $error-20;
+$error-background-strong: $error-20;
+$error-border: $error-200;
+$error-icon: $error-500;
+$error-text: $error-700;
 $error-solid: $error-500;
 $error-primary-2: $neutral-900;
+
+$teal-background: $teal-50;
+$teal-background-strong: $teal-50;
+$teal-border: $teal-200;
+$teal-icon: $teal-500;
+$teal-text: $teal-700;
+$teal-solid: $teal-500;
 
 $neutral-background: $info-20;
 $neutral-background-strong: $neutral-100;
@@ -355,6 +362,13 @@ $cyan-solid: $info-500;
   --success-icon: #{$success-icon};
   --success-text: #{$success-text};
   --success-solid: #{$success-solid};
+
+  --teal-background: #{$teal-background};
+  --teal-background-strong: #{$teal-background-strong};
+  --teal-border: #{$teal-border};
+  --teal-icon: #{$teal-icon};
+  --teal-text: #{$teal-text};
+  --teal-solid: #{$teal-solid};
 
   --warning-background: #{$warning-background};
   --warning-background-strong: #{$warning-background-strong};

@@ -10,9 +10,15 @@ import { HeaderSearchBarComponent } from '../../shared/components/header-search-
 })
 export class HeaderComponent {
   readonly toggleSidebar = output<void>();
+  readonly logout = output<void>();
   readonly menuOpen = signal(false);
 
   toggleMenu(): void {
     this.menuOpen.update((v) => !v);
+  }
+
+  onLogout(): void {
+    this.menuOpen.set(false);
+    this.logout.emit();
   }
 }

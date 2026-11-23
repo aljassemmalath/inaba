@@ -17,9 +17,6 @@ export class UserProfileComponent {
   readonly logout = output<void>();
 
   onLogout(): void {
-    // Placeholder: no auth service is wired yet. Do not pretend the user is logged out.
-    // TODO: inject/connect AuthService.logout() when authentication is implemented.
-    console.info('[UserProfile] Logout requested (placeholder handler; auth not implemented).');
     this.logout.emit();
   }
 }

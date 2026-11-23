@@ -21,7 +21,9 @@
           <button type="button" class="dropdown-item"><app-icon-placeholder size="sm" /> الملف الشخصي</button>
           <button type="button" class="dropdown-item"><app-icon-placeholder size="sm" /> الإعدادات</button>
           <hr class="dropdown-divider" />
-          <button type="button" class="dropdown-item text-danger"><app-icon-placeholder size="sm" /> تسجيل الخروج</button>
+          <button type="button" class="dropdown-item text-danger" (click)="onLogout()">
+            <app-icon-placeholder size="sm" src="assets/images/svg/Buttons/logout.svg" /> تسجيل الخروج
+          </button>
         </div>
       }
     </div>

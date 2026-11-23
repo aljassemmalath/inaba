@@ -1,5 +1,6 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-page',
@@ -8,6 +9,8 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './login.component.scss',
 })
 export class LoginComponent {
+  private readonly router = inject(Router);
+
   readonly email = signal('');
   readonly password = signal('');
   readonly rememberMe = signal(false);
@@ -18,6 +21,6 @@ export class LoginComponent {
   }
 
   onSubmit(): void {
-    // Authentication will be connected here when the backend endpoint is available.
+    void this.router.navigate(['/operations']);
   }
 }

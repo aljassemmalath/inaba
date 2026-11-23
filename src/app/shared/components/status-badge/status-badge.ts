@@ -1,6 +1,6 @@
 import { Component, computed, input } from '@angular/core';
 
-export type BadgeTone = 'success' | 'warning' | 'error' | 'info' | 'neutral' | 'primary' | 'cyan';
+export type BadgeTone = 'success' | 'warning' | 'error' | 'info' | 'neutral' | 'primary' | 'teal' | 'cyan';
 
 @Component({
   selector: 'app-status-badge',

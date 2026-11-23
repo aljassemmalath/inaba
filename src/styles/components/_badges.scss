@@ -10,6 +10,7 @@
   line-height: 1.4;
 }
 .status-badge.success { background: var(--success-background-strong); border-color: var(--success-border); color: var(--success-text); }
+.status-badge.teal { background: var(--teal-background-strong); border-color: var(--teal-border); color: var(--teal-text); }
 .status-badge.warning { background: var(--warning-background-strong); border-color: var(--warning-border); color: var(--warning-text); }
 .status-badge.error { background: var(--error-background-strong); border-color: var(--error-border); color: var(--error-text); }
 .status-badge.info { background: var(--info-background-strong); border-color: var(--info-border); color: var(--info-text); }

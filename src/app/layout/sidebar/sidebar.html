@@ -42,7 +42,7 @@
     </div>
   </div>
 
-  <app-user-profile />
+  <app-user-profile (logout)="logout.emit()" />
 </nav>
 @if (mobileOpen()) {
   <div class="sidebar-backdrop" (click)="closeMobile.emit()" aria-hidden="true"></div>
