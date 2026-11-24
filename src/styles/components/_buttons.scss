@@ -166,32 +166,45 @@ fieldset:disabled .btn {
   color: var(--text-disabled);
 }
 
-/* Tertiary (no unnecessary border, padding or shadow; bottom line on hover/active) */
+/* Tertiary (text-only action; underline the label on hover/active) */
 .btn.btn-tertiary,
 .btn.btn-brand-ghost {
+  height: auto;
   padding: 0;
   background-color: transparent;
-  border-color: transparent;
+  border: 0;
+  box-shadow: none;
   color: var(--action-tertiary-text);
 }
 .btn-tertiary:not(:disabled):not(.disabled):hover,
 .btn-brand-ghost:not(:disabled):not(.disabled):hover {
   background-color: transparent;
-  border-color: transparent;
-  border-bottom-color: var(--action-tertiary-text);
+  border: 0;
+  box-shadow: none;
   color: var(--action-tertiary-text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 .btn-tertiary:not(:disabled):not(.disabled):active,
 .btn-brand-ghost:not(:disabled):not(.disabled):active {
   background-color: transparent;
-  border-color: transparent;
-  border-bottom-color: var(--action-primary-pressed);
+  border: 0;
+  box-shadow: none;
   color: var(--action-primary-pressed);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.btn-tertiary:focus-visible,
+.btn-brand-ghost:focus-visible {
+  box-shadow: var(--focus-ring);
 }
 .btn-tertiary:disabled,
 .btn-brand-ghost:disabled {
   background-color: transparent;
+  border: 0;
+  box-shadow: none;
   color: var(--text-disabled);
+  text-decoration: none;
 }
 
 /* Danger */

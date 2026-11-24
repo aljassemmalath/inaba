@@ -37,7 +37,6 @@
   max-width: none;
   height: auto;
   pointer-events: none;
-  user-select: none;
 }
 
 .login-hero__content {
@@ -49,15 +48,13 @@
   transform: translateY(-50%);
   display: flex;
   flex-direction: column;
-  align-items: flex-start; // RTL cross-start is the right edge
+  align-items: flex-start;
   text-align: right;
 }
 
 .login-hero__logo {
   height: 100px;
   width: auto;
-  display: block;
-  object-fit: contain;
 }
 
 .login-hero__title {
@@ -69,12 +66,19 @@
 }
 
 .login-hero__divider {
-  width: 4px;
-  height: 100px;
-  margin: 20px 0;
-  flex-shrink: 0;
+  width: 100px;
+  height: 4px;
+  margin: 20px 0 16px;
   border-radius: var(--radius-pill);
   background: var(--gold-500);
+}
+
+.login-hero__subtitle {
+  margin: 0 0 20px;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--teal-50);
 }
 
 .login-hero__list {
@@ -141,7 +145,7 @@
   font-size: 30px;
   line-height: 1.35;
   font-weight: 700;
-  color: var(--teal-500);
+  color: var(--teal-700);
 }
 
 .login-form {
